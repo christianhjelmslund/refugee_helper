@@ -1,1 +1,5 @@
 crisis_detector
+.idea
+Lib
+Scripts
+*.cfg
