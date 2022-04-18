@@ -5,15 +5,19 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import java.util.HashMap;
 
-public class SendMessage implements JavaDelegate {
+import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
+
+public class SendUserInputChecked implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
         HashMap map = new HashMap<String, Object>();
-        map.put("name", execution.getVariable("name"));
+        map.put("user_input_data_ok", execution.getVariable("user_input_ok"));
+
+        REFUGEE_APP.info("Sending message [user_input_data_ok]'");
 
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("user_input_data").
+                createMessageCorrelation("user_input_data_ok").
                 setVariables(map).
                 correlateWithResult();
     }

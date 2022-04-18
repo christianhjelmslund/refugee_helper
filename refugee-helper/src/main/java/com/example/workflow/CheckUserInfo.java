@@ -6,11 +6,14 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 public class CheckUserInfo implements JavaDelegate {
 
-    private final static Logger LOGGER = Logger.getLogger("LOAN-REQUESTS");
+    public final static Logger SYSTEM = Logger.getLogger("SYSTEM");
+    public final static Logger REFUGEE_APP = Logger.getLogger("REFUGEE_APP");
 
     public void execute(DelegateExecution execution) throws Exception {
-        LOGGER.info("Processing request by '" + execution.getVariable("name") + "'...");
-        execution.setVariable("Output_2hs0hhd", execution.getVariable("name").equals("Carsten"));
+        SYSTEM.info("Processing request by '" + execution.getVariable("name") + "'...");
+
+        execution.setVariable("user_input_ok", !((String) execution.getVariable("name")).isEmpty());
+
     }
 
 }
