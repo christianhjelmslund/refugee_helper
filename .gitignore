@@ -3,3 +3,6 @@ crisis_detector
 Lib
 Scripts
 *.cfg
+*.class
+*.DS_Store
+target
