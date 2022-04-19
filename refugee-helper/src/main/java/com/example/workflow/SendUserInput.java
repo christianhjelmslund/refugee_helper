@@ -12,6 +12,7 @@ public class SendUserInput implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         HashMap map = new HashMap<String, Object>();
         map.put("name", execution.getVariable("name"));
+        map.put("country", execution.getVariable("country"));
 
         REFUGEE_APP.info("Sending message [user_input_data]'");
 

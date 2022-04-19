@@ -3,16 +3,16 @@ package com.example.workflow;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import static com.example.workflow.CheckUserInfo.SYSTEM;
+import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 
-public class SendRelevantCrisisDetected implements JavaDelegate {
+public class SendUserWantsToFlee implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
-        SYSTEM.info("Relevant crisis detected [relevant_crisis_detected]'");
+        REFUGEE_APP.info("User wants to flee");
 
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("relevant_crisis_detected").
+                createMessageCorrelation("flee").
                 correlateWithResult();
     }
 

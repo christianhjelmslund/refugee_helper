@@ -15,8 +15,7 @@ public class EvaluateCrisis implements JavaDelegate {
 
         REFUGEE_APP.info("Sending message [user_input_data_ok]'" + execution.getVariable("country"));
 
-        execution.setVariable("country_ok", !((String) execution.getVariable("country")).isEmpty());
-
+        execution.setVariable("relevant_crisis", (execution.getVariable("country")).equals("ukraine"));
 
 //        execution.getProcessEngineServices().
 //                getRuntimeService().

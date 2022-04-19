@@ -6,3 +6,4 @@ Scripts
 *.class
 *.DS_Store
 target
+*.db
