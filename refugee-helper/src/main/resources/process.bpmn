@@ -23,7 +23,7 @@
       <bpmn:extensionElements>
         <camunda:formData>
           <camunda:formField id="name" label="name" type="string" />
-          <camunda:formField id="country" label="Country" type="string" />
+          <camunda:formField id="user_country" label="Country" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ors2ax</bpmn:incoming>
@@ -192,11 +192,6 @@
       <bpmn:incoming>Flow_0ciq4je</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_0ktxguh" name="Evaluate Crisis" camunda:class="com.example.workflow.EvaluateCrisis">
-      <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:outputParameter name="relevant_crisis">${true}</camunda:outputParameter>
-        </camunda:inputOutput>
-      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0niken0</bpmn:incoming>
       <bpmn:outgoing>Flow_0hacph5</bpmn:outgoing>
     </bpmn:serviceTask>
