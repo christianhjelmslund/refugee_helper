@@ -25,15 +25,14 @@ top_headlines = requests.get('https://newsapi.org/v2/top-headlines?q=war&languag
 import  time
 #
 while True:
-    country = "ukraine"
-    news = requests.get('https://newsapi.org/v2/everything?q=war+' + country + '&language=en&from=2022-04-05', headers=news_headers).json()
-    # print(top_headlines)
-    print(news["totalResults"])
-    news_count = news["totalResults"] + random.randint(0,50)
-    data = '{"event":{"news_count":' + str(news_count) + ', "country": "' + country + '"}}'
-    requests.post(SIDDHI_URL+'/news', headers=siddhi_headers, data=data)
-
-
+    countries = ["Ukraine", "Denmark", "Denmark"]
+    for country in countries:
+        news = requests.get('https://newsapi.org/v2/everything?q=war+' + country + '&language=en&from=2022-04-05', headers=news_headers).json()
+        # print(top_headlines)
+        print(news["totalResults"])
+        news_count = news["totalResults"] #+ random.randint(0,50)
+        data = '{"event":{"news_count":' + str(news_count) + ', "country": "' + country + '"}}'
+        requests.post(SIDDHI_URL+'/news', headers=siddhi_headers, data=data)
 #     if news["totalResults"] > 10:
 #         print(news["totalResults"])
 #     if (top_headlines['articles']):
