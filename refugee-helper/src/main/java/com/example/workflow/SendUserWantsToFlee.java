@@ -13,6 +13,7 @@ public class SendUserWantsToFlee implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("flee").
+                processInstanceId((String)execution.getVariable("process_id")).
                 correlateWithResult();
     }
 
