@@ -1,0 +1,22 @@
+@App:name("MongoDBTestConnector")
+
+@App:description("Connect to mongo-db")
+
+@sink(type='log', prefix='LOGGER')
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/userprofile", @map(type = 'json'))
+define stream insertUserProfileStream (userid string, preference string);
+
+
+@store(type='mongodb' , mongodb.uri='mongodb://localhost/refugee-db')
+@primaryKey('userid') 
+define table userprofiles (userid string, preference string);
+
+/* Inserting event into the mongo store */
+@info(name='query1')
+from insertUserProfileStream
+insert into userprofiles;
+
+
+
+
+
