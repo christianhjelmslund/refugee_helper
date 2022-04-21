@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1ds692e" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <inputData id="InputData_1v2beqq" name="Country" />
+  <decision id="Decision_1bfdy1w" name="Rate Country">
+    <informationRequirement id="InformationRequirement_161ltfy">
+      <requiredInput href="#InputData_1v2beqq" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_19ggvju">
+      <input id="Input_1" label="User Country" camunda:inputVariable="country">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" name="rate_country_result" typeRef="string" biodi:width="192" />
+      <rule id="DecisionRule_18uv411">
+        <description></description>
+        <inputEntry id="UnaryTests_14xn77s">
+          <text>"Ukraine"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1bpxrse">
+          <text>"Germany"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cn44yp">
+        <inputEntry id="UnaryTests_0mron89">
+          <text>"Syria"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1kuw3ir">
+          <text>"Spain"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_0u73j7j" dmnElementRef="InputData_1v2beqq">
+        <dc:Bounds height="45" width="125" x="187" y="237" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_02mt2jg" dmnElementRef="InformationRequirement_161ltfy">
+        <di:waypoint x="250" y="237" />
+        <di:waypoint x="250" y="200" />
+        <di:waypoint x="250" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape dmnElementRef="Decision_1bfdy1w">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>
