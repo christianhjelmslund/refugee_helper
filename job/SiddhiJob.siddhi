@@ -1,0 +1,13 @@
+@App:name("SiddhiJob")
+
+
+@App:description("Description of the plan")
+
+@sink(type='log', prefix='Input from Job Script')
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/jobs", @map(type = 'json'))
+define stream JobsStream (job_id int, first_name string, last_name string, birthday string);
+
+define stream CrisisStream(job_id int, count int);
+
+
+
