@@ -1,9 +1,9 @@
 ## How to build Siddhi-Tooling Image with extensions
 
-For the base, navigate to <DOCKERFILE_HOME>/base directory. 
+For the base, navigate to ubuntu/siddih-tooling directory. 
 `docker build -t siddhiio/siddhi-tooling-base:5.1.x .`
 
-`docker run -it -p 9390:9390 -p 8006:8006 siddhiio/siddhi-tooling`
+`docker run -it -p 9390:9390 -p 8006:8006 siddhi-tooling:5.1.x`
 
 Go to http://localhost:9390/editor
 

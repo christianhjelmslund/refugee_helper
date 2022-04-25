@@ -12,22 +12,22 @@ services:
     ports:
       - '27017-27019:27017-27019'
   
-  camunda-service:
-    restart: always
-    image: camunda/camunda-bpm-platform:run-latest
-    container_name: camunda-run
-    ports: 
-      - '8080:8080'
+  #camunda-service:
+  #  restart: always
+  #  image: camunda/camunda-bpm-platform:run-latest
+  #  container_name: camunda-run
+  #  ports: 
+  #    - '8080:8080'
     
-  siddhi-service:
-    restart: always
-    image: siddhiio/siddhi-tooling
-    container_name: siddhi-tooling
-    ports:
-      - '9390:9390' 
-      - '8006:8006'
-    volumes:
-      - ./Siddhi/jars:/siddhi-tooling/jars
+  #siddhi-service:
+  #  restart: always
+  #  image: siddhiio/siddhi-tooling
+  #  container_name: siddhi-tooling
+  #  ports:
+  #    - '9390:9390' 
+  #    - '8006:8006'
+  #  volumes:
+  #    - ./Siddhi/jars:/siddhi-tooling/jars
 
 
 volumes:
