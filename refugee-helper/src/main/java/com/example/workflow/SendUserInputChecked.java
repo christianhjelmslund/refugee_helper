@@ -12,6 +12,7 @@ public class SendUserInputChecked implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         HashMap map = new HashMap<String, Object>();
         map.put("user_input_data_ok", execution.getVariable("user_input_ok"));
+        map.put("process_id", execution.getProcessInstanceId());
 
         REFUGEE_APP.info("Sending message [user_input_data_ok]'");
 
