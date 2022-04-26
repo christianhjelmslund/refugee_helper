@@ -7,3 +7,4 @@ Scripts
 *.DS_Store
 target
 *.db
+*.iml
