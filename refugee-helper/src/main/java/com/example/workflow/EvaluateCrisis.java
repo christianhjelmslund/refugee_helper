@@ -3,7 +3,6 @@ package com.example.workflow;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import java.util.HashMap;
 
 import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 
