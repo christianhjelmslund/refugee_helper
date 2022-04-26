@@ -2,8 +2,15 @@ package com.example.workflow;
 
 import java.util.HashMap;
 import java.util.logging.Logger;
+
+import org.apache.http.impl.client.CloseableHttpClient;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.HttpClientBuilder;
+import spinjar.com.minidev.json.JSONObject;
 
 public class PublishJobDescription implements JavaDelegate {
 
@@ -11,10 +18,13 @@ public class PublishJobDescription implements JavaDelegate {
     public final static Logger COMPANY = Logger.getLogger("COMPANY");
 
     public void execute(DelegateExecution execution) throws Exception {
+        int job_id = 83949;
         HashMap map = new HashMap<String, Object>();
         map.put("subject", "The attached job might be of interest to you. Check it out!");
-        map.put("job_id", "83949");
+        map.put("job_id", job_id);
         map.put("job_url", "https://www.bmwgroup.jobs/us/en/jobfinder/job-description.57490.html");
+        map.put("job_application_open", "true");
+        map.put("app_user_applied", "false");
         map.put("process_id", execution.getProcessInstanceId());
 
         COMPANY.info("Publish job description");
@@ -25,6 +35,25 @@ public class PublishJobDescription implements JavaDelegate {
                 setVariables(map).
                 correlateWithResult();
 
-    }
 
+        /*JSONObject json = new JSONObject();
+        json.put("job_id", job_id);
+
+        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
+
+        try {
+            HttpPost request = new HttpPost("http://localhost:8006/jobs");
+            StringEntity params = new StringEntity(json.toString());
+            request.addHeader("content-type", "application/json");
+            request.setEntity(params);
+            httpClient.execute(request);
+        // handle response here...
+        } catch (Exception ex) {
+            // handle exception here
+            httpClient.close();
+        } finally {
+            httpClient.close();
+        }*/
+
+    }
 }

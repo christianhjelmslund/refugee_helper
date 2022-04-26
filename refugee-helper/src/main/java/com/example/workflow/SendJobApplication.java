@@ -11,7 +11,7 @@ public class SendJobApplication implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
         HashMap map = new HashMap<String, Object>();
-        map.put("subject", "Application");
+        map.put("app_user_applied", "true");
 
         REFUGEE_APP_JOB.info("Application sent");
 
