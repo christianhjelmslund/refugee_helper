@@ -3,34 +3,35 @@
     "$oid": "62531b4c96e9cd3e3a79cd03"
   },
   "name": "Germany",
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e805"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e806"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e807"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e808"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e809"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e80a"
+    }
+  ],
   "capacity": 3000,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Berlin"
-    },
-    {
-      "name": "Hannover"
-    },
-    {
-      "name": "Munich"
-    },
-    {
-      "name": "Hamburg"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Berlin"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -48,41 +49,35 @@
     {
       "name": "France"
     }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Moscow"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Kamianiuki"
-    }
   ]
 },{
   "_id": {
     "$oid": "6253268296e9cd3e3a79cd05"
   },
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e80f"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e810"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e811"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e812"
+    }
+  ],
   "name": "France",
   "capacity": 4000,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Germany"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "France"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Moscow"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Kamianiuki"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -95,20 +90,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -121,20 +106,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -152,16 +127,6 @@
     {
       "name": "Belarus"
     }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
-    }
   ]
 },{
   "_id": {
@@ -173,20 +138,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -199,20 +154,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -225,20 +170,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -251,20 +186,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -277,20 +202,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -303,20 +218,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -329,20 +234,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -355,20 +250,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -376,25 +261,23 @@
     "$oid": "6253268296e9cd3e3a79cd11"
   },
   "name": "Netherlands",
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e80c"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e80d"
+    }
+  ],
   "capacity": 2000,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -402,25 +285,20 @@
     "$oid": "6253268296e9cd3e3a79cd12"
   },
   "name": "Belgium",
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e80b"
+    }
+  ],
   "capacity": 2000,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -433,20 +311,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -459,20 +327,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -485,20 +343,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -506,25 +354,20 @@
     "$oid": "6253268296e9cd3e3a79cd16"
   },
   "name": "Czechia",
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e80e"
+    }
+  ],
   "capacity": 100,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -537,20 +380,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -563,20 +396,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -589,20 +412,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -615,20 +428,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -641,20 +444,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -667,20 +460,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -693,20 +476,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -714,25 +487,29 @@
     "$oid": "6253268296e9cd3e3a79cd1e"
   },
   "name": "Italy",
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e813"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e814"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e815"
+    },
+    {
+      "$oid": "62533274d7a62dd836e6e816"
+    }
+  ],
   "capacity": 100,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -745,20 +522,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -771,20 +538,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -797,20 +554,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -823,20 +570,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -849,20 +586,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -875,20 +602,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -901,46 +618,31 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
   "_id": {
     "$oid": "6253268296e9cd3e3a79cd26"
   },
-  "name": "Finland",
+  "name": "Croatia",
+  "city_ids": [
+    {
+      "$oid": "62533274d7a62dd836e6e817"
+    }
+  ],
   "capacity": 100,
   "visa_available": true,
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -953,20 +655,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Copenhagen"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Flensburg"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 },{
@@ -979,20 +671,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "6253268296e9cd3e3a79cd04"
     },
     {
-      "name": "Belarus"
-    }
-  ],
-  "refugee_reception_cities": [
-    {
-      "name": "Sarajevo"
-    }
-  ],
-  "border_gates": [
-    {
-      "name": "Novi Grad"
+      "$oid": "6253268296e9cd3e3a79cd08"
     }
   ]
 }]

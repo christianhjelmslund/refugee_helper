@@ -28,12 +28,3 @@ services:
   #    - '8006:8006'
   #  volumes:
   #    - ./Siddhi/jars:/siddhi-tooling/jars
-
-
-volumes:
-  couchdb3_data:
-    driver: local
-  minio_data:
-    driver: local
-  redis_data:
-    driver: local

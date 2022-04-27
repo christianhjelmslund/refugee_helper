@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 2,
+  "components": [
+    {
+      "action": "submit",
+      "label": "Yes",
+      "type": "button",
+      "id": "Field_12iryn6",
+      "key": "field_1mqend6"
+    },
+    {
+      "action": "submit",
+      "label": "No",
+      "type": "button",
+      "id": "Field_123rgcl",
+      "key": "field_0cavffj"
+    }
+  ],
+  "type": "default",
+  "id": "Form_1nxwpxd",
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.16"
+}
