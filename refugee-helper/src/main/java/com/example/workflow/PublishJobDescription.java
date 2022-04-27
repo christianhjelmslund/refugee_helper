@@ -17,8 +17,6 @@ public class PublishJobDescription implements JavaDelegate {
         map.put("subject", "The attached job might be of interest to you. Check it out!");
         map.put("job_id", job_id);
         map.put("job_url", "https://www.bmwgroup.jobs/us/en/jobfinder/job-description.57490.html");
-        map.put("job_application_open", "true");
-        map.put("app_user_applied", "false");
         map.put("process_id", execution.getProcessInstanceId());
 
         COMPANY.info("Publish job description");
