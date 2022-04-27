@@ -3,14 +3,8 @@ package com.example.workflow;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import org.apache.http.impl.client.CloseableHttpClient;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.StringEntity;
-import org.apache.http.impl.client.HttpClientBuilder;
-import spinjar.com.minidev.json.JSONObject;
 
 public class PublishJobDescription implements JavaDelegate {
 
