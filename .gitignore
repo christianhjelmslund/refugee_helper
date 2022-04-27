@@ -7,3 +7,5 @@ Scripts
 *.DS_Store
 target
 *.db
+.DS_Store
+__pycache__/
