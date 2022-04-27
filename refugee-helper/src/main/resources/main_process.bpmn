@@ -45,7 +45,7 @@
     <bpmn:sequenceFlow id="Flow_1ucyi5k" sourceRef="Activity_1sjx7jf" targetRef="Gateway_1nn8vir" />
     <bpmn:sequenceFlow id="Flow_1ors2ax" sourceRef="Gateway_1nn8vir" targetRef="Activity_0krbsls" />
     <bpmn:sequenceFlow id="Flow_0obaa5f" sourceRef="Activity_0krbsls" targetRef="Activity_195qxbh" />
-    <bpmn:sequenceFlow id="Flow_1j4mlft" name="user input is invalid" sourceRef="Gateway_1xv98e3" targetRef="Gateway_1nn8vir">
+    <bpmn:sequenceFlow id="Flow_1j4mlft" name="User input is invalid" sourceRef="Gateway_1xv98e3" targetRef="Gateway_1nn8vir">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!user_input_data_ok}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0m9duav" sourceRef="Activity_195qxbh" targetRef="Event_00dne02" />
@@ -57,10 +57,10 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${user_input_data_ok}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_17dwwzz" sourceRef="Activity_05326fv" targetRef="Gateway_13pf038" />
-    <bpmn:sequenceFlow id="Flow_0hq4akd" name="no" sourceRef="Gateway_00x4nrc" targetRef="Activity_05326fv">
+    <bpmn:sequenceFlow id="Flow_0hq4akd" name="No" sourceRef="Gateway_00x4nrc" targetRef="Activity_05326fv">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!want_to_flee}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1uvud3a" name="yes" sourceRef="Gateway_00x4nrc" targetRef="Gateway_1v11j74">
+    <bpmn:sequenceFlow id="Flow_1uvud3a" name="Yes" sourceRef="Gateway_00x4nrc" targetRef="Gateway_1v11j74">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${want_to_flee}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0i6nr70" sourceRef="Activity_1hsekig" targetRef="Activity_10u0kud" />
@@ -85,7 +85,7 @@
       <bpmn:incoming>Flow_18cmnpk</bpmn:incoming>
       <bpmn:outgoing>Flow_000ml76</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:intermediateCatchEvent id="Event_0rnpx78" name="relevant crisis detected">
+    <bpmn:intermediateCatchEvent id="Event_0rnpx78" name="Relevant crisis detected">
       <bpmn:incoming>Flow_04b2qwd</bpmn:incoming>
       <bpmn:outgoing>Flow_18cmnpk</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0k56hg1" messageRef="Message_0ctvr2o" />
@@ -174,7 +174,7 @@
     <bpmn:sequenceFlow id="Flow_17zt4n0" sourceRef="Event_07q15ub" targetRef="Gateway_06x3lsb" />
     <bpmn:sequenceFlow id="Flow_1vr8p1r" sourceRef="Gateway_03chr94" targetRef="Event_07q15ub" />
     <bpmn:sequenceFlow id="Flow_0yekh3a" sourceRef="Gateway_03chr94" targetRef="Event_0uhs4ez" />
-    <bpmn:sequenceFlow id="Flow_0qq76ih" name="user input is invalid" sourceRef="Gateway_00wyju2" targetRef="Event_0iju8p4">
+    <bpmn:sequenceFlow id="Flow_0qq76ih" name="User input is invalid" sourceRef="Gateway_00wyju2" targetRef="Event_0iju8p4">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!user_input_ok}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_14pm2jx" name="User input valid" sourceRef="Gateway_00wyju2" targetRef="Gateway_06x3lsb">
@@ -242,11 +242,6 @@
       <bpmn:outgoing>Flow_1dp1wyh</bpmn:outgoing>
       <bpmn:outgoing>Flow_0ll42g3</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="Gateway_0lphzvf">
-      <bpmn:incoming>Flow_0nlss6a</bpmn:incoming>
-      <bpmn:incoming>Flow_0dktk3v</bpmn:incoming>
-      <bpmn:outgoing>Flow_02kzcxp</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:eventBasedGateway id="Gateway_03chr94">
       <bpmn:incoming>Flow_02kzcxp</bpmn:incoming>
       <bpmn:outgoing>Flow_1vr8p1r</bpmn:outgoing>
@@ -312,6 +307,11 @@ parseInt(connector.getVariable("response"))</camunda:script>
     <bpmn:endEvent id="Event_00st54o">
       <bpmn:incoming>Flow_0r4jrrv</bpmn:incoming>
     </bpmn:endEvent>
+    <bpmn:exclusiveGateway id="Gateway_0lphzvf">
+      <bpmn:incoming>Flow_0nlss6a</bpmn:incoming>
+      <bpmn:incoming>Flow_0dktk3v</bpmn:incoming>
+      <bpmn:outgoing>Flow_02kzcxp</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -408,7 +408,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="1635" y="480" />
         <di:waypoint x="1695" y="480" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1651" y="493" width="17" height="14" />
+          <dc:Bounds x="1651" y="493" width="18" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hq4akd_di" bpmnElement="Flow_0hq4akd">
@@ -416,7 +416,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="1610" y="600" />
         <di:waypoint x="1530" y="600" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1593" y="553" width="13" height="14" />
+          <dc:Bounds x="1592" y="553" width="15" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_17dwwzz_di" bpmnElement="Flow_17dwwzz">
@@ -457,7 +457,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="500" y="400" />
         <di:waypoint x="500" y="455" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="725" y="366" width="60" height="27" />
+          <dc:Bounds x="724" y="366" width="62" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0obaa5f_di" bpmnElement="Flow_0obaa5f">
@@ -501,7 +501,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Event_0jz1zbn_di" bpmnElement="Event_0rnpx78">
         <dc:Bounds x="1342" y="462" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1326" y="432" width="68" height="27" />
+          <dc:Bounds x="1324" y="432" width="73" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_13pf038_di" bpmnElement="Gateway_13pf038" isMarkerVisible="true">
@@ -578,8 +578,8 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNEdge id="Flow_0dktk3v_di" bpmnElement="Flow_0dktk3v">
         <di:waypoint x="2690" y="1330" />
         <di:waypoint x="2690" y="1360" />
-        <di:waypoint x="1600" y="1360" />
-        <di:waypoint x="1600" y="1240" />
+        <di:waypoint x="1580" y="1360" />
+        <di:waypoint x="1580" y="1240" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0l6zlqh_di" bpmnElement="Flow_0l6zlqh">
         <di:waypoint x="2360" y="1210" />
@@ -640,7 +640,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="710" y="1235" />
         <di:waypoint x="710" y="1402" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="640" y="1316" width="60" height="27" />
+          <dc:Bounds x="639" y="1316" width="62" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yekh3a_di" bpmnElement="Flow_0yekh3a">
@@ -667,10 +667,10 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0nlss6a_di" bpmnElement="Flow_0nlss6a">
         <di:waypoint x="1490" y="1210" />
-        <di:waypoint x="1575" y="1210" />
+        <di:waypoint x="1555" y="1210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02kzcxp_di" bpmnElement="Flow_02kzcxp">
-        <di:waypoint x="1625" y="1210" />
+        <di:waypoint x="1605" y="1210" />
         <di:waypoint x="1675" y="1210" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0goesiq_di" bpmnElement="Flow_0goesiq">
@@ -730,9 +730,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Gateway_18cect8_di" bpmnElement="Gateway_18cect8" isMarkerVisible="true">
         <dc:Bounds x="1255" y="1185" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_0lphzvf_di" bpmnElement="Gateway_0lphzvf" isMarkerVisible="true">
-        <dc:Bounds x="1575" y="1185" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0hhavkh_di" bpmnElement="Gateway_03chr94">
         <dc:Bounds x="1675" y="1185" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -767,6 +764,9 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_00st54o_di" bpmnElement="Event_00st54o">
         <dc:Bounds x="2942" y="1142" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_0lphzvf_di" bpmnElement="Gateway_0lphzvf" isMarkerVisible="true">
+        <dc:Bounds x="1555" y="1185" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0zdapjx_di" bpmnElement="Association_0zdapjx">
         <di:waypoint x="2340" y="1170" />
