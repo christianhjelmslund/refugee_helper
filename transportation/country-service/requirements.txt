@@ -7,3 +7,4 @@ googlemaps==4.6.0
 numpy==1.22.3
 python-decouple
 geocoder
+httpx

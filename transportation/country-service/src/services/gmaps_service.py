@@ -1,4 +1,5 @@
-from operator import mod
+from models.route_model import SimpleRouteModel, LocationEventModel
+import time
 from decouple import config
 import googlemaps
 from googlemaps.convert import decode_polyline, encode_polyline
@@ -8,9 +9,11 @@ import math
 import numpy
 from collections import OrderedDict
 import sys
+import httpx
 from fastapi.encoders import jsonable_encoder
 
 GMAPS_API_KEY = config('API_KEY')
+SIDDIH_URL = ''
 
 def _calculate_distance(origin, destination):
     """
@@ -74,13 +77,13 @@ async def _get_directions(destination, origin, mode, departure):
         departure = datetime.strptime(departure, '%d/%m/%y %H:%M:%S')
 
     gmaps = googlemaps.Client(key=GMAPS_API_KEY)
-    directions = gmaps.directions(destination, origin, mode=mode, departure_time=departure)
+    directions = gmaps.directions(destination, origin, mode=mode, departure_time=departure, units="metric")
 
     return directions
 
 
-def get_points_along_path(directions, period=5):
-    steps = directions[0]['legs'][0]['steps']
+def get_points_along_path(route, period=10):
+    steps = route['steps']
     all_lats = []
     all_lngs = []
     all_times = []
@@ -126,12 +129,68 @@ def get_points_along_path(directions, period=5):
 def generate_polyline(points):
     return encode_polyline(points.values())
 
-async def movement_simulation(directions):
-    points = get_points_along_path(directions=directions)
-    for time, geo in points.items():
-        print(time, geo)
+
+async def movement_simulation(route, max_time, period):
+    """
+    Needs the legs from Google Maps and the Maximum Run Time in Minutes plus the period,
+    after which amount of seconds siddhi is called.
+    """
+    points = get_points_along_path(route=route, period=period)
+    skip_index = math.floor(len(points) / ((max_time * 60) / period))
+    index = 0
+    while index < len(points):
+        await publish_event(points, index)
+        index += skip_index
+        time.sleep(period)
+    
+    await publish_arrival_event(points.items()[len(points)-1], len(points)-1)
+
+
+    return None
+
+async def publish_event(points, index):
+    time_var, geo = points.items()[index]
+    event_obj = {
+        'time': time_var,
+        'lat': geo[0],
+        'lng': geo[1]
+    }
+    event_obj = LocationEventModel.parse_obj(event_obj)
+    json_event_obj = jsonable_encoder(event_obj)
+
+    r = httpx.post(SIDDIH_URL + 'location_event', data=json_event_obj)
+    print(r)
+
+
+async def publish_arrival_event(points, index):
+    time_var, geo = points.items()[index]
+    event_obj = {
+        'time': time_var,
+        'lat': geo[0],
+        'lng': geo[1]
+    }
+    event_obj = LocationEventModel.parse_obj(event_obj)
+    json_event_obj = jsonable_encoder(event_obj)
+
+    r = httpx.post(SIDDIH_URL + 'arrival_event', data=json_event_obj)
+    print(r)
+
+
+
 
 async def get_route(destination, origin, mode, departure):
     route = await _get_directions(destination=destination, origin=origin, mode=mode, departure=departure)
     JSONRoute = jsonable_encoder(route)
     return JSONRoute
+
+async def get_route_simple(destination, origin, mode, departure):
+    ## Maximum Runtime (Min)
+    MAX_RUNTIME = 2
+    ## Period in which a new Event is generated
+    PERIOD = 15
+
+    route = await _get_directions(destination=destination, origin=origin, mode=mode, departure=departure)
+    route_object = route[0]['legs'][0]
+    await movement_simulation(route_object, MAX_RUNTIME, PERIOD)
+    print(route_object['duration'])
+    return SimpleRouteModel.parse_obj(route_object)

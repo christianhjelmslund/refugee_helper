@@ -3,6 +3,7 @@ from fastapi import FastAPI
 from models.response_model import ResponseModel, ErrorResponseModel
 from models.country_model import CountryModel
 from models.city_model import CityModel, CitiesModel
+from models.route_model import SimpleRouteModel
 from services.mongo_connector import (
     retrieve_city,
     retrieve_country,
@@ -10,7 +11,8 @@ from services.mongo_connector import (
     retrieve_cities_by_country_name
 )
 from services.gmaps_service import (
-    get_route
+    get_route,
+    get_route_simple
 )
 
 app = FastAPI()
@@ -47,4 +49,9 @@ async def get_city_by_name(city_id):
 @app.get("/directions/")
 async def caluclate_directions(destination: str = "Berlin", origin: str = "Kiev", mode: str = "driving", departure: str = "now"):
    route = await get_route(destination=destination, origin=origin, mode=mode, departure=departure)
+   return route
+
+@app.get("/directions/simple/", response_description="Get Directions Simple", response_model=SimpleRouteModel)
+async def caluclate_directions(destination: str = "Berlin", origin: str = "Kiev", mode: str = "driving", departure: str = "now"):
+   route = await get_route_simple(destination=destination, origin=origin, mode=mode, departure=departure)
    return route
