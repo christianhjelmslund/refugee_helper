@@ -574,10 +574,6 @@
       <bpmndi:BPMNShape id="Participant_1byjfrb_di" bpmnElement="Participant_1byjfrb" isHorizontal="true">
         <dc:Bounds x="3140" y="650" width="370" height="160" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0cft10v_di" bpmnElement="Flow_0cft10v">
-        <di:waypoint x="3450" y="810" />
-        <di:waypoint x="3450" y="1082" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1dvq2fg_di" bpmnElement="Flow_1dvq2fg">
         <di:waypoint x="500" y="1060" />
         <di:waypoint x="500" y="218" />
@@ -596,10 +592,6 @@
         <di:waypoint x="2580" y="520" />
         <di:waypoint x="2580" y="1082" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1ql22jn_di" bpmnElement="Flow_1ql22jn">
-        <di:waypoint x="3000" y="420" />
-        <di:waypoint x="3000" y="1082" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1w6awtm_di" bpmnElement="Flow_1w6awtm">
         <di:waypoint x="3550" y="1082" />
         <di:waypoint x="3550" y="398" />
@@ -608,9 +600,17 @@
         <di:waypoint x="3310" y="420" />
         <di:waypoint x="3310" y="650" />
       </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ql22jn_di" bpmnElement="Flow_1ql22jn">
+        <di:waypoint x="3000" y="420" />
+        <di:waypoint x="3000" y="1082" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="DataInputAssociation_1qgt3xn_di" bpmnElement="DataInputAssociation_1qgt3xn">
         <di:waypoint x="500" y="1255" />
         <di:waypoint x="500" y="1140" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0cft10v_di" bpmnElement="Flow_0cft10v">
+        <di:waypoint x="3450" y="810" />
+        <di:waypoint x="3450" y="1082" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
