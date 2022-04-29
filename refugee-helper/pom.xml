@@ -71,6 +71,22 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-bom</artifactId>
+      <version>7.16.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/src/main/resources/camunda-connect-connectors-all-1.5.2.jar</systemPath>
+    </dependency>
+
+    <dependency>
+      <groupId>org.camunda.bpm</groupId>
+      <artifactId>camunda-bom</artifactId>
+      <version>7.16.0</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/src/main/resources/camunda-engine-plugin-connect-7.16.0.jar</systemPath>
+    </dependency>
+
   </dependencies>
 
   <build>
