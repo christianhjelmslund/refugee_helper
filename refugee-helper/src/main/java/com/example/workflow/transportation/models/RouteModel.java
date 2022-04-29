@@ -1,6 +1,4 @@
-package com.example.workflow.transportation;
-
-import java.sql.Time;
+package com.example.workflow.transportation.models;
 
 public class RouteModel {
     private TimeModel arrival_time;

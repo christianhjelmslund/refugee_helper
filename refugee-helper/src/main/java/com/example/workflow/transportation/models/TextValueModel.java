@@ -1,4 +1,4 @@
-package com.example.workflow.transportation;
+package com.example.workflow.transportation.models;
 
 public class TextValueModel {
     private String text;

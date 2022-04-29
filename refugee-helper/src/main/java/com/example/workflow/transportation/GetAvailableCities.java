@@ -1,5 +1,7 @@
 package com.example.workflow.transportation;
 
+import com.example.workflow.transportation.models.CitiesModel;
+import com.example.workflow.transportation.services.CityService;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.Variables;
@@ -28,7 +30,7 @@ public class GetAvailableCities implements JavaDelegate {
         REFUGEE_APP.info("Available Cities for Country:" + destination_country + " ," + cities.getCities().get(0).getName());
         Map<String, String> citiesMap = new HashMap<String, String>();
         for(int i = 0; i < cities.getCities().size(); i++) {
-            citiesMap.put(Integer.toString(i),cities.getCities().get(i).getName());
+            citiesMap.put(cities.getCities().get(i).getName(),cities.getCities().get(i).getName());
         }
         execution.setVariable("AVAILABLE_CITIES",
                 objectValue(citiesMap)

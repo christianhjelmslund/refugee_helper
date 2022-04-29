@@ -1,6 +1,6 @@
-package com.example.workflow.transportation;
+package com.example.workflow.transportation.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.workflow.transportation.models.CitiesModel;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 

@@ -1,4 +1,4 @@
-from models.route_model import SimpleRouteModel, LocationEventModel
+from models.route_model import SimpleRouteModel, LocationEventModel, LocationEventBody
 import time
 from decouple import config
 import googlemaps
@@ -13,7 +13,7 @@ import httpx
 from fastapi.encoders import jsonable_encoder
 
 GMAPS_API_KEY = config('API_KEY')
-SIDDIH_URL = ''
+SIDDIH_URL = 'http://0.0.0.0:8006/'
 
 def _calculate_distance(origin, destination):
     """
@@ -74,15 +74,17 @@ async def _get_directions(destination, origin, mode, departure):
     if departure == "now":
         departure = datetime.now()
     else:
-        departure = datetime.strptime(departure, '%d/%m/%y %H:%M:%S')
+        departure = datetime.strptime(departure, "%d/%m/%Y %H:%M:%S")
 
     gmaps = googlemaps.Client(key=GMAPS_API_KEY)
-    directions = gmaps.directions(destination, origin, mode=mode, departure_time=departure, units="metric")
+    directions = gmaps.directions(origin=origin, destination=destination, mode=mode, departure_time=departure, units="metric")
 
     return directions
 
 
 def get_points_along_path(route, period=10):
+    print("Period: ")
+    print(period)
     steps = route['steps']
     all_lats = []
     all_lngs = []
@@ -135,35 +137,38 @@ async def movement_simulation(route, max_time, period):
     Needs the legs from Google Maps and the Maximum Run Time in Minutes plus the period,
     after which amount of seconds siddhi is called.
     """
+    destination_country = route['end_address'].split(',')[1].strip()
+    print('Country: ', destination_country)
     points = get_points_along_path(route=route, period=period)
     skip_index = math.floor(len(points) / ((max_time * 60) / period))
     index = 0
     while index < len(points):
-        await publish_event(points, index)
+        await publish_event(points, index, destination_country)
         index += skip_index
         time.sleep(period)
     
-    await publish_arrival_event(points.items()[len(points)-1], len(points)-1)
+
+    #await publish_arrival_event(points.items()[len(points)-1], len(points)-1)
 
 
-    return None
-
-async def publish_event(points, index):
-    time_var, geo = points.items()[index]
+async def publish_event(points, index, destination_country):
+    time_var, geo = list(points.items())[index]
     event_obj = {
         'time': time_var,
         'lat': geo[0],
-        'lng': geo[1]
+        'lng': geo[1],
+        'destination': destination_country
     }
-    event_obj = LocationEventModel.parse_obj(event_obj)
+    event_obj = LocationEventBody.parse_obj(event_obj)
     json_event_obj = jsonable_encoder(event_obj)
+    print("JSON Object: ", json_event_obj)
 
-    r = httpx.post(SIDDIH_URL + 'location_event', data=json_event_obj)
+    r = httpx.post(SIDDIH_URL + 'location_event', json=json_event_obj)
     print(r)
 
 
 async def publish_arrival_event(points, index):
-    time_var, geo = points.items()[index]
+    time_var, geo = list(points.items())[index]
     event_obj = {
         'time': time_var,
         'lat': geo[0],
@@ -176,21 +181,27 @@ async def publish_arrival_event(points, index):
     print(r)
 
 
-
-
 async def get_route(destination, origin, mode, departure):
     route = await _get_directions(destination=destination, origin=origin, mode=mode, departure=departure)
     JSONRoute = jsonable_encoder(route)
     return JSONRoute
 
+
 async def get_route_simple(destination, origin, mode, departure):
+    route = await _get_directions(destination=destination, origin=origin, mode=mode, departure=departure)
+    route_object = route[0]['legs'][0]
+    print(route_object)
+    return SimpleRouteModel.parse_obj(route_object)
+
+
+async def start_location_tracking(route):
     ## Maximum Runtime (Min)
     MAX_RUNTIME = 2
     ## Period in which a new Event is generated
-    PERIOD = 15
+    PERIOD = 10
 
-    route = await _get_directions(destination=destination, origin=origin, mode=mode, departure=departure)
     route_object = route[0]['legs'][0]
-    await movement_simulation(route_object, MAX_RUNTIME, PERIOD)
-    print(route_object['duration'])
-    return SimpleRouteModel.parse_obj(route_object)
+    print(route_object)
+    await movement_simulation(route_object, max_time=MAX_RUNTIME, period=PERIOD)
+
+

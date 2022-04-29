@@ -15,6 +15,12 @@ class LocationModel(BaseModel):
     lat: float
     lng: float
 
+class RouteRequestModel(BaseModel):
+    destination: str
+    origin: str
+    mode: str
+    departure: str
+
 class SimpleRouteModel(BaseModel):
     arrival_time: Optional[TimeModel] = Field(alias='arrival_time')
     departure_time: Optional[TimeModel] = Field(alias='departure_time')
@@ -25,8 +31,22 @@ class SimpleRouteModel(BaseModel):
     start_address: str = Field(alias='start_address')
     start_location: LocationModel = Field(alias='start_location')
 
-
-class LocationEventModel(BaseModel):
+class LocationEventBody(BaseModel):
     time: int
     lat: float
     lng: float
+    destination: Optional[str] = Field(...)
+
+class LocationEventModel(BaseModel):
+    event: LocationEventBody
+
+class LocationEventSuccessResponseModel(BaseModel):
+    time: int
+    lat: float
+    lng: float
+    country: str
+
+
+class LocationEventFailureResponseModel(BaseModel):
+    type: bool
+    country: str

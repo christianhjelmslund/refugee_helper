@@ -1,9 +1,11 @@
 import json
-from fastapi import FastAPI
+from fastapi import FastAPI, status, BackgroundTasks
+from fastapi.responses import JSONResponse
+from fastapi.encoders import jsonable_encoder
 from models.response_model import ResponseModel, ErrorResponseModel
 from models.country_model import CountryModel
 from models.city_model import CityModel, CitiesModel
-from models.route_model import SimpleRouteModel
+from models.route_model import SimpleRouteModel, LocationEventModel, LocationEventSuccessResponseModel, LocationEventFailureResponseModel, RouteRequestModel
 from services.mongo_connector import (
     retrieve_city,
     retrieve_country,
@@ -12,7 +14,12 @@ from services.mongo_connector import (
 )
 from services.gmaps_service import (
     get_route,
-    get_route_simple
+    get_route_simple,
+    _get_directions,
+    start_location_tracking
+)
+from services.geocoder_service import (
+    check_destination_country
 )
 
 app = FastAPI()
@@ -55,3 +62,23 @@ async def caluclate_directions(destination: str = "Berlin", origin: str = "Kiev"
 async def caluclate_directions(destination: str = "Berlin", origin: str = "Kiev", mode: str = "driving", departure: str = "now"):
    route = await get_route_simple(destination=destination, origin=origin, mode=mode, departure=departure)
    return route
+
+@app.post("/tracking/start/", response_description="Start Tracking")
+async def caluclate_directions(route_request: RouteRequestModel, background_tasks: BackgroundTasks) -> RouteRequestModel:
+   route = await _get_directions(destination=route_request.destination, origin=route_request.origin, mode=route_request.mode, departure=route_request.departure)
+   background_tasks.add_task(start_location_tracking, route=route)
+   return route
+
+@app.post("/check_location/", response_description="Get Current Country")
+async def get_current_country(location_event: LocationEventModel) -> LocationEventModel:
+   print(location_event)
+   arrived, current_country = await check_destination_country(destination_country=location_event.event.destination, lat=location_event.event.lat, lng=location_event.event.lng)
+   if arrived:
+    success = LocationEventSuccessResponseModel(time=location_event.event.time, lat=location_event.event.lat, lng=location_event.event.lng, country=current_country)
+    print("Successful Arrived in Country")
+    return success
+   else:
+    failure = LocationEventFailureResponseModel(type=False, country=current_country)
+    print("Not Arrived in Country")
+    failureJSON = jsonable_encoder(failure)
+    return JSONResponse(status_code=202, content=failureJSON)

@@ -1,8 +1,8 @@
-package com.example.workflow.transportation;
+package com.example.workflow.transportation.models;
 
 public class TimeModel {
     private String text;
-    private String timezone;
+    private String time_zone;
     private long value;
 
     public String getText() {
@@ -13,12 +13,12 @@ public class TimeModel {
         this.text = text;
     }
 
-    public String getTimezone() {
-        return timezone;
+    public String getTime_zone() {
+        return time_zone;
     }
 
-    public void setTimezone(String timezone) {
-        this.timezone = timezone;
+    public void setTime_zone(String time_zone) {
+        this.time_zone = time_zone;
     }
 
     public long getValue() {
