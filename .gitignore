@@ -7,3 +7,9 @@ Scripts
 *.DS_Store
 target
 *.db
+mongo-volume
+.env
+*.turtle
+*.wt
+*.interim
+*.data
