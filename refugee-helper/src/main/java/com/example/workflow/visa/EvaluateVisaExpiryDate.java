@@ -1,5 +1,6 @@
-package com.example.workflow;
+package com.example.workflow.visa;
 
+import com.example.workflow.Country;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
@@ -8,45 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
-class Country implements Serializable {
-    private boolean isEligible = false;
-    private final int id;
-    private final String name;
-
-    Country(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public boolean isEligible() {
-        return isEligible;
-    }
-
-    public void setEligible(boolean eligible) {
-        isEligible = eligible;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-
-    @Override
-    public String toString() {
-        return "Country{" +
-                "isEligible=" + isEligible +
-                ", id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    public String getName() {
-        return name;
-    }
-}
 public class EvaluateVisaExpiryDate implements JavaDelegate {
-
-
 
     public void execute(DelegateExecution execution) throws Exception {
         Date date = (Date) execution.getVariable("date_of_arrival");

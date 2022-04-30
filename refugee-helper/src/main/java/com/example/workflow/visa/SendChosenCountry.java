@@ -8,7 +8,7 @@ public class SendChosenCountry implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("msg_country_found").
+                createMessageCorrelation("msg_chosen_country").
                 correlateWithResult();
 
     }

@@ -44,10 +44,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Germany"
+      "$oid": "62531b4c96e9cd3e3a79cd03"
     },
     {
-      "name": "France"
+      "$oid": "6253268296e9cd3e3a79cd05"
     }
   ]
 },{
@@ -122,10 +122,10 @@
   "visa_requirements": "Link",
   "banned_countries": [
     {
-      "name": "Russia"
+      "$oid": "62531b4c96e9cd3e3a79cd03"
     },
     {
-      "name": "Belarus"
+      "$oid": "6253268296e9cd3e3a79cd05"
     }
   ]
 },{

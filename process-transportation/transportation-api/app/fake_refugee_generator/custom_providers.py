@@ -75,7 +75,7 @@ class TransportationProvider(BaseProvider):
         super().__init__(seed=seed)
 
     def transportation(self):
-        car_available = np.random.choice([False, True], p=[1-0.6, 0.4])
+        car_available = np.random.choice([False, True], p=[1-0.4, 0.4])
         return car_available
 
 class ForeignRelativesProvider(BaseProvider):

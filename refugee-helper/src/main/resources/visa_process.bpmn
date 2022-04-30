@@ -283,7 +283,7 @@
     <bpmn:intermediateThrowEvent id="Event_1vq7enz" name="Send application">
       <bpmn:incoming>Flow_1opb96j</bpmn:incoming>
       <bpmn:outgoing>Flow_02tbmcz</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1qwm29q" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1qwm29q" camunda:expression="${true}" />
     </bpmn:intermediateThrowEvent>
     <bpmn:exclusiveGateway id="Gateway_04ut0fx">
       <bpmn:incoming>Flow_02tbmcz</bpmn:incoming>
@@ -293,7 +293,7 @@
     <bpmn:intermediateThrowEvent id="Event_0wcgern" name="Send additional information">
       <bpmn:incoming>Flow_1i54v7u</bpmn:incoming>
       <bpmn:outgoing>Flow_05r0rub</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0n75awv" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0n75awv" camunda:expression="${true}" />
     </bpmn:intermediateThrowEvent>
     <bpmn:userTask id="Activity_13gxtks" name="Input additional visa data">
       <bpmn:incoming>Flow_0fdssqh</bpmn:incoming>
@@ -308,7 +308,7 @@
     <bpmn:intermediateThrowEvent id="Event_0052w4y" name="Send chosen country">
       <bpmn:incoming>Flow_1w294vq</bpmn:incoming>
       <bpmn:outgoing>Flow_0g25u5h</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0pqfefh" messageRef="Message_1j0lqik" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0pqfefh" camunda:class="com.example.workflow.visa.SendChosenCountry" />
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_0g25u5h" sourceRef="Event_0052w4y" targetRef="Gateway_1i4dk4r" />
     <bpmn:sequenceFlow id="Flow_0rv259m" sourceRef="Gateway_1ym5zzb" targetRef="Event_01at9yy" />
@@ -436,7 +436,7 @@
       <bpmn:outgoing>Flow_12tni13</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0sikdxe" messageRef="Message_1pr5fwm" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:serviceTask id="Activity_19ywcfu" name="Evaluate expiry date of Tourist Schengen Visa (SV)">
+    <bpmn:serviceTask id="Activity_19ywcfu" name="Evaluate expiry date of Tourist Schengen Visa (SV)" camunda:class="com.example.workflow.visa.EvaluateVisaExpiryDate">
       <bpmn:incoming>Flow_12tni13</bpmn:incoming>
       <bpmn:outgoing>Flow_0pegw35</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -546,7 +546,7 @@
       <bpmn:intermediateCatchEvent id="Event_0o8r00s" name="Chosen country received">
         <bpmn:incoming>Flow_0huow8i</bpmn:incoming>
         <bpmn:outgoing>Flow_1tk4y3i</bpmn:outgoing>
-        <bpmn:messageEventDefinition id="MessageEventDefinition_15d7dxw" />
+        <bpmn:messageEventDefinition id="MessageEventDefinition_15d7dxw" messageRef="Message_0dz9fw4" />
       </bpmn:intermediateCatchEvent>
       <bpmn:sequenceFlow id="Flow_1tk4y3i" sourceRef="Event_0o8r00s" targetRef="Gateway_1b0xgi4" />
       <bpmn:textAnnotation id="TextAnnotation_03ev3z9">
@@ -596,7 +596,7 @@
   <bpmn:message id="Message_17dgqlt" name="msg_country_visa_requirements" />
   <bpmn:message id="Message_1iicol7" name="msg_country_not_found" />
   <bpmn:message id="Message_0c81cpz" name="msg_country_found" />
-  <bpmn:message id="Message_1j0lqik" name="com.example.workflow.visa.SendChosenCountry" />
+  <bpmn:message id="Message_1j0lqik" />
   <bpmn:message id="Message_1xicyrl" name="msg_apply_in_another_country" />
   <bpmn:message id="Message_0kphzpc" name="msg_apply_in_dest_country" />
   <bpmn:message id="Message_0kwzdmp" />
@@ -604,6 +604,7 @@
   <bpmn:message id="Message_0bc7wml" name="msg_schengen_eligible" />
   <bpmn:message id="Message_05ma0bl" name="msg_check_schengen_eligible" />
   <bpmn:message id="Message_053grgn" name="msg_expiry_date_evaluation" />
+  <bpmn:message id="Message_0dz9fw4" name="msg_chosen_country" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_00p4y3p">
       <bpmndi:BPMNShape id="Participant_0fbm9j9_di" bpmnElement="Participant_0fbm9j9" isHorizontal="true">

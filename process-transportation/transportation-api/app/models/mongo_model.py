@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, BaseConfig
-from bson import ObjectId
+from bson.objectid import ObjectId
 
 class PyObjectId(ObjectId):
     @classmethod
