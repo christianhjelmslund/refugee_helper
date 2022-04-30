@@ -96,11 +96,9 @@
     </bpmn:endEvent>
     <bpmn:callActivity id="Activity_1d4wmno" name="Provide visa support" calledElement="MobileAppVisa">
       <bpmn:extensionElements>
-        <camunda:inputOutput>
-          <camunda:inputParameter name="zzae">${picked_country}</camunda:inputParameter>
-        </camunda:inputOutput>
         <camunda:in source="picked_country" target="picked_country" />
         <camunda:in source="user_country" target="user_country" />
+        <camunda:in source="countries" target="countries" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_181ws8k</bpmn:incoming>
       <bpmn:outgoing>Flow_1kburaf</bpmn:outgoing>
@@ -389,7 +387,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:outgoing>Flow_0fmogzq</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1u2f4p5" camunda:class="com.example.workflow.SendUserInputChecked" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:intermediateThrowEvent id="Event_141rkl5">
+    <bpmn:intermediateThrowEvent id="Event_141rkl5" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_1dp1wyh</bpmn:incoming>
       <bpmn:outgoing>Flow_0lmt837</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0662ayt" camunda:class="com.example.workflow.SendRelevantCrisisDetected" />
@@ -474,10 +472,10 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:outgoing>Flow_1vr8p1r</bpmn:outgoing>
       <bpmn:outgoing>Flow_0yekh3a</bpmn:outgoing>
     </bpmn:eventBasedGateway>
-    <bpmn:task id="Activity_1kndopx" name="Get list of countires">
+    <bpmn:serviceTask id="Activity_1kndopx" name="Get list of countires" camunda:class="com.example.workflow.GetCountries">
       <bpmn:incoming>Flow_0lmt837</bpmn:incoming>
       <bpmn:outgoing>Flow_1tn302g</bpmn:outgoing>
-    </bpmn:task>
+    </bpmn:serviceTask>
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -520,7 +518,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1whxsd7_di" bpmnElement="Flow_1whxsd7">
-        <di:waypoint x="268" y="440" />
+        <di:waypoint x="258" y="440" />
         <di:waypoint x="330" y="440" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ucyi5k_di" bpmnElement="Flow_1ucyi5k">
@@ -811,7 +809,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <dc:Bounds x="975" y="415" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="232" y="422" width="36" height="36" />
+        <dc:Bounds x="222" y="422" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_1xxs0vg_di" bpmnElement="Association_1xxs0vg">
         <di:waypoint x="1630" y="425" />
@@ -1142,7 +1140,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Gateway_0hhavkh_di" bpmnElement="Gateway_03chr94">
         <dc:Bounds x="1695" y="935" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_05xqv1o_di" bpmnElement="Activity_1kndopx">
+      <bpmndi:BPMNShape id="Activity_06ocztb_di" bpmnElement="Activity_1kndopx">
         <dc:Bounds x="1470" y="920" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0zdapjx_di" bpmnElement="Association_0zdapjx">
