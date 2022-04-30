@@ -13,3 +13,4 @@ mongo-volume
 *.wt
 *.interim
 *.data
+__pycache__

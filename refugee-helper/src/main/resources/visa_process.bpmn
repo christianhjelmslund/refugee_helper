@@ -295,7 +295,12 @@
       <bpmn:outgoing>Flow_05r0rub</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0n75awv" camunda:expression="${true}" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:userTask id="Activity_13gxtks" name="Input additional visa data">
+    <bpmn:userTask id="Activity_13gxtks" name="Input additional visa data" camunda:formKey="">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="Add more info" label="Additional info" type="string" defaultValue="Some more info " />
+        </camunda:formData>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0fdssqh</bpmn:incoming>
       <bpmn:outgoing>Flow_1i54v7u</bpmn:outgoing>
     </bpmn:userTask>
