@@ -7,6 +7,9 @@ Scripts
 *.DS_Store
 target
 *.db
-.DS_Store
-__pycache__/
-*.iml
+mongo-volume
+.env
+*.turtle
+*.wt
+*.interim
+*.data

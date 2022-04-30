@@ -1,0 +1,59 @@
+@App:name("LocationTracking")
+@App:description("React on GPS Updates")
+
+@sink(type='log', prefix='LOGGER')
+@source(type = 'http', receiver.url = "http://0.0.0.0:8006/location_event", @map(type = 'json'))
+define stream LocationEventStream (time int, lat float, lng float, destination string);
+
+@sink(type='http-call',
+    publisher.url='http://host.docker.internal:8080/engine-rest/message',
+    method='POST', sink.id='destination_country_reached',
+    @map(type='json', @payload("""{ "all": true, "messageName" : "destination_country_reached", "processVariables": {"country_reached_time" : {"value" : "{{time}}", "type": "Integer"}, "lat" : {"value" : "{{lat}}", "type": "Double"}, "lng" : {"value" : "{{lng}}", "type": "Double"} } } """)))
+@sink(type='log', prefix='http-call')
+define stream LocationUpdateEvent(time int, lat float, lng float);
+
+@sink(type='http-call',
+    publisher.url='http://host.docker.internal:80/check_location/',
+    method='POST', sink.id='check_location',
+    @map(type='json'))
+@sink(type='log', prefix='check-location')
+define stream LocationEventCheck (time int, lat float, lng float, destination string);
+
+@source(type='http-call-response', sink.id='check_location',
+    http.status.code='200',
+    @map(type='json', @attributes(country='country',  time='time', lat='lat', lng='lng')))
+@sink(type='log', prefix='LOG_Success')
+define stream CountryArrivedEvent(country string, lat float, lng float, time int);
+           
+@source(type='http-call-response', sink.id='check_location',
+    http.status.code='202',
+    @map(type='json', @attributes(type='type',
+        country='country')))
+@sink(type='log', prefix='LOG_Failure')
+define stream CountryNotArrivedStream(type bool, country string);
+
+
+@info(name = 'Get every 5th event and test if counrty reached')
+from LocationEventStream#window.length(5)
+select *
+order by time desc
+limit 1
+insert into LocationEventCheck;
+
+@info(name='Call Camunda and Send Message Country Reached') 
+from CountryArrivedEvent
+select time, lat, lng
+insert into LocationUpdateEvent
+
+
+        
+
+
+
+
+
+
+
+
+
+
