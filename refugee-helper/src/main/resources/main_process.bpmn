@@ -142,10 +142,10 @@
       <bpmn:outgoing>Flow_1oibnxe</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_0jpcqks" name="yes" sourceRef="Gateway_1l48eee" targetRef="Gateway_15lcowp">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${another_option}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0k5dugs" name="no" sourceRef="Gateway_1l48eee" targetRef="Event_0vfhgzo">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!another_option}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:callActivity id="Activity_1d4wmno" name="Provide visa support" calledElement="MobileAppVisa">
       <bpmn:extensionElements>
@@ -159,7 +159,7 @@
       <bpmn:outgoing>Flow_1kburaf</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:exclusiveGateway id="Gateway_1l48eee">
-      <bpmn:incoming>Flow_17640xv</bpmn:incoming>
+      <bpmn:incoming>Flow_1ev76th</bpmn:incoming>
       <bpmn:outgoing>Flow_0jpcqks</bpmn:outgoing>
       <bpmn:outgoing>Flow_0k5dugs</bpmn:outgoing>
     </bpmn:exclusiveGateway>
@@ -173,7 +173,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0tzjv1a" camunda:class="com.example.workflow.SendUserInput" />
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_1oibnxe" sourceRef="Gateway_15lcowp" targetRef="Activity_01f1sfb" />
-    <bpmn:userTask id="Activity_01f1sfb" name="Pick support option" camunda:formRef="pick_support_option" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_01f1sfb" name="Pick support option" camunda:asyncBefore="true" camunda:formRef="pick_support_option" camunda:formRefBinding="latest">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:outputParameter name="option">${option}</camunda:outputParameter>
@@ -205,9 +205,8 @@
       <bpmn:incoming>Flow_0yixke7</bpmn:incoming>
       <bpmn:incoming>Flow_1kburaf</bpmn:incoming>
       <bpmn:incoming>Flow_1ddsdxa</bpmn:incoming>
-      <bpmn:outgoing>Flow_17640xv</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1thrzu9</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_17640xv" sourceRef="Gateway_10c0kqx" targetRef="Gateway_1l48eee" />
     <bpmn:task id="Activity_07yhwzr" name="Transport">
       <bpmn:incoming>Flow_152gi85</bpmn:incoming>
       <bpmn:outgoing>Flow_0yixke7</bpmn:outgoing>
@@ -216,6 +215,17 @@
       <bpmn:incoming>Flow_16gnjjt</bpmn:incoming>
       <bpmn:outgoing>Flow_1ddsdxa</bpmn:outgoing>
     </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_1thrzu9" sourceRef="Gateway_10c0kqx" targetRef="Activity_11ak3r1" />
+    <bpmn:sequenceFlow id="Flow_1ev76th" sourceRef="Activity_11ak3r1" targetRef="Gateway_1l48eee" />
+    <bpmn:userTask id="Activity_11ak3r1" name="Choose another support option" camunda:formKey="">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="another_option" label="Do you want to support for anything else?" type="boolean" defaultValue="true" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1thrzu9</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ev76th</bpmn:outgoing>
+    </bpmn:userTask>
     <bpmn:textAnnotation id="TextAnnotation_1hjhftg">
       <bpmn:text>Does the user wants to flee?</bpmn:text>
     </bpmn:textAnnotation>
@@ -547,8 +557,12 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="3170" y="310" />
         <di:waypoint x="3170" y="405" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_17640xv_di" bpmnElement="Flow_17640xv">
+      <bpmndi:BPMNEdge id="Flow_1thrzu9_di" bpmnElement="Flow_1thrzu9">
         <di:waypoint x="3195" y="430" />
+        <di:waypoint x="3240" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ev76th_di" bpmnElement="Flow_1ev76th">
+        <di:waypoint x="3340" y="430" />
         <di:waypoint x="3375" y="430" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
@@ -659,6 +673,9 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0vuqdal_di" bpmnElement="Activity_0vuqdal">
         <dc:Bounds x="2950" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0mtmk8h_di" bpmnElement="Activity_11ak3r1">
+        <dc:Bounds x="3240" y="390" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_1xxs0vg_di" bpmnElement="Association_1xxs0vg">
         <di:waypoint x="1620" y="465" />
