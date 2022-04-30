@@ -19,7 +19,7 @@
       "label": "Pick support option",
       "type": "select",
       "id": "Field_1ajcr9n",
-      "key": "field_1d8rkjs"
+      "key": "option"
     }
   ],
   "type": "default",
