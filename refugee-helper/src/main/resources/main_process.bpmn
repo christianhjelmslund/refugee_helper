@@ -96,9 +96,11 @@
     </bpmn:endEvent>
     <bpmn:callActivity id="Activity_1d4wmno" name="Provide visa support" calledElement="MobileAppVisa">
       <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="zzae">${picked_country}</camunda:inputParameter>
+        </camunda:inputOutput>
         <camunda:in source="picked_country" target="picked_country" />
         <camunda:in source="user_country" target="user_country" />
-        <camunda:in source="countries" target="countries" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_181ws8k</bpmn:incoming>
       <bpmn:outgoing>Flow_1kburaf</bpmn:outgoing>
@@ -307,29 +309,6 @@
       <bpmn:outgoing>Flow_0goesiq</bpmn:outgoing>
       <bpmn:outgoing>Flow_0hw48wm</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_1q2hm3y" name="Get number of refugees for country" camunda:asyncBefore="true">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="method">GET</camunda:inputParameter>
-            <camunda:inputParameter name="url">http://127.0.0.1:5000/${picked_country}</camunda:inputParameter>
-            <camunda:outputParameter name="number_of_refugees">
-              <camunda:script scriptFormat="javascript">print("number of refugees: ", parseInt(connector.getVariable("response")))
-
-parseInt(connector.getVariable("response"))</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
-      <bpmn:incoming>Flow_0y1r3b9</bpmn:incoming>
-      <bpmn:outgoing>Flow_0maz4hk</bpmn:outgoing>
-    </bpmn:serviceTask>
     <bpmn:exclusiveGateway id="Gateway_17s2154">
       <bpmn:incoming>Flow_1p1ncen</bpmn:incoming>
       <bpmn:incoming>Flow_14xkwm4</bpmn:incoming>
@@ -387,7 +366,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:outgoing>Flow_0fmogzq</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1u2f4p5" camunda:class="com.example.workflow.SendUserInputChecked" />
     </bpmn:intermediateThrowEvent>
-    <bpmn:intermediateThrowEvent id="Event_141rkl5" camunda:asyncBefore="true">
+    <bpmn:intermediateThrowEvent id="Event_141rkl5">
       <bpmn:incoming>Flow_1dp1wyh</bpmn:incoming>
       <bpmn:outgoing>Flow_0lmt837</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0662ayt" camunda:class="com.example.workflow.SendRelevantCrisisDetected" />
@@ -412,7 +391,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
     <bpmn:sequenceFlow id="Flow_02kzcxp" sourceRef="Gateway_0lphzvf" targetRef="Gateway_03chr94" />
     <bpmn:sequenceFlow id="Flow_0dktk3v" sourceRef="Event_1tliqer" targetRef="Gateway_0lphzvf" />
     <bpmn:sequenceFlow id="Flow_0l6zlqh" sourceRef="Activity_1ixn50r" targetRef="Gateway_0iv18xh" />
-    <bpmn:sequenceFlow id="Flow_0maz4hk" sourceRef="Activity_1q2hm3y" targetRef="Activity_1ixn50r" />
     <bpmn:sequenceFlow id="Flow_01sz7r2" sourceRef="Event_0v7nw5f" targetRef="check-user-data" />
     <bpmn:sequenceFlow id="Flow_1kojwa3" sourceRef="Gateway_06x3lsb" targetRef="Event_0enchu2" />
     <bpmn:sequenceFlow id="Flow_0niken0" sourceRef="Event_0enchu2" targetRef="Activity_0ktxguh" />
@@ -472,10 +450,15 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:outgoing>Flow_1vr8p1r</bpmn:outgoing>
       <bpmn:outgoing>Flow_0yekh3a</bpmn:outgoing>
     </bpmn:eventBasedGateway>
-    <bpmn:serviceTask id="Activity_1kndopx" name="Get list of countires" camunda:class="com.example.workflow.GetCountries">
+    <bpmn:task id="Activity_1kndopx" name="Get list of countires">
       <bpmn:incoming>Flow_0lmt837</bpmn:incoming>
       <bpmn:outgoing>Flow_1tn302g</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:serviceTask id="Activity_1q2hm3y" name="Get number of refugees for country" camunda:asyncBefore="true" camunda:expression="${execution.setVariable(&#34;number_of_refugees&#34;, 10)}">
+      <bpmn:incoming>Flow_0y1r3b9</bpmn:incoming>
+      <bpmn:outgoing>Flow_0maz4hk</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0maz4hk" sourceRef="Activity_1q2hm3y" targetRef="Activity_1ixn50r" />
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -805,7 +788,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <dc:Bounds x="975" y="415" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
-        <dc:Bounds x="222" y="422" width="36" height="36" />
+        <dc:Bounds x="232" y="422" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1hjhftg_di" bpmnElement="TextAnnotation_1hjhftg">
         <dc:Bounds x="1620" y="345" width="100" height="40" />
@@ -1058,9 +1041,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Gateway_0iv18xh_di" bpmnElement="Gateway_0iv18xh" isMarkerVisible="true">
         <dc:Bounds x="2525" y="935" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1q2hm3y_di" bpmnElement="Activity_1q2hm3y">
-        <dc:Bounds x="2040" y="920" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_170zj3r_di" bpmnElement="Gateway_17s2154" isMarkerVisible="true">
         <dc:Bounds x="2875" y="945" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -1133,7 +1113,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Gateway_0hhavkh_di" bpmnElement="Gateway_03chr94">
         <dc:Bounds x="1695" y="935" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_06ocztb_di" bpmnElement="Activity_1kndopx">
+      <bpmndi:BPMNShape id="Activity_05xqv1o_di" bpmnElement="Activity_1kndopx">
         <dc:Bounds x="1470" y="920" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1p6j2fc_di" bpmnElement="TextAnnotation_1p6j2fc">
@@ -1142,6 +1122,9 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1ygpwfg_di" bpmnElement="TextAnnotation_1ygpwfg">
         <dc:Bounds x="2130" y="800" width="100" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1q2hm3y_di" bpmnElement="Activity_1q2hm3y">
+        <dc:Bounds x="2040" y="920" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0zdapjx_di" bpmnElement="Association_0zdapjx">
         <di:waypoint x="2340" y="920" />
