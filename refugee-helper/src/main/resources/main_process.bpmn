@@ -222,6 +222,9 @@
         <camunda:formData>
           <camunda:formField id="another_option" label="Do you want to support for anything else?" type="boolean" defaultValue="true" />
         </camunda:formData>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="another_option">${another_option}</camunda:outputParameter>
+        </camunda:inputOutput>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1thrzu9</bpmn:incoming>
       <bpmn:outgoing>Flow_1ev76th</bpmn:outgoing>
