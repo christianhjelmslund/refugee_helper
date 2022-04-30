@@ -355,10 +355,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:outgoing>Flow_1xzzxie</bpmn:outgoing>
       <bpmn:outgoing>Flow_0o6qswc</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:task id="Activity_19d4msa" name="Provide visa support">
-      <bpmn:incoming>Flow_1xzzxie</bpmn:incoming>
-      <bpmn:outgoing>Flow_1m06ake</bpmn:outgoing>
-    </bpmn:task>
     <bpmn:task id="Activity_1expaky" name="Provide job support">
       <bpmn:incoming>Flow_01ons97</bpmn:incoming>
       <bpmn:outgoing>Flow_1gdqgao</bpmn:outgoing>
@@ -476,6 +472,14 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:incoming>Flow_0lmt837</bpmn:incoming>
       <bpmn:outgoing>Flow_1tn302g</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:callActivity id="Activity_19d4msa" name="Provide visa support" calledElement="SystemVisa">
+      <bpmn:extensionElements>
+        <camunda:in source="countries" target="countries" />
+        <camunda:in source="user_country" target="user_country" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1xzzxie</bpmn:incoming>
+      <bpmn:outgoing>Flow_1m06ake</bpmn:outgoing>
+    </bpmn:callActivity>
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -1079,9 +1083,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Gateway_0hlo0j7_di" bpmnElement="Gateway_0hlo0j7" isMarkerVisible="true">
         <dc:Bounds x="3175" y="945" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_19d4msa_di" bpmnElement="Activity_19d4msa">
-        <dc:Bounds x="3320" y="930" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1expaky_di" bpmnElement="Activity_1expaky">
         <dc:Bounds x="3320" y="820" width="100" height="80" />
       </bpmndi:BPMNShape>
@@ -1142,6 +1143,9 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1ygpwfg_di" bpmnElement="TextAnnotation_1ygpwfg">
         <dc:Bounds x="2130" y="800" width="100" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0dt29pj_di" bpmnElement="Activity_19d4msa">
+        <dc:Bounds x="3320" y="930" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0zdapjx_di" bpmnElement="Association_0zdapjx">
         <di:waypoint x="2340" y="920" />

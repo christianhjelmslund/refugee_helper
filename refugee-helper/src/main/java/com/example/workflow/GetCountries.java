@@ -35,9 +35,9 @@ public class GetCountries implements JavaDelegate {
 
         // REFUGEE_APP.info("Countries:" + countries.getCountries());
 
-        Map<String, CountryModel> countriesMap = new HashMap<>();
+        Map<String, String> countriesMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
+            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
         }
         execution.setVariable("countries",
                 objectValue(countriesMap)
