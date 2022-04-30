@@ -57,6 +57,16 @@ async def retrieve_cities_by_country_name(name: str) -> dict:
     if cities:
         return cities
 
+# retrieve all countries
+async def retrieve_all_countries():
+    cursor = country_collection.find({})
+    countriesObj = {'countries': []}
+    for country in await cursor.to_list(length=100):
+        print(country)
+        countriesObj["countries"].append(country)
+    if countriesObj:
+        return countriesObj
+
 # retrieve city by id
 async def retrieve_city(id: str) -> dict:
     city = await cities_collection.find_one({"_id": ObjectId(id)})

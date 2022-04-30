@@ -2,14 +2,15 @@ from fastapi import BackgroundTasks, APIRouter
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 
-from models.country_model import CountryModel
+from models.country_model import CountryModel, CountriesModel
 from models.city_model import CityModel, CitiesModel
 from models.route_model import SimpleRouteModel, LocationEventModel, LocationEventSuccessResponseModel, LocationEventFailureResponseModel, RouteRequestModel
 from services.mongo_connector import (
     retrieve_city,
     retrieve_country,
     retrieve_country_by_name,
-    retrieve_cities_by_country_name
+    retrieve_cities_by_country_name,
+    retrieve_all_countries
 )
 from services.gmaps_service import (
     get_route,
@@ -27,13 +28,15 @@ router = APIRouter()
 '''
 THIS IS THE COUNTRY SECTION
 '''
-@router.get("/countries")
+@router.get("/countries", response_model=CountriesModel)
 async def get_countries():
-   return None
+   countries = await retrieve_all_countries()
+   return countries
 
 @router.get("/country/name/{country_name}", response_description="Get country by Name", response_model=CountryModel)
 async def get_country_by_name(country_name):
     country = await retrieve_country_by_name(country_name)
+    print(country)
     return country
 
 @router.get("/country/name/{country_name}/cities", response_description="Get cities by Country Name", response_model=CitiesModel)
