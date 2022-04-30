@@ -1,11 +1,11 @@
-package com.example.workflow;
+package com.example.workflow.job;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
+
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import static com.example.workflow.PublishJobDescription.REFUGEE_APP_JOB;
+import static com.example.workflow.job.PublishJobDescription.REFUGEE_APP_JOB;
 
 public class SendJobApplication implements JavaDelegate {
 

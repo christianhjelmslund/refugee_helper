@@ -1,4 +1,4 @@
-package com.example.workflow;
+package com.example.workflow.job;
 
 import java.util.HashMap;
 import java.util.logging.Logger;
