@@ -3,6 +3,7 @@ package com.example.workflow;
 import com.example.workflow.models.CountriesModel;
 import com.example.workflow.models.CountryModel;
 import com.example.workflow.services.CountryService;
+import com.example.workflow.services.RefugeeService;
 import com.example.workflow.transportation.models.CitiesModel;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -17,28 +18,16 @@ import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 import static org.camunda.bpm.engine.variable.Variables.objectValue;
 
 @Component
-public class GetCountries implements JavaDelegate {
+public class GetNumberOfRefugees implements JavaDelegate {
 
     @Autowired
-    private CountryService countryService;
+    private RefugeeService refugeeService;
 
     @Override
     public void execute(DelegateExecution execution) throws Exception {
-
-        CountriesModel countries = countryService.getAllCountries();
-
-        Map<String, String> countriesMap = new HashMap<>();
-        for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
-        }
-        execution.setVariable("countries",
-                objectValue(countriesMap)
-                        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
-                        .create());
-
-        REFUGEE_APP.info("Countries:" + execution.getVariable("countries"));
-
-        // execution.setVariable("countries", countryService.getAllCountries().getCountries());
+        int numberOfRefugees = refugeeService.getNumberOfRefugees((String) execution.getVariable("picked_country"));
+        REFUGEE_APP.info("Number of refugees: " + numberOfRefugees);
+        execution.setVariable("number_of_refugees", numberOfRefugees);
 
     }
 

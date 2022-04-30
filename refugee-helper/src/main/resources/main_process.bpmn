@@ -307,26 +307,7 @@
       <bpmn:outgoing>Flow_0goesiq</bpmn:outgoing>
       <bpmn:outgoing>Flow_0hw48wm</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:serviceTask id="Activity_1q2hm3y" name="Get number of refugees for country" camunda:asyncBefore="true">
-      <bpmn:extensionElements>
-        <camunda:connector>
-          <camunda:inputOutput>
-            <camunda:inputParameter name="headers">
-              <camunda:map>
-                <camunda:entry key="Content-Type">application/json</camunda:entry>
-              </camunda:map>
-            </camunda:inputParameter>
-            <camunda:inputParameter name="method">GET</camunda:inputParameter>
-            <camunda:inputParameter name="url">http://127.0.0.1:5000/${picked_country}</camunda:inputParameter>
-            <camunda:outputParameter name="number_of_refugees">
-              <camunda:script scriptFormat="javascript">print("number of refugees: ", parseInt(connector.getVariable("response")))
-
-parseInt(connector.getVariable("response"))</camunda:script>
-            </camunda:outputParameter>
-          </camunda:inputOutput>
-          <camunda:connectorId>http-connector</camunda:connectorId>
-        </camunda:connector>
-      </bpmn:extensionElements>
+    <bpmn:serviceTask id="Activity_1q2hm3y" name="Get number of refugees for country" camunda:asyncBefore="true" camunda:class="com.example.workflow.GetNumberOfRefugees">
       <bpmn:incoming>Flow_0y1r3b9</bpmn:incoming>
       <bpmn:outgoing>Flow_0maz4hk</bpmn:outgoing>
     </bpmn:serviceTask>
