@@ -4,15 +4,15 @@
     <bpmn:participant id="Participant_10ws7yo" name="Refugee Mobile App" processRef="refugee_mobile_app" />
     <bpmn:participant id="Participant_0v08ys5" name="System" processRef="System" />
     <bpmn:participant id="Participant_06vaook" name="Siddhi" processRef="Process_1cl34hp" />
-    <bpmn:messageFlow id="Flow_0tp9dx2" sourceRef="Activity_195qxbh" targetRef="Event_0v7nw5f" />
+    <bpmn:messageFlow id="Flow_0tp9dx2" sourceRef="Event_0agjkgi" targetRef="Event_0v7nw5f" />
     <bpmn:messageFlow id="Flow_027hxyn" sourceRef="Activity_0d56pie" targetRef="Event_00dne02" />
     <bpmn:messageFlow id="Flow_09zpdfd" sourceRef="Participant_06vaook" targetRef="Event_0enchu2" />
     <bpmn:messageFlow id="Flow_0y3oavj" sourceRef="Activity_1nlyg50" targetRef="Event_0rnpx78" />
     <bpmn:messageFlow id="Flow_0l7ybb2" sourceRef="Activity_05326fv" targetRef="Event_07q15ub" />
     <bpmn:messageFlow id="Flow_0fm0h6p" sourceRef="Activity_10u0kud" targetRef="Event_0uhs4ez" />
     <bpmn:messageFlow id="Flow_1744187" sourceRef="Activity_1q2hm3y" targetRef="Participant_06vaook" />
-    <bpmn:messageFlow id="Flow_0cognf4" sourceRef="Activity_1ozcvpp" targetRef="Event_00nx36d" />
     <bpmn:messageFlow id="Flow_0klgmn1" sourceRef="Activity_0bqkxw8" targetRef="Event_11mzfkj" />
+    <bpmn:messageFlow id="Flow_0cognf4" sourceRef="Activity_1ozcvpp" targetRef="Event_00nx36d" />
   </bpmn:collaboration>
   <bpmn:process id="refugee_mobile_app" name="Refugee Mobile App" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
@@ -30,25 +30,20 @@
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ors2ax</bpmn:incoming>
-      <bpmn:outgoing>Flow_0obaa5f</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1o790hr</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:exclusiveGateway id="Gateway_1nn8vir">
       <bpmn:incoming>Flow_1ucyi5k</bpmn:incoming>
       <bpmn:incoming>Flow_1j4mlft</bpmn:incoming>
       <bpmn:outgoing>Flow_1ors2ax</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sendTask id="Activity_195qxbh" name="Send user input" camunda:asyncBefore="true" camunda:class="com.example.workflow.SendUserInput">
-      <bpmn:incoming>Flow_0obaa5f</bpmn:incoming>
-      <bpmn:outgoing>Flow_0m9duav</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:sequenceFlow id="Flow_1whxsd7" sourceRef="StartEvent_1" targetRef="Activity_1sjx7jf" />
     <bpmn:sequenceFlow id="Flow_1ucyi5k" sourceRef="Activity_1sjx7jf" targetRef="Gateway_1nn8vir" />
     <bpmn:sequenceFlow id="Flow_1ors2ax" sourceRef="Gateway_1nn8vir" targetRef="Activity_0krbsls" />
-    <bpmn:sequenceFlow id="Flow_0obaa5f" sourceRef="Activity_0krbsls" targetRef="Activity_195qxbh" />
+    <bpmn:sequenceFlow id="Flow_0obaa5f" sourceRef="Event_0agjkgi" targetRef="Event_00dne02" />
     <bpmn:sequenceFlow id="Flow_1j4mlft" name="User input is invalid" sourceRef="Gateway_1xv98e3" targetRef="Gateway_1nn8vir">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!user_input_data_ok}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0m9duav" sourceRef="Activity_195qxbh" targetRef="Event_00dne02" />
     <bpmn:sequenceFlow id="Flow_0gi61h3" sourceRef="Event_00dne02" targetRef="Gateway_1xv98e3" />
     <bpmn:sequenceFlow id="Flow_18cmnpk" sourceRef="Event_0rnpx78" targetRef="Activity_0pvonmf" />
     <bpmn:sequenceFlow id="Flow_000ml76" sourceRef="Activity_0pvonmf" targetRef="Gateway_00x4nrc" />
@@ -69,12 +64,6 @@
     <bpmn:sequenceFlow id="Flow_1fhv6jf" sourceRef="Gateway_1v11j74" targetRef="Activity_1hsekig" />
     <bpmn:sequenceFlow id="Flow_0iu15io" sourceRef="Gateway_0olag04" targetRef="Event_11mzfkj" />
     <bpmn:sequenceFlow id="Flow_0yy3a9t" sourceRef="Event_11mzfkj" targetRef="Gateway_1v11j74" />
-    <bpmn:sequenceFlow id="Flow_1v60nz4" sourceRef="Activity_1d4wmno" targetRef="Gateway_07es2os" />
-    <bpmn:sequenceFlow id="Flow_177v60v" name="no" sourceRef="Gateway_07es2os" targetRef="Event_0vfhgzo">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0l3rcax" name="yes" sourceRef="Gateway_07es2os" targetRef="Gateway_15lcowp" />
-    <bpmn:sequenceFlow id="Flow_02fgmn1" sourceRef="Gateway_15lcowp" targetRef="Activity_1d4wmno" />
     <bpmn:sequenceFlow id="Flow_1ow4yom" sourceRef="Event_00nx36d" targetRef="Gateway_15lcowp" />
     <bpmn:userTask id="Activity_0pvonmf" name="Indicate desire to escape" camunda:formKey="">
       <bpmn:extensionElements>
@@ -110,7 +99,7 @@
       <bpmn:outgoing>Flow_1uvud3a</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:intermediateCatchEvent id="Event_00dne02" name="user input checked">
-      <bpmn:incoming>Flow_0m9duav</bpmn:incoming>
+      <bpmn:incoming>Flow_0obaa5f</bpmn:incoming>
       <bpmn:outgoing>Flow_0gi61h3</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1h0epgy" messageRef="Message_120jzbq" />
     </bpmn:intermediateCatchEvent>
@@ -142,28 +131,91 @@
       <bpmn:incoming>Flow_1fhv6jf</bpmn:incoming>
       <bpmn:outgoing>Flow_0i6nr70</bpmn:outgoing>
     </bpmn:userTask>
-    <bpmn:exclusiveGateway id="Gateway_15lcowp">
-      <bpmn:incoming>Flow_0l3rcax</bpmn:incoming>
-      <bpmn:incoming>Flow_1ow4yom</bpmn:incoming>
-      <bpmn:outgoing>Flow_02fgmn1</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:endEvent id="Event_0vfhgzo">
-      <bpmn:incoming>Flow_177v60v</bpmn:incoming>
-    </bpmn:endEvent>
-    <bpmn:exclusiveGateway id="Gateway_07es2os" default="Flow_0l3rcax">
-      <bpmn:incoming>Flow_1v60nz4</bpmn:incoming>
-      <bpmn:outgoing>Flow_177v60v</bpmn:outgoing>
-      <bpmn:outgoing>Flow_0l3rcax</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
-    <bpmn:callActivity id="Activity_1d4wmno" name="Provide visa support" calledElement="MobileAppVisa">
-      <bpmn:incoming>Flow_02fgmn1</bpmn:incoming>
-      <bpmn:outgoing>Flow_1v60nz4</bpmn:outgoing>
-    </bpmn:callActivity>
     <bpmn:intermediateCatchEvent id="Event_11mzfkj" name="Invalid destination country chosen">
       <bpmn:incoming>Flow_0iu15io</bpmn:incoming>
       <bpmn:outgoing>Flow_0yy3a9t</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0871qrf" messageRef="Message_0v5rmzs" />
     </bpmn:intermediateCatchEvent>
+    <bpmn:exclusiveGateway id="Gateway_15lcowp">
+      <bpmn:incoming>Flow_1ow4yom</bpmn:incoming>
+      <bpmn:incoming>Flow_0jpcqks</bpmn:incoming>
+      <bpmn:outgoing>Flow_1oibnxe</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_0jpcqks" name="yes" sourceRef="Gateway_1l48eee" targetRef="Gateway_15lcowp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0k5dugs" name="no" sourceRef="Gateway_1l48eee" targetRef="Event_0vfhgzo">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:callActivity id="Activity_1d4wmno" name="Provide visa support" calledElement="MobileAppVisa">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="zzae">${picked_country}</camunda:inputParameter>
+        </camunda:inputOutput>
+        <camunda:in source="picked_country" target="picked_country" />
+        <camunda:in source="user_country" target="user_country" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_181ws8k</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kburaf</bpmn:outgoing>
+    </bpmn:callActivity>
+    <bpmn:exclusiveGateway id="Gateway_1l48eee">
+      <bpmn:incoming>Flow_17640xv</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jpcqks</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0k5dugs</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:endEvent id="Event_0vfhgzo" name="app closed">
+      <bpmn:incoming>Flow_0k5dugs</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1o790hr" sourceRef="Activity_0krbsls" targetRef="Event_0agjkgi" />
+    <bpmn:intermediateThrowEvent id="Event_0agjkgi" name="Send user input" camunda:asyncBefore="true">
+      <bpmn:incoming>Flow_1o790hr</bpmn:incoming>
+      <bpmn:outgoing>Flow_0obaa5f</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0tzjv1a" camunda:class="com.example.workflow.SendUserInput" />
+    </bpmn:intermediateThrowEvent>
+    <bpmn:sequenceFlow id="Flow_1oibnxe" sourceRef="Gateway_15lcowp" targetRef="Activity_01f1sfb" />
+    <bpmn:userTask id="Activity_01f1sfb" name="Pick support option" camunda:formRef="pick_support_option" camunda:formRefBinding="latest">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="option">${option}</camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1oibnxe</bpmn:incoming>
+      <bpmn:outgoing>Flow_0jh6i1b</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_0jh6i1b" sourceRef="Activity_01f1sfb" targetRef="Gateway_12bf9zp" />
+    <bpmn:exclusiveGateway id="Gateway_12bf9zp">
+      <bpmn:incoming>Flow_0jh6i1b</bpmn:incoming>
+      <bpmn:outgoing>Flow_181ws8k</bpmn:outgoing>
+      <bpmn:outgoing>Flow_152gi85</bpmn:outgoing>
+      <bpmn:outgoing>Flow_16gnjjt</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_181ws8k" sourceRef="Gateway_12bf9zp" targetRef="Activity_1d4wmno">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "visa"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_152gi85" sourceRef="Gateway_12bf9zp" targetRef="Activity_07yhwzr">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "transport"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_16gnjjt" sourceRef="Gateway_12bf9zp" targetRef="Activity_0vuqdal">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "job"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0yixke7" sourceRef="Activity_07yhwzr" targetRef="Gateway_10c0kqx" />
+    <bpmn:sequenceFlow id="Flow_1kburaf" sourceRef="Activity_1d4wmno" targetRef="Gateway_10c0kqx" />
+    <bpmn:sequenceFlow id="Flow_1ddsdxa" sourceRef="Activity_0vuqdal" targetRef="Gateway_10c0kqx" />
+    <bpmn:exclusiveGateway id="Gateway_10c0kqx">
+      <bpmn:incoming>Flow_0yixke7</bpmn:incoming>
+      <bpmn:incoming>Flow_1kburaf</bpmn:incoming>
+      <bpmn:incoming>Flow_1ddsdxa</bpmn:incoming>
+      <bpmn:outgoing>Flow_17640xv</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_17640xv" sourceRef="Gateway_10c0kqx" targetRef="Gateway_1l48eee" />
+    <bpmn:task id="Activity_07yhwzr" name="Transport">
+      <bpmn:incoming>Flow_152gi85</bpmn:incoming>
+      <bpmn:outgoing>Flow_0yixke7</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:task id="Activity_0vuqdal" name="Job">
+      <bpmn:incoming>Flow_16gnjjt</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ddsdxa</bpmn:outgoing>
+    </bpmn:task>
     <bpmn:textAnnotation id="TextAnnotation_1hjhftg">
       <bpmn:text>Does the user wants to flee?</bpmn:text>
     </bpmn:textAnnotation>
@@ -263,16 +315,12 @@
     </bpmn:intermediateCatchEvent>
     <bpmn:exclusiveGateway id="Gateway_0iv18xh">
       <bpmn:incoming>Flow_0l6zlqh</bpmn:incoming>
-      <bpmn:outgoing>Flow_0goesiq</bpmn:outgoing>
       <bpmn:outgoing>Flow_0hw48wm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0goesiq</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:sequenceFlow id="Flow_0goesiq" name="ok" sourceRef="Gateway_0iv18xh" targetRef="Activity_1ozcvpp">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${country_pick_ok}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0hw48wm" name="not ok" sourceRef="Gateway_0iv18xh" targetRef="Activity_0bqkxw8">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!country_pick_ok}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0r4jrrv" sourceRef="Activity_1ozcvpp" targetRef="Event_00st54o" />
     <bpmn:serviceTask id="Activity_1q2hm3y" name="Get number of refugees for country" camunda:asyncBefore="true">
       <bpmn:extensionElements>
         <camunda:connector>
@@ -296,22 +344,21 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmn:incoming>Flow_0y1r3b9</bpmn:incoming>
       <bpmn:outgoing>Flow_0maz4hk</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sendTask id="Activity_1ozcvpp" name="Send confirmation of country selection" camunda:class="com.example.workflow.SendCountryPickOk">
-      <bpmn:incoming>Flow_0goesiq</bpmn:incoming>
-      <bpmn:outgoing>Flow_0r4jrrv</bpmn:outgoing>
-    </bpmn:sendTask>
     <bpmn:sendTask id="Activity_0bqkxw8" name="Country refusal of country selection" camunda:class="com.example.workflow.SendCountryPickNotOk">
       <bpmn:incoming>Flow_0hw48wm</bpmn:incoming>
       <bpmn:outgoing>Flow_0dktk3v</bpmn:outgoing>
     </bpmn:sendTask>
-    <bpmn:endEvent id="Event_00st54o">
-      <bpmn:incoming>Flow_0r4jrrv</bpmn:incoming>
-    </bpmn:endEvent>
     <bpmn:exclusiveGateway id="Gateway_0lphzvf">
       <bpmn:incoming>Flow_0nlss6a</bpmn:incoming>
       <bpmn:incoming>Flow_0dktk3v</bpmn:incoming>
       <bpmn:outgoing>Flow_02kzcxp</bpmn:outgoing>
     </bpmn:exclusiveGateway>
+    <bpmn:sendTask id="Activity_1ozcvpp" name="Send confirmation of country selection" camunda:class="com.example.workflow.SendCountryPickOk">
+      <bpmn:incoming>Flow_0goesiq</bpmn:incoming>
+    </bpmn:sendTask>
+    <bpmn:sequenceFlow id="Flow_0goesiq" name="ok" sourceRef="Gateway_0iv18xh" targetRef="Activity_1ozcvpp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${country_pick_ok}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -348,31 +395,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_1ow4yom_di" bpmnElement="Flow_1ow4yom">
         <di:waypoint x="2398" y="430" />
-        <di:waypoint x="2635" y="430" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_02fgmn1_di" bpmnElement="Flow_02fgmn1">
-        <di:waypoint x="2685" y="430" />
-        <di:waypoint x="2850" y="430" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0l3rcax_di" bpmnElement="Flow_0l3rcax">
-        <di:waypoint x="3150" y="405" />
-        <di:waypoint x="3150" y="260" />
-        <di:waypoint x="2660" y="260" />
-        <di:waypoint x="2660" y="405" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="2898" y="242" width="17" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_177v60v_di" bpmnElement="Flow_177v60v">
-        <di:waypoint x="3175" y="430" />
-        <di:waypoint x="3712" y="430" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="3285" y="439" width="13" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1v60nz4_di" bpmnElement="Flow_1v60nz4">
-        <di:waypoint x="2950" y="430" />
-        <di:waypoint x="3125" y="430" />
+        <di:waypoint x="2495" y="430" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yy3a9t_di" bpmnElement="Flow_0yy3a9t">
         <di:waypoint x="2152" y="600" />
@@ -443,10 +466,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="1038" y="480" />
         <di:waypoint x="1105" y="480" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0m9duav_di" bpmnElement="Flow_0m9duav">
-        <di:waypoint x="870" y="480" />
-        <di:waypoint x="1002" y="480" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1j4mlft_di" bpmnElement="Flow_1j4mlft">
         <di:waypoint x="1130" y="455" />
         <di:waypoint x="1130" y="400" />
@@ -457,8 +476,8 @@ parseInt(connector.getVariable("response"))</camunda:script>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0obaa5f_di" bpmnElement="Flow_0obaa5f">
-        <di:waypoint x="690" y="480" />
-        <di:waypoint x="770" y="480" />
+        <di:waypoint x="808" y="480" />
+        <di:waypoint x="1002" y="480" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1ors2ax_di" bpmnElement="Flow_1ors2ax">
         <di:waypoint x="525" y="480" />
@@ -471,6 +490,66 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNEdge id="Flow_1whxsd7_di" bpmnElement="Flow_1whxsd7">
         <di:waypoint x="268" y="480" />
         <di:waypoint x="320" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jpcqks_di" bpmnElement="Flow_0jpcqks">
+        <di:waypoint x="3400" y="405" />
+        <di:waypoint x="3400" y="210" />
+        <di:waypoint x="2520" y="210" />
+        <di:waypoint x="2520" y="405" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="2951" y="192" width="18" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k5dugs_di" bpmnElement="Flow_0k5dugs">
+        <di:waypoint x="3425" y="430" />
+        <di:waypoint x="3512" y="430" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3462" y="412" width="13" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1o790hr_di" bpmnElement="Flow_1o790hr">
+        <di:waypoint x="690" y="480" />
+        <di:waypoint x="772" y="480" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1oibnxe_di" bpmnElement="Flow_1oibnxe">
+        <di:waypoint x="2545" y="430" />
+        <di:waypoint x="2650" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0jh6i1b_di" bpmnElement="Flow_0jh6i1b">
+        <di:waypoint x="2750" y="430" />
+        <di:waypoint x="2805" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_181ws8k_di" bpmnElement="Flow_181ws8k">
+        <di:waypoint x="2855" y="430" />
+        <di:waypoint x="2950" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_152gi85_di" bpmnElement="Flow_152gi85">
+        <di:waypoint x="2830" y="455" />
+        <di:waypoint x="2830" y="550" />
+        <di:waypoint x="2950" y="550" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_16gnjjt_di" bpmnElement="Flow_16gnjjt">
+        <di:waypoint x="2830" y="405" />
+        <di:waypoint x="2830" y="310" />
+        <di:waypoint x="2950" y="310" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0yixke7_di" bpmnElement="Flow_0yixke7">
+        <di:waypoint x="3050" y="550" />
+        <di:waypoint x="3170" y="550" />
+        <di:waypoint x="3170" y="455" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kburaf_di" bpmnElement="Flow_1kburaf">
+        <di:waypoint x="3050" y="430" />
+        <di:waypoint x="3145" y="430" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ddsdxa_di" bpmnElement="Flow_1ddsdxa">
+        <di:waypoint x="3050" y="310" />
+        <di:waypoint x="3170" y="310" />
+        <di:waypoint x="3170" y="405" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17640xv_di" bpmnElement="Flow_17640xv">
+        <di:waypoint x="3195" y="430" />
+        <di:waypoint x="3375" y="430" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="232" y="462" width="36" height="36" />
@@ -485,10 +564,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1nn8vir_di" bpmnElement="Gateway_1nn8vir" isMarkerVisible="true">
         <dc:Bounds x="475" y="455" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1cu8rc4_di" bpmnElement="Activity_195qxbh">
-        <dc:Bounds x="770" y="440" width="100" height="80" />
-        <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0nou1tt_di" bpmnElement="Activity_0pvonmf">
         <dc:Bounds x="1430" y="440" width="100" height="80" />
@@ -539,18 +614,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <dc:Bounds x="1850" y="440" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_15lcowp_di" bpmnElement="Gateway_15lcowp" isMarkerVisible="true">
-        <dc:Bounds x="2635" y="405" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0vfhgzo_di" bpmnElement="Event_0vfhgzo">
-        <dc:Bounds x="3712" y="412" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_07es2os_di" bpmnElement="Gateway_07es2os" isMarkerVisible="true">
-        <dc:Bounds x="3125" y="405" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_02lj6jo_di" bpmnElement="Activity_1d4wmno">
-        <dc:Bounds x="2850" y="390" width="100" height="80" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1w2u9bw_di" bpmnElement="Event_11mzfkj">
         <dc:Bounds x="2152" y="582" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -561,6 +624,42 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <dc:Bounds x="1610" y="385" width="99.98924268502583" height="40.44750430292599" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_15lcowp_di" bpmnElement="Gateway_15lcowp" isMarkerVisible="true">
+        <dc:Bounds x="2495" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02lj6jo_di" bpmnElement="Activity_1d4wmno">
+        <dc:Bounds x="2950" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1l48eee_di" bpmnElement="Gateway_1l48eee" isMarkerVisible="true">
+        <dc:Bounds x="3375" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0vfhgzo_di" bpmnElement="Event_0vfhgzo">
+        <dc:Bounds x="3512" y="412" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="3503" y="455" width="54" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_04lnrmu_di" bpmnElement="Event_0agjkgi">
+        <dc:Bounds x="772" y="462" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="751" y="438" width="78" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0p51iso_di" bpmnElement="Activity_01f1sfb">
+        <dc:Bounds x="2650" y="390" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_12bf9zp_di" bpmnElement="Gateway_12bf9zp" isMarkerVisible="true">
+        <dc:Bounds x="2805" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_10c0kqx_di" bpmnElement="Gateway_10c0kqx" isMarkerVisible="true">
+        <dc:Bounds x="3145" y="405" width="50" height="50" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_07yhwzr_di" bpmnElement="Activity_07yhwzr">
+        <dc:Bounds x="2950" y="510" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0vuqdal_di" bpmnElement="Activity_0vuqdal">
+        <dc:Bounds x="2950" y="270" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_1xxs0vg_di" bpmnElement="Association_1xxs0vg">
         <di:waypoint x="1620" y="465" />
         <di:waypoint x="1644" y="425" />
@@ -568,10 +667,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
       <bpmndi:BPMNShape id="Participant_0v08ys5_di" bpmnElement="Participant_0v08ys5" isHorizontal="true">
         <dc:Bounds x="160" y="1030" width="3220" height="780" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge id="Flow_0r4jrrv_di" bpmnElement="Flow_0r4jrrv">
-        <di:waypoint x="2820" y="1160" />
-        <di:waypoint x="2942" y="1160" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0hw48wm_di" bpmnElement="Flow_0hw48wm">
         <di:waypoint x="2550" y="1235" />
         <di:waypoint x="2550" y="1290" />
@@ -585,7 +680,7 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <di:waypoint x="2550" y="1160" />
         <di:waypoint x="2720" y="1160" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="2570" y="1133" width="13" height="14" />
+          <dc:Bounds x="2571" y="1133" width="12" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_02kzcxp_di" bpmnElement="Flow_02kzcxp">
@@ -755,9 +850,6 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <dc:Bounds x="2640" y="1250" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_00st54o_di" bpmnElement="Event_00st54o">
-        <dc:Bounds x="2942" y="1142" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0lphzvf_di" bpmnElement="Gateway_0lphzvf" isMarkerVisible="true">
         <dc:Bounds x="1555" y="1185" width="50" height="50" />
       </bpmndi:BPMNShape>
@@ -780,8 +872,8 @@ parseInt(connector.getVariable("response"))</camunda:script>
         <dc:Bounds x="160" y="1840" width="2500" height="90" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0tp9dx2_di" bpmnElement="Flow_0tp9dx2">
-        <di:waypoint x="820" y="520" />
-        <di:waypoint x="820" y="990" />
+        <di:waypoint x="790" y="498" />
+        <di:waypoint x="790" y="990" />
         <di:waypoint x="250" y="990" />
         <di:waypoint x="250" y="1192" />
       </bpmndi:BPMNEdge>
