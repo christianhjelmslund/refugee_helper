@@ -1,23 +1,25 @@
-package com.example.workflow.transportation;
+package com.example.workflow.location;
 
-import com.example.workflow.payment.models.TicketModel;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.Variables;
 
 import java.util.HashMap;
-import java.util.Map;
 
+import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 import static org.camunda.bpm.engine.variable.Variables.objectValue;
 
-public class ProcessCitiesMessage implements JavaDelegate {
+public class ProcessInterruptMessage implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
+        REFUGEE_APP.info("Interrupt Message Processed");
 
-        Map<String, String> citiesMap = (HashMap) execution.getVariable("AVAILABLE_CITIES_MESSAGE");
+        HashMap map = new HashMap<String, String>();
+
+        map.put("001", execution.getVariable("CURRENT_ADDRESS"));
 
         execution.setVariable("AVAILABLE_CITIES",
-                objectValue(citiesMap)
+                objectValue(map)
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
     }

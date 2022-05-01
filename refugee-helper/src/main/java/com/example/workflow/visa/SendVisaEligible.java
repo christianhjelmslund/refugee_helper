@@ -11,6 +11,7 @@ public class SendVisaEligible implements JavaDelegate {
                 getRuntimeService().
                 createMessageCorrelation("msg_schengen_eligible").
                 processInstanceId((String)execution.getVariable("mobile_visa_instance_id")).
+                setVariable("visa_eligibility", execution.getVariable("visa_eligibility")).
                 correlateWithResult();
     }
 }

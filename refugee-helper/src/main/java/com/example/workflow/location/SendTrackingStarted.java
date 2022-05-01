@@ -1,26 +1,26 @@
-package com.example.workflow.job;
-
-import java.util.HashMap;
+package com.example.workflow.location;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import static com.example.workflow.job.SendJobInterest.FRONTEND_JOB;
+import java.util.HashMap;
 
-public class SendJobApplication implements JavaDelegate {
+import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
+
+public class SendTrackingStarted implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
-        HashMap map = new HashMap<String, Object>();
-        map.put("app_user_applied", "true");
+        REFUGEE_APP.info("Send Location Tracking Started");
 
-        FRONTEND_JOB.info("Application sent");
+        HashMap map = new HashMap<String, Object>();
+
+        map.put("TRACKING_STATUS", execution.getVariable("Started"));
 
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("job_application_sent").
+                createMessageCorrelation("LOCATION_TRACKING_START").
                 setVariables(map).
                 correlateWithResult();
-
     }
 
 }

@@ -116,7 +116,7 @@
       <bpmn:outgoing>Flow_10dwsi3</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0j2gz4u" messageRef="Message_13motzs" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:serviceTask id="Activity_1hoee75" name="Start Location Tracking" camunda:class="com.example.workflow.transportation.StartLocationTracking">
+    <bpmn:serviceTask id="Activity_1hoee75" name="Start Location Tracking" camunda:class="com.example.workflow.location.StartLocationTracking">
       <bpmn:incoming>Flow_100ndhb</bpmn:incoming>
       <bpmn:outgoing>Flow_08qomw2</bpmn:outgoing>
     </bpmn:serviceTask>
