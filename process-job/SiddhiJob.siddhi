@@ -15,8 +15,8 @@ define stream JobApplicantStream (job_id int, first_name string, last_name strin
 
 @sink(type='http-call',
     publisher.url='http://host.docker.internal:8080/engine-rest/message',
-    method='POST', sink.id='max-messages-received',
-    @map(type='json', @payload("""{ "all": true, "messageName" : "max_messages_received", "processVariables": {"count_applications" : {"value" : "{{count}}", "type": "long"} } } """)))
+    method='POST', sink.id='max-applications-received',
+    @map(type='json', @payload("""{ "all": true, "messageName" : "max_applications_received", "processVariables": {"count_applications" : {"value" : "{{count}}", "type": "long"} } } """)))
 
 @sink(type='log', prefix='CountEventStream') 
 define stream CountEventStream(job_id int, count long);
@@ -28,7 +28,7 @@ define stream JoinedStream(job_id int);
 @info(name = 'application-count')
 from JobApplicantStream#window.timeBatch(30 sec)
 select job_id, count() as count
-having count > 20 and job_id == 83949
+having count > 20 and job_id == 57490
 insert into CountEventStream;
 
 /*from JobIDStream 

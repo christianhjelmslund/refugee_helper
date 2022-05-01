@@ -37,6 +37,10 @@ class LocationEventBody(BaseModel):
     lng: float
     destination: Optional[str] = Field(...)
 
+class AddressRequestModel(BaseModel):
+    lat: float
+    lng: float
+
 class LocationEventModel(BaseModel):
     event: LocationEventBody
 
@@ -46,7 +50,9 @@ class LocationEventSuccessResponseModel(BaseModel):
     lng: float
     country: str
 
-
 class LocationEventFailureResponseModel(BaseModel):
     type: bool
     country: str
+
+class AddressRequestResponseModel(BaseModel):
+    address: str

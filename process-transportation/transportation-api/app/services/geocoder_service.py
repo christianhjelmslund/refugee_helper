@@ -13,3 +13,9 @@ async def check_destination_country(destination_country, lat, lng):
         return True, current_country
     else:
         return False, current_country
+
+async def check_address(lat, lng):
+    address = await reverse_geocoder(lat=lat, lng=lng)
+    current_address = address.raw['address']
+    print(current_address)
+    return current_address

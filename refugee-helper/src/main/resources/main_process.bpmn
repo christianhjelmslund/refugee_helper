@@ -201,7 +201,7 @@
       <bpmn:outgoing>Flow_00n8mpr</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1pyalxb" messageRef="Message_1lw8ys9" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:intermediateThrowEvent id="Event_004e76n" name="Send selected country">
+    <bpmn:intermediateThrowEvent id="Event_004e76n" name="Send selected country" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_17vefso</bpmn:incoming>
       <bpmn:outgoing>Flow_14ykw14</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_01luv2b" camunda:class="com.example.workflow.PickedCountry" />
@@ -259,6 +259,10 @@
       <bpmn:incoming>Flow_1lt0pmw</bpmn:incoming>
       <bpmn:outgoing>Flow_1oibnxe</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:callActivity id="Activity_0vuqdal" name="Provide job support" calledElement="job_frontend">
+      <bpmn:incoming>Flow_16gnjjt</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ddsdxa</bpmn:outgoing>
+    </bpmn:callActivity>
     <bpmn:textAnnotation id="TextAnnotation_1hjhftg">
       <bpmn:text>Does the user wants to flee?</bpmn:text>
     </bpmn:textAnnotation>
@@ -484,6 +488,10 @@
     </bpmn:exclusiveGateway>
     <bpmn:sequenceFlow id="Flow_1isytm3" sourceRef="Activity_12oj8sh" targetRef="Gateway_1xhjitg" />
     <bpmn:sequenceFlow id="Flow_1ww9u5b" sourceRef="Gateway_1xhjitg" targetRef="Event_1gsv1so" />
+    <bpmn:callActivity id="Activity_1expaky" name="Provide job support" calledElement="job_backend">
+      <bpmn:incoming>Flow_01ons97</bpmn:incoming>
+      <bpmn:outgoing>Flow_14bqtoi</bpmn:outgoing>
+    </bpmn:callActivity>
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -835,6 +843,9 @@
         <dc:Bounds x="1570" y="320" width="100" height="40" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0cudiob_di" bpmnElement="Activity_0vuqdal">
+        <dc:Bounds x="2960" y="230" width="100" height="80" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_1xxs0vg_di" bpmnElement="Association_1xxs0vg">
         <di:waypoint x="1616" y="416" />
         <di:waypoint x="1616" y="360" />
@@ -1153,6 +1164,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1ygpwfg_di" bpmnElement="TextAnnotation_1ygpwfg">
         <dc:Bounds x="2130" y="800" width="100" height="68" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1yw8g5l_di" bpmnElement="Activity_1expaky">
+        <dc:Bounds x="3320" y="820" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0zdapjx_di" bpmnElement="Association_0zdapjx">
         <di:waypoint x="2340" y="920" />

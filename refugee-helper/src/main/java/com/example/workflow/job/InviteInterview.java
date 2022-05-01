@@ -2,16 +2,17 @@ package com.example.workflow.job;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.bpm.engine.variable.Variables;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
 
 import java.time.LocalDate;
+import java.util.Map;
 import java.util.Random;
 import java.util.ArrayList;
 
-
-import static com.example.workflow.job.SendJobInterest.COMPANY;
+import static com.example.workflow.job.SendJobInterest.COMPANY_JOB;
+import static org.camunda.bpm.engine.variable.Variables.objectValue;
 
 public class InviteInterview implements JavaDelegate {
 
@@ -70,7 +71,7 @@ public class InviteInterview implements JavaDelegate {
             String key = "interview_suggestion_"+(i+1);
             String value = interview_dates.get(i).date + " - " + interview_dates.get(i).time;
             interview_map.put(key, value);
-            COMPANY.info("Interview date and time suggested: " + key + ", " + value);
+            COMPANY_JOB.info("Interview date and time suggested: " + key + ", " + value);
         }
 
         execution.getProcessEngineServices().

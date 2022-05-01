@@ -6,13 +6,13 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import java.util.HashMap;
 import java.util.logging.Logger;
 
-import static com.example.workflow.job.SendJobInterest.COMPANY;
+import static com.example.workflow.job.SendJobInterest.COMPANY_JOB;
 
 public class SendRejection implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
 
-        COMPANY.info("Sending rejection.");
+        COMPANY_JOB.info("Sending rejection.");
 
         execution.getProcessEngineServices().
                 getRuntimeService().
