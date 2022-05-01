@@ -1,0 +1,36 @@
+<form role="form" name="form">
+    <div class="form-group">
+        <label for="payment_enter">Choose Card:</label>
+        <select id="payment_enter"
+                cam-variable-name="SELECTED_CARD"
+                cam-variable-type="String">
+        <option value="visa">Visa</option>
+        <option value="mastercard">Master Card</option>
+        </select>
+        <label for="name_enter">Enter Name:</label>
+        <input id="name_enter"
+               type="text"
+               cam-variable-name="PAYMENT_NAME"
+               cam-variable-type="String" />
+        <label for="credit_number">Enter Credit Card Number:</label>
+        <input id="credit_number"
+               type="text"
+               cam-variable-name="CREDIT_NUMBER"
+               cam-variable-type="String" />
+        <label for="expiry_date_month">Enter Expiry Month:</label>
+        <input id="expiry_date_month"
+               type="text"
+               cam-variable-name="ENTER_MONTH"
+               cam-variable-type="String" />
+        <label for="expiry_date_year">Enter Expiry Year:</label>
+        <input id="expiry_date_year"
+               type="text"
+               cam-variable-name="ENTER_YEAR"
+               cam-variable-type="String" />
+        <label for="secret">Enter 3-Digit Secret:</label>
+        <input id="secret"
+               type="text"
+               cam-variable-name="SECRET"
+               cam-variable-type="Integer" />
+    </div>
+</form>

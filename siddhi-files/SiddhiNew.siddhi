@@ -1,4 +1,5 @@
 @App:name("Siddhi")
+
 @App:description("Description of the plan")
 
 @sink(type='log', prefix='Input from Script')
@@ -49,12 +50,14 @@ group by country
 insert into AverageNews;
 
 
+
+
 @info(name = 'Crisis-detection')
 from NewsStream as news
     join AverageNews#window.length(2) as averageNews
     on news.country == averageNews.country
 select news.country as country, news.news_count as count
-having news.news_count > averageNews.avgNewsCount + 7
+having news.news_count > averageNews.avgNewsCount + 6
 
 insert into CrisisStream;
 

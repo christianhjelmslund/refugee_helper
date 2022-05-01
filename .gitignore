@@ -13,3 +13,10 @@ mongo-volume
 *.wt
 *.interim
 *.data
+__pycache__
+**/__pycache__/*
+models/__pycache__
+process-transportation/transportation/transportation-api/app/fake_refugee_generator/__pycache__/**
+process-transportation/transportation-api/app/models/__pycache__
+process-transportation/transportation-api/app/services/__pycache__
+process-transportation/transportation-api/app/routes/__pycache__

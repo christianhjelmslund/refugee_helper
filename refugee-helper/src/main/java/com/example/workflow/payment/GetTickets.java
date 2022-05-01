@@ -1,24 +1,25 @@
-package com.example.workflow;
+package com.example.workflow.payment;
 
+import com.example.workflow.payment.models.TicketModel;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
+import org.camunda.bpm.engine.variable.Variables;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
+import static org.camunda.bpm.engine.variable.Variables.objectValue;
 
-public class SendCountryPickOk implements JavaDelegate {
+public class GetTickets implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
 
-        HashMap map = new HashMap<String, Object>();
-        map.put("countries_objects", execution.getVariable("countries_objects"));
+        REFUGEE_APP.info("Get Tickets Message Send");
 
-        System.out.println("Country pick ok");
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("country_pick_ok").
-                setVariables(map).
+                createMessageCorrelation("GET_TICKETS").
                 correlateWithResult();
     }
 

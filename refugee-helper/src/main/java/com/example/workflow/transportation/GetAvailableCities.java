@@ -28,14 +28,16 @@ public class GetAvailableCities implements JavaDelegate {
         CitiesModel cities = cityService.findAllCitiesByCountryName(destination_country.toString());
 
         REFUGEE_APP.info("Available Cities for Country:" + destination_country + " ," + cities.getCities().get(0).getName());
-        Map<String, String> citiesMap = new HashMap<String, String>();
+        Map<String, Object> citiesMap = new HashMap<String, Object>();
         for(int i = 0; i < cities.getCities().size(); i++) {
             citiesMap.put(cities.getCities().get(i).getName(),cities.getCities().get(i).getName());
         }
-        execution.setVariable("AVAILABLE_CITIES",
-                objectValue(citiesMap)
-                        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
-                        .create());
+
+        execution.getProcessEngineServices().
+                getRuntimeService().
+                createMessageCorrelation("AVAILABLE_CITIES_MESSAGE").
+                setVariables(citiesMap).
+                correlateWithResult();
 
     }
 

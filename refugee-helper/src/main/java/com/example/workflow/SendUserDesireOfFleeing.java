@@ -7,18 +7,19 @@ import java.util.HashMap;
 
 import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 
-public class SendCountryPickOk implements JavaDelegate {
+public class SendUserDesireOfFleeing implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
+        REFUGEE_APP.info("User wants to flee");
 
         HashMap map = new HashMap<String, Object>();
-        map.put("countries_objects", execution.getVariable("countries_objects"));
+        map.put("desire_to_escape_msg", execution.getVariable("desire_to_escape"));
 
-        System.out.println("Country pick ok");
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("country_pick_ok").
+                createMessageCorrelation("desire_to_escape_msg").
                 setVariables(map).
+                processInstanceId((String)execution.getVariable("process_id")).
                 correlateWithResult();
     }
 
