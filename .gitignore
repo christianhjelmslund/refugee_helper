@@ -20,3 +20,4 @@ process-transportation/transportation/transportation-api/app/fake_refugee_genera
 process-transportation/transportation-api/app/models/__pycache__
 process-transportation/transportation-api/app/services/__pycache__
 process-transportation/transportation-api/app/routes/__pycache__
+venv

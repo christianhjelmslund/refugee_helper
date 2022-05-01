@@ -8,9 +8,16 @@ define stream LocationEventStream (time int, lat float, lng float, destination s
 @sink(type='http-call',
     publisher.url='http://host.docker.internal:8080/engine-rest/message',
     method='POST', sink.id='destination_country_reached',
-    @map(type='json', @payload("""{ "all": true, "messageName" : "destination_country_reached", "processVariables": {"country_reached_time" : {"value" : "{{time}}", "type": "Integer"}, "lat" : {"value" : "{{lat}}", "type": "Double"}, "lng" : {"value" : "{{lng}}", "type": "Double"} } } """)))
+    @map(type='json', @payload("""{ "all": true, "messageName" : "destination_country_reached", "processVariables": {"destination_reached" : {"value" : "true", "type": "Boolean"},"country_reached_time" : {"value" : "{{time}}", "type": "Integer"}, "lat" : {"value" : "{{lat}}", "type": "Double"}, "lng" : {"value" : "{{lng}}", "type": "Double"}, "CURRENT_ADDRESS" : {"value" : "{{country}}", "type": "String"} } } """)))
 @sink(type='log', prefix='http-call')
-define stream LocationUpdateEvent(time int, lat float, lng float);
+define stream LocationUpdateEvent(time int, lat float, lng float, country string);
+
+@sink(type='http-call',
+    publisher.url='http://host.docker.internal:8080/engine-rest/message',
+    method='POST', sink.id='movement_stopped',
+    @map(type='json', @payload("""{ "all": true, "messageName" : "movement_stopped", "processVariables": {"destination_reached" : {"value" : "false", "type": "Boolean"},"country_reached_time" : {"value" : "{{time}}", "type": "Integer"}, "lat" : {"value" : "{{latmin}}", "type": "Double"}, "lng" : {"value" : "{{lngmin}}", "type": "Double"} } } """)))
+@sink(type='log', prefix='http-call')
+define stream LocationInterruptEvent(time int, latmin float, latmax float, lngmin float, lngmax float);
 
 @sink(type='http-call',
     publisher.url='http://host.docker.internal:80/check_location/',
@@ -34,16 +41,25 @@ define stream CountryNotArrivedStream(type bool, country string);
 
 
 @info(name = 'Get every 5th event and test if counrty reached')
-from LocationEventStream#window.length(5)
+from LocationEventStream#window.length(4)
 select *
 order by time desc
 limit 1
 insert into LocationEventCheck;
 
+
+@info(name = 'Check Same Location')
+from LocationEventStream#window.length(8)
+select max(time) as time, min(lat) as latmin, max(lat) as latmax, min(lng) as lngmin, max(lng) as lngmax
+having latmin == latmax and lngmin == lngmax
+insert into LocationInterruptEvent;
+
+
+
 @info(name='Call Camunda and Send Message Country Reached') 
 from CountryArrivedEvent
-select time, lat, lng
-insert into LocationUpdateEvent
+select time, lat, lng, country
+insert into LocationUpdateEvent;
 
 
         
