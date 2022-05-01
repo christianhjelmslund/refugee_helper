@@ -111,10 +111,10 @@
     <bpmn:sequenceFlow id="Flow_0kjmaah" name="User is  not eligible for Tourist Schengen Visa" sourceRef="Gateway_0yxb0a3" targetRef="Event_01cq65y">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!visa_eligibility}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0yu57ut" name="Tourist Visa not expired" sourceRef="Gateway_1vbr9nc" targetRef="Activity_0b841du">
+    <bpmn:sequenceFlow id="Flow_0yu57ut" name="SV not expired" sourceRef="Gateway_1vbr9nc" targetRef="Activity_0b841du">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!visa_expired}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1e4frmb" name="Tourist Visa expired" sourceRef="Gateway_1vbr9nc" targetRef="Gateway_18imukg">
+    <bpmn:sequenceFlow id="Flow_1e4frmb" name="SV expired" sourceRef="Gateway_1vbr9nc" targetRef="Gateway_18imukg">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${visa_expired}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0oz9117" sourceRef="Activity_0kukh12" targetRef="Gateway_0tlukzy" />
@@ -765,7 +765,7 @@
         <di:waypoint x="1770" y="680" />
         <di:waypoint x="1865" y="680" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1781" y="641" width="58" height="27" />
+          <dc:Bounds x="1783" y="641" width="54" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0yu57ut_di" bpmnElement="Flow_0yu57ut">
@@ -773,7 +773,7 @@
         <di:waypoint x="1770" y="540" />
         <di:waypoint x="1900" y="540" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1782" y="555" width="76" height="27" />
+          <dc:Bounds x="1784" y="555" width="73" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0kjmaah_di" bpmnElement="Flow_0kjmaah">
