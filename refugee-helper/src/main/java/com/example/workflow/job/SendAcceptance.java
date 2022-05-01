@@ -1,17 +1,21 @@
-package com.example.workflow;
+package com.example.workflow.job;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-public class SendCountryPickNotOk implements JavaDelegate {
+import java.util.HashMap;
+
+import static com.example.workflow.job.SendJobInterest.COMPANY;
+
+public class SendAcceptance implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
 
-        System.out.println("Country pick not ok");
+        COMPANY.info("Sending acceptance.");
+
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("country_pick_not_ok").
-                processInstanceId((String)execution.getVariable("process_id")).
+                createMessageCorrelation("job_acceptance_sent").
                 correlateWithResult();
     }
 

@@ -27,15 +27,15 @@ public class GetCountries implements JavaDelegate {
 
         CountriesModel countries = countryService.getAllCountries();
 
-        Map<String, String> countriesMap = new HashMap<>();
+        /* Map<String, CountryModel> countriesObjectsMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
+            countriesObjectsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
         }
         execution.setVariable("countries_objects",
-                objectValue(countriesMap)
+                objectValue(countriesObjectsMap)
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
-
+        */
         Map<String, String> countriesAsStringsMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
             countriesAsStringsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());

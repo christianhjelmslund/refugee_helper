@@ -499,7 +499,7 @@
           <bpmn:targetRef>Property_0kl7eof</bpmn:targetRef>
         </bpmn:dataInputAssociation>
       </bpmn:serviceTask>
-      <bpmn:serviceTask id="Activity_1c0u8yi" name="Obtain Visa Requirements from Country" camunda:class="com.example.workflow.ObtainVisaRequirements">
+      <bpmn:serviceTask id="Activity_1c0u8yi" name="Obtain Visa Requirements from Country" camunda:class="com.example.workflow.visa.ObtainVisaRequirements">
         <bpmn:incoming>Flow_0gn9gxz</bpmn:incoming>
         <bpmn:outgoing>Flow_1bcs18r</bpmn:outgoing>
       </bpmn:serviceTask>
