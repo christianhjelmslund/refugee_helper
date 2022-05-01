@@ -9,6 +9,8 @@ public class SendExpiryDateEval implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("msg_expiry_date_evaluation").
+                processInstanceId((String)execution.getVariable("mobile_visa_instance_id")).
+                setVariable("visa_expired", execution.getVariable("visa_expired")).
                 correlateWithResult();
     }
 }

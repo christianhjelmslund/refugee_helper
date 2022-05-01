@@ -96,6 +96,7 @@
       <bpmn:outgoing>Flow_181ws8k</bpmn:outgoing>
       <bpmn:outgoing>Flow_152gi85</bpmn:outgoing>
       <bpmn:outgoing>Flow_16gnjjt</bpmn:outgoing>
+      <bpmn:outgoing>Flow_02uqxwg</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:task id="Activity_0vuqdal" name="Provide job support">
       <bpmn:incoming>Flow_16gnjjt</bpmn:incoming>
@@ -104,6 +105,7 @@
     <bpmn:exclusiveGateway id="Gateway_10c0kqx">
       <bpmn:incoming>Flow_1kburaf</bpmn:incoming>
       <bpmn:incoming>Flow_1ddsdxa</bpmn:incoming>
+      <bpmn:incoming>Flow_1sl81gr</bpmn:incoming>
       <bpmn:outgoing>Flow_1thrzu9</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:userTask id="Activity_11ak3r1" name="Choose another support option" camunda:asyncBefore="true" camunda:formKey="">
@@ -165,7 +167,7 @@
     <bpmn:sequenceFlow id="Flow_1kkppt9" sourceRef="Event_1obi9x6" targetRef="Gateway_1l48eee" />
     <bpmn:sequenceFlow id="Flow_0gf089x" sourceRef="Activity_01f1sfb" targetRef="Event_1i83aes" />
     <bpmn:sequenceFlow id="Flow_0gll9be" sourceRef="Event_1i83aes" targetRef="Gateway_12bf9zp" />
-    <bpmn:sequenceFlow id="Flow_152gi85" sourceRef="Gateway_12bf9zp">
+    <bpmn:sequenceFlow id="Flow_152gi85" sourceRef="Gateway_12bf9zp" targetRef="Activity_0zcm1bp">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "transport"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_16gnjjt" sourceRef="Gateway_12bf9zp" targetRef="Activity_0vuqdal">
@@ -252,6 +254,14 @@
       <bpmn:incoming>Flow_02qx2vb</bpmn:incoming>
       <bpmn:outgoing>Flow_1eg8x8r</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:task id="Activity_0zcm1bp">
+      <bpmn:incoming>Flow_02uqxwg</bpmn:incoming>
+      <bpmn:outgoing>Flow_1sl81gr</bpmn:outgoing>
+    </bpmn:task>
+    <bpmn:sequenceFlow id="Flow_02uqxwg" sourceRef="Gateway_12bf9zp" targetRef="Activity_0zcm1bp">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "transport"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_1sl81gr" sourceRef="Activity_0zcm1bp" targetRef="Gateway_10c0kqx" />
     <bpmn:textAnnotation id="TextAnnotation_1hjhftg">
       <bpmn:text>Does the user wants to flee?</bpmn:text>
     </bpmn:textAnnotation>
@@ -509,6 +519,16 @@
       <bpmndi:BPMNShape id="Participant_10ws7yo_di" bpmnElement="Participant_10ws7yo" isHorizontal="true">
         <dc:Bounds x="160" y="80" width="3720" height="680" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1sl81gr_di" bpmnElement="Flow_1sl81gr">
+        <di:waypoint x="3060" y="500" />
+        <di:waypoint x="3180" y="500" />
+        <di:waypoint x="3180" y="415" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_02uqxwg_di" bpmnElement="Flow_02uqxwg">
+        <di:waypoint x="2840" y="415" />
+        <di:waypoint x="2840" y="500" />
+        <di:waypoint x="2960" y="500" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1eg8x8r_di" bpmnElement="Flow_1eg8x8r">
         <di:waypoint x="1920" y="440" />
         <di:waypoint x="1960" y="440" />
@@ -803,6 +823,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1oiz8lc_di" bpmnElement="Activity_1ps6612">
         <dc:Bounds x="1820" y="400" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0zcm1bp_di" bpmnElement="Activity_0zcm1bp">
+        <dc:Bounds x="2960" y="460" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1hjhftg_di" bpmnElement="TextAnnotation_1hjhftg">
         <dc:Bounds x="1570" y="320" width="100" height="40" />
