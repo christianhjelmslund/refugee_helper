@@ -6,7 +6,7 @@ import sys
 import random
 
 
-NEWS_API_KEY = '93ff7e0e52884b04824ac8f584c56991'
+NEWS_API_KEY = 'bc4e90e0e45142ee91e0c2ad557129f9'
 SIDDHI_URL = 'http://localhost:8006'
 
 news_headers = { 'Authorization': NEWS_API_KEY }
