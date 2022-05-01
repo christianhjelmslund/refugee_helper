@@ -25,7 +25,7 @@ top_headlines = requests.get('https://newsapi.org/v2/top-headlines?q=war&languag
 import  time
 #
 while True:
-    countries = ["Ukraine", "Denmark"]
+    countries = ["Ukraine", "Denmark", "Russia", "Belarus", "Sweden", "France", "Poland", "Lithuania", "Latvia", "Estonia", "Finland", "Norway", "United Kingdom", "Ireland", "Netherlands", "Belgium", "Luxembourg", "Switzerland", "Austria", "Czechia", "Slovakia", "Hungary", "Serbia", "Bulgaria", "Greece", "Luxembourg", "Slovenia", "Italy", "Spain", "Portugal", "Moldova", "Turkey", "Georgia", "Armenia", "Azerbaijan", "Croatia", "Iceland", "Bosnia and Herzegovina"]
     for country in countries:
         news = requests.get('https://newsapi.org/v2/everything?q=war+' + country + '&language=en&from=2022-04-05', headers=news_headers).json()
         # print(top_headlines)
@@ -35,4 +35,4 @@ while True:
         requests.post(SIDDHI_URL+'/news', headers=siddhi_headers, data=data)
 
     sys.stdout.flush()
-    time.sleep(2)
+    time.sleep(3)
