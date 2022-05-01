@@ -14,12 +14,11 @@ public class ProcessCitiesMessage implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
 
-        Map<String, String> citiesMap = (HashMap) execution.getVariable("AVAILABLE_CITIES_MESSAGE");
-
         execution.setVariable("AVAILABLE_CITIES",
-                objectValue(citiesMap)
+                objectValue(execution.getVariable("LIST_OF_CITIES"))
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
+
     }
 
 }

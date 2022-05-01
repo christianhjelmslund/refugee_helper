@@ -1,6 +1,7 @@
 package com.example.workflow.location;
 
         import com.example.workflow.transportation.models.RouteModel;
+        import com.example.workflow.transportation.models.RouteRequestModel;
         import com.example.workflow.transportation.services.RoutingService;
         import org.camunda.bpm.engine.delegate.DelegateExecution;
         import org.camunda.bpm.engine.delegate.JavaDelegate;
@@ -22,7 +23,12 @@ public class StartLocationTracking implements JavaDelegate {
         String mode = (String) execution.getVariable("SELECTED_TRANS_MODE");
         String departure = (String) execution.getVariable("DEPARTURE");
 
-        String route = routingService.startLocationTracking(destination_city, current_address, mode, departure);
+        RouteRequestModel request = new RouteRequestModel();
+        request.setDestination(destination_city);
+        request.setOrigin(current_address);
+        request.setMode(mode);
+        request.setDeparture(departure);
+        String route = routingService.startLocationTracking(request);
         REFUGEE_APP.info("Tracking started, Route: " + route);
     }
 

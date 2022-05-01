@@ -33,7 +33,7 @@
       <bpmn:outgoing>Flow_19x060i</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0y1my8q" messageRef="Message_0r7m7vl" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:intermediateThrowEvent id="Event_1fp1aie" name="Send possible route">
+    <bpmn:intermediateThrowEvent id="Event_1fp1aie" name="Send possible route" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_1d5tagq</bpmn:incoming>
       <bpmn:outgoing>Flow_0v8x9gv</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1ne9fp4" messageRef="Message_1dwfmcr" camunda:class="com.example.workflow.transportation.SendRoute" />
@@ -41,11 +41,17 @@
     <bpmn:endEvent id="Event_16lsz0m" name="Travelling stopped">
       <bpmn:incoming>Flow_0m8ndyf</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:callActivity id="Activity_0jd7bwc" name="Location Tracking" calledElement="LocationTrackingBackend">
+    <bpmn:callActivity id="Activity_0jd7bwc" name="Location Tracking" camunda:asyncBefore="true" calledElement="LocationTrackingBackend">
+      <bpmn:extensionElements>
+        <camunda:in source="SELECTED_CITY" target="SELECTED_CITY" />
+        <camunda:in source="CURRENT_ADDRESS" target="CURRENT_ADDRESS" />
+        <camunda:in source="SELECTED_TRANS_MODE" target="SELECTED_TRANS_MODE" />
+        <camunda:in source="DEPARTURE" target="DEPARTURE" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_19x060i</bpmn:incoming>
       <bpmn:outgoing>Flow_0m8ndyf</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:serviceTask id="Activity_0cxqe5d" name="Calculate route" camunda:class="com.example.workflow.transportation.GetRoute">
+    <bpmn:serviceTask id="Activity_0cxqe5d" name="Calculate route" camunda:asyncBefore="true" camunda:class="com.example.workflow.transportation.GetRoute">
       <bpmn:extensionElements>
         <camunda:inputOutput>
           <camunda:inputParameter name="CURRENT_ADDRESS">"Kiew"</camunda:inputParameter>
@@ -69,7 +75,7 @@
   </bpmn:process>
   <bpmn:message id="Message_13motzs" name="destination_country_reached" />
   <bpmn:message id="Message_1s5b7b9" name="movement_identified" />
-  <bpmn:process id="TransportationProcessFrontend" name="TransportationProcessFrontend" isExecutable="false">
+  <bpmn:process id="TransportationProcessFrontend" name="TransportationProcessFrontend" isExecutable="true">
     <bpmn:exclusiveGateway id="Gateway_0dvd4vm">
       <bpmn:incoming>Flow_1dy2cm0</bpmn:incoming>
       <bpmn:outgoing>Flow_1i3ghp7</bpmn:outgoing>
@@ -108,7 +114,7 @@
       <bpmn:incoming>Flow_13modqc</bpmn:incoming>
       <bpmn:outgoing>Flow_01tmrjj</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:intermediateCatchEvent id="Event_075rmew" name="Route proposal received">
+    <bpmn:intermediateCatchEvent id="Event_075rmew" name="Route proposal received" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_0utglln</bpmn:incoming>
       <bpmn:outgoing>Flow_089hj32</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1sjsbs9" messageRef="Message_1dwfmcr" />
@@ -204,9 +210,13 @@
     <bpmn:sequenceFlow id="Flow_1xomeq3" sourceRef="Event_1rpvorh" targetRef="Gateway_0bd2k5z" />
     <bpmn:sequenceFlow id="Flow_0gtdewl" sourceRef="Event_155rxtv" targetRef="Event_0pei30h" />
     <bpmn:sequenceFlow id="Flow_1jfys8f" sourceRef="Activity_0nyuhtt" targetRef="Gateway_0s6lm3m" />
-    <bpmn:sequenceFlow id="Flow_162o197" sourceRef="Gateway_0s6lm3m" targetRef="Gateway_0y7vshu" />
+    <bpmn:sequenceFlow id="Flow_162o197" sourceRef="Gateway_0s6lm3m" targetRef="Gateway_0y7vshu">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${BUY_TICKET==false}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_0kjo8c3" sourceRef="Gateway_0y7vshu" targetRef="Event_04g4ldr" />
-    <bpmn:sequenceFlow id="Flow_0fnc9jc" sourceRef="Gateway_0s6lm3m" targetRef="Activity_074859x" />
+    <bpmn:sequenceFlow id="Flow_0fnc9jc" sourceRef="Gateway_0s6lm3m" targetRef="Activity_074859x">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${BUY_TICKET==true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_12qqgpq" sourceRef="Activity_074859x" targetRef="Gateway_0y7vshu" />
     <bpmn:sequenceFlow id="Flow_1karoio" sourceRef="Event_04g4ldr" targetRef="Gateway_0bd2k5z" />
     <bpmn:userTask id="Activity_0kvodfz" name="Choose preferred mode of travel" camunda:formKey="embedded:deployment:transportation_choice.html">
@@ -235,7 +245,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_1dwtthv" messageRef="Message_0r7m7vl" camunda:class="com.example.workflow.transportation.SendTripStarted" />
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_0upajz9" sourceRef="Activity_0af2m52" targetRef="Gateway_1etxf27" />
-    <bpmn:callActivity id="Activity_0af2m52" name="Location Tracking" calledElement="LocationTrackingBackend">
+    <bpmn:callActivity id="Activity_0af2m52" name="Location Tracking" camunda:asyncBefore="true" calledElement="LocationTrackingBackend">
       <bpmn:extensionElements>
         <camunda:out source="DESTINATION_REACHED" target="DESTINATION_REACHED" />
         <camunda:out source="CURRENT_ADDRESS" target="CURRENT_ADDRESS" />
