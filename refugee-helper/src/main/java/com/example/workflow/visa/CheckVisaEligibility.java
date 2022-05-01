@@ -1,4 +1,4 @@
-package com.example.workflow;
+package com.example.workflow.visa;
 
 import com.example.workflow.models.CountriesModel;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
@@ -13,7 +13,7 @@ import java.util.*;
 import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 import static org.camunda.bpm.engine.variable.Variables.objectValue;
 
-public class CheckVisaEligibility implements JavaDelegate {
+public class    CheckVisaEligibility implements JavaDelegate {
     @Override
     public void execute(DelegateExecution execution) throws Exception {
 

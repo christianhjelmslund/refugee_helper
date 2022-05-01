@@ -27,9 +27,9 @@ public class GetCountries implements JavaDelegate {
 
         CountriesModel countries = countryService.getAllCountries();
 
-        Map<String, CountryModel> countriesMap = new HashMap<>();
+        Map<String, String> countriesMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
+            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
         }
         execution.setVariable("countries",
                 objectValue(countriesMap)
