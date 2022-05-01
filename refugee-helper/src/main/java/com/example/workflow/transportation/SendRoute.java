@@ -15,6 +15,7 @@ public class SendRoute implements JavaDelegate {
         HashMap map = new HashMap<String, Object>();
 
         map.put("ROUTE", execution.getVariable("ROUTE"));
+        map.put("DURATION", execution.getVariable("DURATION"));
 
         execution.getProcessEngineServices().
                 getRuntimeService().

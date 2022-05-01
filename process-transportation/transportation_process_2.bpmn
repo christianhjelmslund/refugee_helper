@@ -191,7 +191,7 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">${DURATION}</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:callActivity id="Activity_074859x" name="Buy Ticket">
+    <bpmn:callActivity id="Activity_074859x" name="Buy Ticket" calledElement="PaymentProcessFrontend">
       <bpmn:incoming>Flow_0fnc9jc</bpmn:incoming>
       <bpmn:outgoing>Flow_12qqgpq</bpmn:outgoing>
     </bpmn:callActivity>
@@ -253,7 +253,7 @@
       <bpmn:outgoing>Flow_0icycdv</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:sequenceFlow id="Flow_1saolif" sourceRef="Activity_1pufh5q" targetRef="Activity_0dru99m" />
-    <bpmn:serviceTask id="Activity_1pufh5q" name="Prepare received cities">
+    <bpmn:serviceTask id="Activity_1pufh5q" name="Prepare received cities" camunda:asyncBefore="true" camunda:class="com.example.workflow.transportation.ProcessCitiesMessage">
       <bpmn:incoming>Flow_05k8obz</bpmn:incoming>
       <bpmn:outgoing>Flow_1saolif</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -262,13 +262,14 @@
     <bpmn:intermediateThrowEvent id="Event_0zjv6dn" name="Trip started">
       <bpmn:incoming>Flow_0m7dxg4</bpmn:incoming>
       <bpmn:outgoing>Flow_0461ih9</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_1dwtthv" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_1dwtthv" messageRef="Message_0r7m7vl" camunda:class="" />
     </bpmn:intermediateThrowEvent>
   </bpmn:process>
   <bpmn:process id="Process_0g8qm7y" isExecutable="false" />
   <bpmn:message id="Message_1bz8aap" name="ROUTE_DETAILS" />
   <bpmn:message id="Message_1dwfmcr" name="CHOOSEN_ROUTE" />
   <bpmn:message id="Message_1l6mr5c" name="AVAILABLE_CITIES_MESSAGE" />
+  <bpmn:message id="Message_0r7m7vl" name="TRIP_STARTED" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="TransportationProcess">
       <bpmndi:BPMNShape id="Participant_0f5oh4j_di" bpmnElement="Participant_0f5oh4j" isHorizontal="true">
