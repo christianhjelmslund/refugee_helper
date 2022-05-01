@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:camunda="http://camunda.org/schema/1.0/dmn" xmlns:biodi="http://bpmn.io/schema/dmn/biodi/2.0" xmlns:di="http://www.omg.org/spec/DMN/20180521/DI/" id="Definitions_1ds692e" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
+  <inputData id="InputData_1v2beqq" name="Country" />
+  <decision id="rate_country_dmn" name="Rate Country">
+    <informationRequirement id="InformationRequirement_161ltfy">
+      <requiredInput href="#InputData_1v2beqq" />
+    </informationRequirement>
+    <informationRequirement id="InformationRequirement_0k360cc">
+      <requiredInput href="#InputData_0hou72i" />
+    </informationRequirement>
+    <decisionTable id="DecisionTable_19ggvju" hitPolicy="FIRST">
+      <input id="Input_1" label="Country" biodi:width="192" camunda:inputVariable="picked_country">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text></text>
+        </inputExpression>
+        <inputValues id="UnaryTests_0mbvlk7">
+          <text>"Germany","Spain","Poland","Denmark","Sweden","France","Hungary","United Kindom","Russia","Belarus","Lithuania","Latvia","Estonia","Finland","Norway","Ireland","Netherlands","Belgium","Luxembourg","Switzerland","Austria","Czechia","Slovakia","Hungary","Serbia","Bulgaria","Greece","Slovenia","Italy","Portugal","Moldova","Turkey","Georgia","Armenia","Azerbaijan","Croatia","Iceland","Bosnia and Herzegovina"</text>
+        </inputValues>
+      </input>
+      <input id="InputClause_0uh5fmv" label="Number of refugees" camunda:inputVariable="number_of_refugees">
+        <inputExpression id="LiteralExpression_1iyneui" typeRef="integer">
+          <text></text>
+        </inputExpression>
+      </input>
+      <output id="OutputClause_1xa7co5" label="Country is okay" name="Country ok" typeRef="boolean" />
+      <rule id="DecisionRule_18uv411">
+        <description>The hardcoded field in number of refugees is the capacity, i.e. germany has a capacity of 400.000 and if the number of refugees currently in germany is less than 400.000, we say it's a good pick</description>
+        <inputEntry id="UnaryTests_14xn77s">
+          <text>"Germany"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1ofuh2q">
+          <text>&lt;400000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0pmovzp">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tkim4y">
+        <inputEntry id="UnaryTests_1hiskqk">
+          <text>"Poland"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1gf9lzv">
+          <text>&lt;200000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0q8gn8s">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bydn33">
+        <inputEntry id="UnaryTests_1njhaja">
+          <text>"Denmark"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0e64k0l">
+          <text>&lt;30000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_001ehk3">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1b0bl3c">
+        <inputEntry id="UnaryTests_1qm2sln">
+          <text>"United Kindom"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1uk2ykv">
+          <text>&lt;400000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0y687ok">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_08e9z2k">
+        <inputEntry id="UnaryTests_19xobux">
+          <text>"Hungary"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nik1np">
+          <text>&lt;120000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0l9jo6d">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0tmh2kk">
+        <inputEntry id="UnaryTests_0w4kvbm">
+          <text>"France"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_01xsbkt">
+          <text>&lt;300000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1c8acrx">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0df5uc7">
+        <inputEntry id="UnaryTests_1aq4shl">
+          <text>"Sweden"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1geijph">
+          <text>&lt;40000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00tm6tp">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0y547ow">
+        <inputEntry id="UnaryTests_15ncxt8">
+          <text>"Spain"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1nf0ufu">
+          <text>&lt;100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_00b30ev">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1bx3oxt">
+        <description></description>
+        <inputEntry id="UnaryTests_0azpiaz">
+          <text>"Russia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0hwzxll">
+          <text>&lt;200000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_130t8c2">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1o6z43r">
+        <inputEntry id="UnaryTests_08zwaxt">
+          <text>"Belarus"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04mjsee">
+          <text>&lt;15000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cx1gto">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0gqtqmh">
+        <inputEntry id="UnaryTests_0kg9bua">
+          <text>"Lithuania"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0jep8cv">
+          <text>&lt;35000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0mhtu8r">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1axnesq">
+        <inputEntry id="UnaryTests_0uu8sie">
+          <text>"Latvia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_03yhsbc">
+          <text>&lt;35000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_116bhbk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_070f7em">
+        <inputEntry id="UnaryTests_174c73g">
+          <text>"Estonia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18rs8z5">
+          <text>&lt;40000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02mheo5">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0unc3e3">
+        <inputEntry id="UnaryTests_1qfxf5u">
+          <text>"Finland"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1buyii7">
+          <text>&lt;35000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_177bdie">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ehty5h">
+        <inputEntry id="UnaryTests_0ynb5ya">
+          <text>"Norway"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0pcdvko">
+          <text>&lt;30000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0jvdq23">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vhd0vy">
+        <inputEntry id="UnaryTests_0rustqg">
+          <text>"Ireland"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00pm7fr">
+          <text>&lt;50000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14hwytr">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0ft0ltq">
+        <inputEntry id="UnaryTests_06fvwi1">
+          <text>"Netherlands"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1yrao6n">
+          <text>&lt;80000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0dgprqc">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ot0rcm">
+        <inputEntry id="UnaryTests_1vq08r8">
+          <text>"Belgium"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0k0p6fq">
+          <text>&lt;50000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1xjxlyj">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1wimvqe">
+        <inputEntry id="UnaryTests_1mqk4pb">
+          <text>"Luxembourg"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_02vy292">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_15o4me6">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ylvrb4">
+        <inputEntry id="UnaryTests_13ugdjz">
+          <text>"Switzerland"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wn4gp9">
+          <text>&lt;20000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0wiwlth">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1kebt2e">
+        <inputEntry id="UnaryTests_18vak9j">
+          <text>"Austria"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_07mxvdb">
+          <text>&lt;60000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_02xjsqd">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_107cmr0">
+        <inputEntry id="UnaryTests_1n0i730">
+          <text>"Czechia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_11gidl6">
+          <text>&lt;150000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1i4mchk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_05nkraw">
+        <inputEntry id="UnaryTests_1shbopb">
+          <text>"Slovakia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1panrcj">
+          <text>&lt;100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0gx5aql">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1j8paia">
+        <inputEntry id="UnaryTests_1n08dot">
+          <text>"Serbia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_18stgrk">
+          <text>&lt;20000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_03wlmg4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_06njt6y">
+        <inputEntry id="UnaryTests_1xsuvtm">
+          <text>"Bulgaria"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1mhl5eh">
+          <text>&lt;50000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_098suid">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1vsk511">
+        <inputEntry id="UnaryTests_1di8zfz">
+          <text>"Greece"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0udisqn">
+          <text>&lt;25000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0k1y1o4">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_13459xu">
+        <inputEntry id="UnaryTests_00ekl9e">
+          <text>"Slovenia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0eadmjs">
+          <text>&lt;30000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1rc1o74">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0vabo5h">
+        <inputEntry id="UnaryTests_0jqdn96">
+          <text>"Italy"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1wotywm">
+          <text>&lt;70000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1w11rx5">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0iw4vy7">
+        <inputEntry id="UnaryTests_1530ljm">
+          <text>"Portugal"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1fb87fv">
+          <text>&lt;30000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1m940kq">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0u6gxob">
+        <inputEntry id="UnaryTests_0vmrxr3">
+          <text>"Moldova"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_14b9hs0">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_05hom4z">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1cob7d2">
+        <inputEntry id="UnaryTests_0vp4cnk">
+          <text>"Turkey"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0kkomcs">
+          <text>&lt;100000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ixzqqi">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_127aqxr">
+        <inputEntry id="UnaryTests_0z4dpt6">
+          <text>"Georgia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_04vbn3h">
+          <text>&lt;50000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0kd6c3a">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1ukq6x3">
+        <inputEntry id="UnaryTests_1nzfa6o">
+          <text>"Armenia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_00t4xbd">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_08998gv">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_1a308ns">
+        <inputEntry id="UnaryTests_12975hx">
+          <text>"Azerbaijan"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1qlopiu">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0ko3hqw">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_11scgi0">
+        <inputEntry id="UnaryTests_0f93vwt">
+          <text>"Croatia"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0cmnk2c">
+          <text>&lt;15000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14nrdwf">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0rphp8z">
+        <inputEntry id="UnaryTests_1oaj7uw">
+          <text>"Iceland"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0mqe60m">
+          <text>&lt;1000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_14ssnjk">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0p9l4i5">
+        <inputEntry id="UnaryTests_08nj703">
+          <text>"Bosnia and Herzegovina"</text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_1668fj5">
+          <text>&lt;5000</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0cskmdl">
+          <text>true</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0fuiz3o">
+        <inputEntry id="UnaryTests_1dzd3w2">
+          <text></text>
+        </inputEntry>
+        <inputEntry id="UnaryTests_0yrq2ci">
+          <text></text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_04ckxso">
+          <text>false</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <inputData id="InputData_0hou72i" name="Number of refugees" />
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape id="DMNShape_0u73j7j" dmnElementRef="InputData_1v2beqq">
+        <dc:Bounds height="45" width="125" x="127" y="238" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_02mt2jg" dmnElementRef="InformationRequirement_161ltfy">
+        <di:waypoint x="190" y="238" />
+        <di:waypoint x="220" y="200" />
+        <di:waypoint x="220" y="180" />
+      </dmndi:DMNEdge>
+      <dmndi:DMNShape dmnElementRef="rate_country_dmn">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+      <dmndi:DMNShape id="DMNShape_1jawcfj" dmnElementRef="InputData_0hou72i">
+        <dc:Bounds height="45" width="125" x="277" y="238" />
+      </dmndi:DMNShape>
+      <dmndi:DMNEdge id="DMNEdge_0x5php2" dmnElementRef="InformationRequirement_0k360cc">
+        <di:waypoint x="340" y="238" />
+        <di:waypoint x="280" y="200" />
+        <di:waypoint x="280" y="180" />
+      </dmndi:DMNEdge>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

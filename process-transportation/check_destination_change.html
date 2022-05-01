@@ -1,0 +1,15 @@
+<form role="form" name="form">
+    <div class="form-group">
+        <label for="destination_change">Do you want your current location set as a new destination?</label>
+        <select id="destination_change"
+                cam-variable-name="SELECTED_DESTINATION"
+                cam-variable-type="String"
+                cam-choices="CURRENT_ADDRESS">
+        </select>
+        <select cam-variable-name="CHANGE_DESTINATION"
+                cam-variable-type="Boolean">
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+</form>
