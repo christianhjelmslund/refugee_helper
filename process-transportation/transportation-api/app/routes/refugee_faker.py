@@ -2,6 +2,8 @@ from fastapi import APIRouter
 from fake_refugee_generator.fake_refugee_creator import RefugeeCreator
 
 
+
+
 router = APIRouter()
 
 @router.get("/refugee")

@@ -2,9 +2,14 @@ package com.example.workflow.transportation.services;
 
 import com.example.workflow.transportation.models.RouteModel;
 import com.example.workflow.transportation.models.RouteRequestModel;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.client.RestTemplate;
+import spinjar.com.minidev.json.JSONObject;
 
+import javax.print.attribute.standard.Media;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -31,18 +36,24 @@ public class RoutingService {
                 urlParameters);
     }
 
-    public String startLocationTracking(String destination, String origin, String mode, String departure) {
+    public String startLocationTracking(RouteRequestModel request) {
         String requestUri = REQUEST_URI_TRACKING;
 
-        RouteRequestModel request = new RouteRequestModel();
-        request.setDestination(destination);
-        request.setOrigin(origin);
-        request.setMode(mode);
-        request.setDeparture(departure);
-        REFUGEE_APP.info("Request to be send: " + request);
+        REFUGEE_APP.info("Request to be send: " + request.toString());
+        JSONObject requestObject = new JSONObject();
+        requestObject.put("destination", request.getDestination());
+        requestObject.put("origin", request.getOrigin());
+        requestObject.put("mode", request.getMode());
+        requestObject.put("departure", request.getDeparture());
 
-        return template.postForObject(requestUri, request,
-                String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpEntity<String> entity = new HttpEntity<String>(requestObject.toString(), headers);
+
+        ResponseEntity<String> sendResponse = template
+                .exchange(requestUri, HttpMethod.POST, entity, String.class);
+
+        return sendResponse.toString();
     }
 
 }

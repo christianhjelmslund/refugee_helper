@@ -1,6 +1,8 @@
 package com.example.workflow.transportation.models;
 
-public class RouteRequestModel {
+import java.io.Serializable;
+
+public class RouteRequestModel implements Serializable {
     private String destination;
     private String origin;
     private String mode;

@@ -17,8 +17,8 @@ public class SendRouteDetails implements JavaDelegate {
         map.put("SELECTED_CITY", execution.getVariable("SELECTED_CITY"));
         map.put("CURRENT_ADDRESS", execution.getVariable("CURRENT_ADDRESS"));
         map.put("SELECTED_TRANS_MODE", execution.getVariable("SELECTED_TRANS_MODE"));
-        map.put("SELECTED_TRANS_MODE", execution.getVariable("DATE"));
-        map.put("SELECTED_TRANS_MODE", execution.getVariable("TIME"));
+        map.put("DATE", execution.getVariable("DATE"));
+        map.put("TIME", execution.getVariable("TIME"));
 
         execution.getProcessEngineServices().
                 getRuntimeService().

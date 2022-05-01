@@ -1,6 +1,9 @@
 from fastapi import BackgroundTasks, APIRouter
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
+from fastapi.exceptions import RequestValidationError
+import logging
+
 
 from models.country_model import CountryModel, CountriesModel
 from models.city_model import CityModel, CitiesModel
@@ -73,12 +76,6 @@ async def caluclate_directions(destination: str = "Berlin", origin: str = "Kiev"
     route = await get_route_simple(destination=destination, origin=origin, mode=mode, departure=departure)
     return route
 
-
-@router.post("/tracking/start/", response_description="Start Tracking")
-async def caluclate_directions(route_request: RouteRequestModel, background_tasks: BackgroundTasks) -> RouteRequestModel:
-    route = await _get_directions(destination=route_request.destination, origin=route_request.origin, mode=route_request.mode, departure=route_request.departure)
-    background_tasks.add_task(start_location_tracking, route=route)
-    return route
 
 
 @router.post("/address/", response_description="Get Current Address")

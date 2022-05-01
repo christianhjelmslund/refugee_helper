@@ -30,7 +30,7 @@
         <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">P10S</bpmn:timeDuration>
       </bpmn:timerEventDefinition>
     </bpmn:intermediateCatchEvent>
-    <bpmn:serviceTask id="Activity_0t84zc8" name="Get Location Map Update" camunda:class="com.example.workflow.location.GetLocationUpdate">
+    <bpmn:serviceTask id="Activity_0t84zc8" name="Get Location Map Update" camunda:asyncBefore="true" camunda:class="com.example.workflow.location.GetLocationUpdate">
       <bpmn:incoming>Flow_1n50uxy</bpmn:incoming>
       <bpmn:outgoing>Flow_1w1sg6h</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -53,12 +53,12 @@
     <bpmn:endEvent id="Event_1fwbbc5">
       <bpmn:incoming>Flow_10x3c23</bpmn:incoming>
     </bpmn:endEvent>
-    <bpmn:serviceTask id="Activity_1lcl8g4" name="Process Interrupt Message" camunda:class="com.example.workflow.location.ProcessInterruptMessage">
+    <bpmn:serviceTask id="Activity_1lcl8g4" name="Process Interrupt Message" camunda:asyncBefore="true" camunda:class="com.example.workflow.location.ProcessInterruptMessage">
       <bpmn:incoming>Flow_0lbzoph</bpmn:incoming>
       <bpmn:outgoing>Flow_10x3c23</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:sequenceFlow id="Flow_10x3c23" sourceRef="Activity_1lcl8g4" targetRef="Event_1fwbbc5" />
-    <bpmn:intermediateCatchEvent id="Event_1j8egbm" name="Interrupt Message">
+    <bpmn:intermediateCatchEvent id="Event_1j8egbm" name="Interrupt Message" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_1jqwrj3</bpmn:incoming>
       <bpmn:outgoing>Flow_0lbzoph</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_0lu8y9g" messageRef="Message_1m0izok" />
@@ -66,14 +66,14 @@
   </bpmn:process>
   <bpmn:message id="Message_0o30e03" name="destination_country_reached" />
   <bpmn:process id="LocationTrackingBackend" name="Location Tracking Backend" isExecutable="true">
-    <bpmn:serviceTask id="Activity_1hoee75" name="Start Location Tracking" camunda:class="com.example.workflow.location.StartLocationTracking">
+    <bpmn:serviceTask id="Activity_1hoee75" name="Start Location Tracking" camunda:asyncBefore="true" camunda:class="com.example.workflow.location.StartLocationTracking">
       <bpmn:incoming>Flow_0k2womq</bpmn:incoming>
       <bpmn:outgoing>Flow_0f07af7</bpmn:outgoing>
     </bpmn:serviceTask>
     <bpmn:intermediateThrowEvent id="Event_1haitgh" name="Send Location Tracking started Message" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_0f07af7</bpmn:incoming>
       <bpmn:outgoing>Flow_0sorupe</bpmn:outgoing>
-      <bpmn:messageEventDefinition id="MessageEventDefinition_0189ta5" messageRef="Message_15acjx6" camunda:class="com.example.workflow.location.StartLocationTracking" />
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0189ta5" messageRef="Message_15acjx6" camunda:class="com.example.workflow.location.SendTrackingStarted" />
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_0k2womq" sourceRef="Event_08axa9r" targetRef="Activity_1hoee75" />
     <bpmn:sequenceFlow id="Flow_0f07af7" sourceRef="Activity_1hoee75" targetRef="Event_1haitgh" />
@@ -126,6 +126,12 @@
       <bpmndi:BPMNShape id="Participant_1i5qnf9_di" bpmnElement="Participant_1i5qnf9" isHorizontal="true">
         <dc:Bounds x="152" y="80" width="1168" height="410" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_10x3c23_di" bpmnElement="Flow_10x3c23">
+        <di:waypoint x="1186" y="250" />
+        <di:waypoint x="1212" y="250" />
+        <di:waypoint x="1212" y="300" />
+        <di:waypoint x="1258" y="300" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1n50uxy_di" bpmnElement="Flow_1n50uxy">
         <di:waypoint x="435" y="300" />
         <di:waypoint x="470" y="300" />
@@ -162,12 +168,6 @@
       <bpmndi:BPMNEdge id="Flow_1qbbfh0_di" bpmnElement="Flow_1qbbfh0">
         <di:waypoint x="268" y="300" />
         <di:waypoint x="312" y="300" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_10x3c23_di" bpmnElement="Flow_10x3c23">
-        <di:waypoint x="1186" y="250" />
-        <di:waypoint x="1212" y="250" />
-        <di:waypoint x="1212" y="300" />
-        <di:waypoint x="1258" y="300" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="232" y="282" width="36" height="36" />
@@ -211,6 +211,11 @@
       <bpmndi:BPMNShape id="Participant_086mkvq_di" bpmnElement="Participant_086mkvq" isHorizontal="true">
         <dc:Bounds x="152" y="560" width="1168" height="250" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1dpjfcu_di" bpmnElement="Flow_1dpjfcu">
+        <di:waypoint x="880" y="750" />
+        <di:waypoint x="910" y="750" />
+        <di:waypoint x="910" y="715" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0h4mdim_di" bpmnElement="Flow_0h4mdim">
         <di:waypoint x="935" y="690" />
         <di:waypoint x="972" y="690" />
@@ -245,11 +250,6 @@
       <bpmndi:BPMNEdge id="Flow_0k2womq_di" bpmnElement="Flow_0k2womq">
         <di:waypoint x="268" y="690" />
         <di:waypoint x="322" y="690" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1dpjfcu_di" bpmnElement="Flow_1dpjfcu">
-        <di:waypoint x="880" y="750" />
-        <di:waypoint x="910" y="750" />
-        <di:waypoint x="910" y="715" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1hoee75_di" bpmnElement="Activity_1hoee75">
         <dc:Bounds x="322" y="650" width="100" height="80" />
