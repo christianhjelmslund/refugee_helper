@@ -27,11 +27,11 @@ public class GetCountries implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
 
         CountriesModel countries = countryService.getAllCountries();
-        
+
         Map<String, String> countriesAsStringsMap = new HashMap<>();
-        ArrayList<String> countriesList = new ArrayList<>();
+        ArrayList<CountryModel> countriesList = new ArrayList<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesList.add(countries.getCountries().get(i).getName());
+            countriesList.add(countries.getCountries().get(i));
             countriesAsStringsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
         }
         execution.setVariable("list_of_countries",
@@ -39,7 +39,9 @@ public class GetCountries implements JavaDelegate {
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
 
-        execution.setVariable("list_of_countries_as_arraylist", countriesList);
+        execution.setVariable("list_of_countries_as_arraylist", objectValue(countriesList)
+                .serializationDataFormat(Variables.SerializationDataFormats.JSON)
+                .create());
 
         REFUGEE_APP.info("List of countries:" + execution.getVariable("list_of_countries_as_arraylist"));
 
