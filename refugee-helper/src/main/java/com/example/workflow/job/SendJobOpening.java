@@ -4,25 +4,24 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
 import java.util.HashMap;
-import java.util.logging.Logger;
+
+import static com.example.workflow.job.SendJobInterest.COMPANY_JOB;
 
 public class SendJobOpening implements JavaDelegate {
 
-    public final static Logger COMPANY = Logger.getLogger("COMPANY");
-    public final static Logger REFUGEE_APP_JOB = Logger.getLogger("REFUGEE_APP_JOB");
-
     public void execute(DelegateExecution execution) throws Exception {
-        HashMap map = new HashMap<String, Object>();
-        map.put("picked_country", execution.getVariable("picked_country"));
-        map.put("job_id", "89238");
-        map.put("process_id", execution.getVariable("process_id"));
+        HashMap SendJobOpening_map = new HashMap<String, Object>();
+        SendJobOpening_map.put("job_id", "89238");
+        SendJobOpening_map.put("job_url", "https://www.bmwgroup.jobs/us/en/jobfinder/job-description.57490.html");
 
-        COMPANY.info("Sending job opening.");
+        COMPANY_JOB.info("Sending job opening.");
+
+        execution.setVariable("app_user_applied", "false");
 
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("job_opening_sent").
-                setVariables(map).
+                setVariables(SendJobOpening_map).
                 correlateWithResult();
     }
 

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import static com.example.workflow.job.SendJobInterest.REFUGEE_APP_JOB;
+import static com.example.workflow.job.SendJobInterest.FRONTEND_JOB;
 
 public class SendJobApplication implements JavaDelegate {
 
@@ -13,7 +13,7 @@ public class SendJobApplication implements JavaDelegate {
         HashMap map = new HashMap<String, Object>();
         map.put("app_user_applied", "true");
 
-        REFUGEE_APP_JOB.info("Application sent");
+        FRONTEND_JOB.info("Application sent");
 
         execution.getProcessEngineServices().
                 getRuntimeService().

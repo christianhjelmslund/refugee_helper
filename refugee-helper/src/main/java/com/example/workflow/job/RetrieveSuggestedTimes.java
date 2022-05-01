@@ -7,7 +7,7 @@ import org.camunda.bpm.engine.variable.Variables;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.example.workflow.job.SendJobInterest.REFUGEE_APP_JOB;
+import static com.example.workflow.job.SendJobInterest.FRONTEND_JOB;
 import static org.camunda.bpm.engine.variable.Variables.objectValue;
 
 public class RetrieveSuggestedTimes implements JavaDelegate {
@@ -20,7 +20,7 @@ public class RetrieveSuggestedTimes implements JavaDelegate {
         retrieved_interviews_map.put("interview_suggestion_2", execution.getVariable("interview_suggestion_2").toString());
         retrieved_interviews_map.put("interview_suggestion_3", execution.getVariable("interview_suggestion_3").toString());
 
-        REFUGEE_APP_JOB.info("Interview suggestions received");
+        FRONTEND_JOB.info("Interview suggestions received");
 
         execution.setVariable("SELECTION_INTERVIEWS",
                 objectValue(retrieved_interviews_map)

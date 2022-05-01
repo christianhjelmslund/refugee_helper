@@ -6,7 +6,7 @@ import java.util.Random;
 
 import java.util.HashMap;
 
-import static com.example.workflow.job.SendJobInterest.COMPANY;
+import static com.example.workflow.job.SendJobInterest.COMPANY_JOB;
 
 public class ScanCandidate implements JavaDelegate {
 
@@ -23,7 +23,7 @@ public class ScanCandidate implements JavaDelegate {
             invite_user = "false";
         }
 
-        COMPANY.info("Decision to invite user for interview: " + invite_user);
+        COMPANY_JOB.info("Decision to invite user for interview: " + invite_user);
         execution.setVariable("invite_user", invite_user);
     }
 
