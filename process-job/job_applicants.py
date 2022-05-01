@@ -17,11 +17,17 @@ siddhi_headers = { 'Content-Type': 'application/json'}
 
 print("Generating applicants started")
 
+count = 0
+
 while True:
     
     # Generate random job id
-    job_id = random.randint(57489,57495)
+    JOBID = 57490
+    MAX_APPLICATIONS = 20
+
+    job_id = random.randint(57489,57493)
     
+
     # Generate random first and last name
     female_firstname = names.get_first_name(gender='female')
     male_firstname = names.get_first_name(gender='male')
@@ -42,12 +48,15 @@ while True:
     print(data)
     requests.post(SIDDHI_URL+'/jobs', headers=siddhi_headers, data=data)
     
+    if job_id == JOBID: 
+        count = count+1
+        print("Count: ", count)
+    
+    
+    if count == MAX_APPLICATIONS: print("-------------- MAX_APPLICATIONS has been exceeded. -----------------")
+    
     sys.stdout.flush()
-    time.sleep(1)
-
-
-# In[ ]:
-
+    time.sleep(0.5)
 
 
 
