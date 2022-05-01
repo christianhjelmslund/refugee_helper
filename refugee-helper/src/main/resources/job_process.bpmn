@@ -2,7 +2,7 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_16yi07r" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
   <bpmn:collaboration id="Collaboration_1dbeq5h">
     <bpmn:participant id="Participant_1tpyshk" name="Job Frontend" processRef="job_frontend" />
-    <bpmn:participant id="Participant_0bkwod9" name="Job Recruitment Department" processRef="job_company" />
+    <bpmn:participant id="Participant_0bkwod9" name="Job Recruitment Department" processRef="job_recruitment_department" />
     <bpmn:participant id="Participant_06vaook" name="Siddhi" />
     <bpmn:participant id="Participant_1sz3luy" name="Job Backend" processRef="job_backend" />
     <bpmn:messageFlow id="Flow_0m6y45e" sourceRef="Participant_06vaook" targetRef="Event_0eylruk" />
@@ -149,7 +149,7 @@
     <bpmn:sequenceFlow id="Flow_0gzav7a" sourceRef="Event_1a3mog2" targetRef="Gateway_11xe5d4" />
   </bpmn:process>
   <bpmn:message id="Message_0nl192k" />
-  <bpmn:process id="job_company" name="Job Company" isExecutable="true" camunda:isStartableInTasklist="false">
+  <bpmn:process id="job_recruitment_department" name="Job Recruitment Department" isExecutable="true" camunda:isStartableInTasklist="false">
     <bpmn:laneSet id="LaneSet_1k1poy7">
       <bpmn:lane id="Lane_0gacv0u" name="System">
         <bpmn:flowNodeRef>Event_0lmy4z8</bpmn:flowNodeRef>
@@ -168,7 +168,6 @@
         <bpmn:flowNodeRef>Gateway_1r80iyw</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_1ri8e83</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1fujmfy</bpmn:flowNodeRef>
-        <bpmn:flowNodeRef>Activity_117kap5</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0mj6bi7</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Gateway_1fd0ycq</bpmn:flowNodeRef>
         <bpmn:flowNodeRef>Event_0dwg1ld</bpmn:flowNodeRef>
@@ -221,12 +220,8 @@
       <bpmn:incoming>Flow_1wf3s7e</bpmn:incoming>
       <bpmn:outgoing>Flow_1vairbw</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:userTask id="Activity_117kap5" name="Rejection">
-      <bpmn:incoming>Flow_1vairbw</bpmn:incoming>
-      <bpmn:outgoing>Flow_1rfbe1x</bpmn:outgoing>
-    </bpmn:userTask>
     <bpmn:endEvent id="Event_0mj6bi7" name="User rejected" camunda:asyncBefore="true">
-      <bpmn:incoming>Flow_1rfbe1x</bpmn:incoming>
+      <bpmn:incoming>Flow_1vairbw</bpmn:incoming>
       <bpmn:messageEventDefinition id="MessageEventDefinition_015se7p" camunda:class="com.example.workflow.job.SendRejection" />
     </bpmn:endEvent>
     <bpmn:eventBasedGateway id="Gateway_1fd0ycq">
@@ -271,7 +266,7 @@
         <bpmn:incoming>Flow_0n9cufi</bpmn:incoming>
         <bpmn:outgoing>Flow_13py8uj</bpmn:outgoing>
         <bpmn:timerEventDefinition id="TimerEventDefinition_0lksc8k">
-          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT59S</bpmn:timeDuration>
+          <bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT3M</bpmn:timeDuration>
         </bpmn:timerEventDefinition>
       </bpmn:intermediateCatchEvent>
       <bpmn:sequenceFlow id="Flow_0n9cufi" sourceRef="Gateway_1kfiw7o" targetRef="Event_0jpobes" />
@@ -312,8 +307,7 @@
     <bpmn:sequenceFlow id="Flow_1lxvxy0" sourceRef="Event_0dwg1ld" targetRef="Event_0oqc51z" />
     <bpmn:sequenceFlow id="Flow_10ac7vw" sourceRef="Gateway_1fd0ycq" targetRef="Event_05ndm1r" />
     <bpmn:sequenceFlow id="Flow_0fl1oep" sourceRef="Gateway_1fd0ycq" targetRef="Event_0dwg1ld" />
-    <bpmn:sequenceFlow id="Flow_1rfbe1x" sourceRef="Activity_117kap5" targetRef="Event_0mj6bi7" />
-    <bpmn:sequenceFlow id="Flow_1vairbw" sourceRef="Gateway_1fujmfy" targetRef="Activity_117kap5" />
+    <bpmn:sequenceFlow id="Flow_1vairbw" sourceRef="Gateway_1fujmfy" targetRef="Event_0mj6bi7" />
     <bpmn:sequenceFlow id="Flow_1gjb34a" sourceRef="Activity_1x13mec" targetRef="Gateway_1r80iyw" />
     <bpmn:sequenceFlow id="Flow_1y6ajwi" sourceRef="Event_0oxszn8" targetRef="Gateway_1fd0ycq" />
     <bpmn:sequenceFlow id="Flow_1wf3s7e" name="Reject user" sourceRef="Gateway_1r80iyw" targetRef="Gateway_1fujmfy">
@@ -746,10 +740,6 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1vairbw_di" bpmnElement="Flow_1vairbw">
         <di:waypoint x="3785" y="2140" />
-        <di:waypoint x="3840" y="2140" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1rfbe1x_di" bpmnElement="Flow_1rfbe1x">
-        <di:waypoint x="3940" y="2140" />
         <di:waypoint x="4012" y="2140" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0fl1oep_di" bpmnElement="Flow_0fl1oep">
@@ -812,9 +802,6 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_1fujmfy_di" bpmnElement="Gateway_1fujmfy" isMarkerVisible="true">
         <dc:Bounds x="3735" y="2115" width="50" height="50" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_0gy1dgm_di" bpmnElement="Activity_117kap5">
-        <dc:Bounds x="3840" y="2100" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_01jxc6u_di" bpmnElement="Event_0mj6bi7">
         <dc:Bounds x="4012" y="2122" width="36" height="36" />
