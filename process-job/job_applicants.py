@@ -15,12 +15,12 @@ import datetime
 SIDDHI_URL = 'http://localhost:8006'
 siddhi_headers = { 'Content-Type': 'application/json'}
 
-print("Jo Jo")
+print("Generating applicants started")
 
 while True:
     
     # Generate random job id
-    job_id = random.randint(83945,83950)
+    job_id = random.randint(57489,57495)
     
     # Generate random first and last name
     female_firstname = names.get_first_name(gender='female')

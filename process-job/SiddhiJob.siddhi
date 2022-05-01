@@ -28,7 +28,7 @@ define stream JoinedStream(job_id int);
 @info(name = 'application-count')
 from JobApplicantStream#window.timeBatch(30 sec)
 select job_id, count() as count
-having count > 20 and job_id == 83949
+having count > 20 and job_id == 57490
 insert into CountEventStream;
 
 /*from JobIDStream 
