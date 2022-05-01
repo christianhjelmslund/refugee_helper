@@ -3,8 +3,10 @@ from bson.objectid import ObjectId
 import motor.motor_asyncio
 
 MONGO_DETAILS = "mongodb://localhost:27017"
+# You can add this as server-link but your peronsal IP Address must be added to the cluster security details
+CLUSTER_MONGO = "mongodb+srv://camunda:6PiNj5%23umgtXc%232@cluster0.wkr2f.mongodb.net/test"
 
-client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_DETAILS)
+client = motor.motor_asyncio.AsyncIOMotorClient(CLUSTER_MONGO)
 
 database = client['refugee-db']
 

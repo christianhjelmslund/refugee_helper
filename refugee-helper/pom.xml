@@ -52,7 +52,7 @@
 
     <dependency>
       <groupId>org.camunda.spin</groupId>
-      <artifactId>camunda-spin-dataformat-xml-dom</artifactId>
+      <artifactId>camunda-spin-dataformat-all</artifactId>
     </dependency>
 
     <dependency>
