@@ -11,7 +11,7 @@ public class SendJobOpening implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
         HashMap SendJobOpening_map = new HashMap<String, Object>();
-        SendJobOpening_map.put("job_id", "89238");
+        SendJobOpening_map.put("job_id", "57490");
         SendJobOpening_map.put("job_url", "https://www.bmwgroup.jobs/us/en/jobfinder/job-description.57490.html");
 
         COMPANY_JOB.info("Sending job opening.");

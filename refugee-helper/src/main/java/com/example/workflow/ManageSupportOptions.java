@@ -16,9 +16,10 @@ public class ManageSupportOptions implements JavaDelegate {
         support_options.put("Visa", "Visa");
         support_options.put("Transport", "Transport");
 
-        if (execution.getVariable("destination_arrived") != null && (boolean) execution.getVariable("destination_arrived")) {
-            support_options.put("Job", "Job");
-        }
+//        if (execution.getVariable("destination_arrived") != null && (boolean) execution.getVariable("destination_arrived")) {
+//        }
+        support_options.put("Job", "Job");
+
 
         execution.setVariable("support_options",
                 objectValue(support_options)
