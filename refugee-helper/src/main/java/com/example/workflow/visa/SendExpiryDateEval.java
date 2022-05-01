@@ -12,5 +12,7 @@ public class SendExpiryDateEval implements JavaDelegate {
                 processInstanceId((String)execution.getVariable("mobile_visa_instance_id")).
                 setVariable("visa_expired", execution.getVariable("visa_expired")).
                 correlateWithResult();
+        execution.setVariable("country_found", false);
+
     }
 }

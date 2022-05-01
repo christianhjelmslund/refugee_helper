@@ -1,15 +1,18 @@
 package com.example.workflow;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Country implements Serializable {
     private boolean isEligible = false;
-    private final int id;
+    private final String _id;
     private final String name;
+    private final List<String> bannedCountries;
 
-    public Country(int id, String name) {
-        this.id = id;
+    public Country(String id, String name, List<String> bannedCountries) {
+        this._id = id;
         this.name = name;
+        this.bannedCountries = bannedCountries;
     }
 
     public boolean isEligible() {
@@ -20,8 +23,8 @@ public class Country implements Serializable {
         isEligible = eligible;
     }
 
-    public int getId() {
-        return id;
+    public String getId() {
+        return _id;
     }
 
 
@@ -29,12 +32,16 @@ public class Country implements Serializable {
     public String toString() {
         return "Country{" +
                 "isEligible=" + isEligible +
-                ", id=" + id +
+                ", id=" + _id +
                 ", name='" + name + '\'' +
                 '}';
     }
 
     public String getName() {
         return name;
+    }
+
+    public List<String> getBannedCountries() {
+        return bannedCountries;
     }
 }

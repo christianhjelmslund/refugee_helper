@@ -20,16 +20,17 @@ public class EvaluateVisaExpiryDate implements JavaDelegate {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
 
-        ArrayList<Country> countries = new ArrayList<>();
-        countries.add(new Country(0, "Spain"));
-        countries.add(new Country( 1, "Germany"));
-        countries.add(new Country( 2, "Portugal"));
-        countries.add(new Country( 3, "France"));
-        countries.add(new Country( 4, "Denmark"));
+//        ArrayList<Country> countries = new ArrayList<>();
+//        countries.add(new Country("0", "Spain"));
+//        countries.add(new Country( "2", "Germany"));
+//        countries.add(new Country( "123", "Portugal"));
+//        countries.add(new Country( "123", "France"));
+//        countries.add(new Country( 4, "Denmark"));
 
 
+        System.out.println("hmmm" + execution.getVariable("countries"));
 
-        execution.setVariable("countries", countries);
+//        execution.setVariable("countries", countries);
 
         c.setTime(date);
         c.add(Calendar.DATE, 90);

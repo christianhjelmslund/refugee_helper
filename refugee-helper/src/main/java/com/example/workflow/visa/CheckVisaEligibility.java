@@ -1,13 +1,9 @@
 package com.example.workflow.visa;
 
-import com.example.workflow.models.CountriesModel;
+import com.example.workflow.Country;
 import com.example.workflow.models.CountryModel;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.engine.variable.Variables;
-import org.camunda.bpm.model.bpmn.instance.camunda.CamundaFormData;
-import org.camunda.bpm.model.bpmn.instance.camunda.CamundaFormField;
-import org.camunda.bpm.model.bpmn.instance.camunda.CamundaValue;
 
 import java.util.*;
 
@@ -21,9 +17,36 @@ public class    CheckVisaEligibility implements JavaDelegate {
 
         execution.setVariable("visa_eligibility", true);
         execution.setVariable("user_age", 10);
-        execution.setVariable("country_found", false);
 
-        List<String> countries = (List<String>) execution.getVariable("countries");
+        List<CountryModel> importedCountries = (List<CountryModel>) execution.getVariable("countries");
+        List<Country> countries = new ArrayList<>();
+        String countryId = "";
+        for (CountryModel country :
+                importedCountries) {
+
+//            if (country.getName().equals(execution.getVariable("user_country"))) {
+//                countryId = country.get_id();
+//            }
+
+
+            List<String> bannedCountries = new ArrayList<>();
+            for (String bannedCountryId :
+                    country.getBanned_countries()) {
+
+                for (CountryModel importedCountry2 :
+                        importedCountries) {
+                    if (importedCountry2.get_id().equals(bannedCountryId)){
+                        bannedCountries.add(importedCountry2.getName());
+                    }
+
+                }
+            }
+            countries.add(new Country(country.get_id(), country.getName(), bannedCountries));
+
+        }
+        execution.setVariable("countries", countries);
+
+        REFUGEE_APP.info("Countriiiies " + importedCountries);
         REFUGEE_APP.info("Countriiiies " + countries);
         REFUGEE_APP.info("Countriiiies " + countries.size());
 

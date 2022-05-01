@@ -12,7 +12,6 @@ public class SendAnotherChosenOption implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         HashMap map = new HashMap<String, Object>();
         map.put("another_option", execution.getVariable("another_option"));
-        map.put("process_id", execution.getProcessInstanceId());
 
         REFUGEE_APP.info("Sending message [choose_another_support]': " +
                 execution.getVariable("another_option")

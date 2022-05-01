@@ -9,6 +9,8 @@ public class SendChosenCountry implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("msg_chosen_country").
+                setVariable("visa_country_ok", execution.getVariable("visa_country_ok"))
+                .processInstanceId((String) execution.getVariable("backend_instance_id")).
                 correlateWithResult();
 
     }
