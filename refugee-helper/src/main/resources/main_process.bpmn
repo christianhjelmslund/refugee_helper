@@ -316,7 +316,7 @@
     </bpmn:serviceTask>
     <bpmn:task id="Activity_1expaky" name="Provide job support">
       <bpmn:incoming>Flow_01ons97</bpmn:incoming>
-      <bpmn:outgoing>Flow_1gdqgao</bpmn:outgoing>
+      <bpmn:outgoing>Flow_14bqtoi</bpmn:outgoing>
     </bpmn:task>
     <bpmn:intermediateThrowEvent id="Event_17mimyw" name="Send user input checked" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_071qvgf</bpmn:incoming>
@@ -355,14 +355,12 @@
     <bpmn:sequenceFlow id="Flow_0o6qswc" sourceRef="Gateway_0hlo0j7" targetRef="Activity_12oj8sh">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "transport"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_0zor5gm" sourceRef="Activity_12oj8sh" targetRef="Gateway_01du244" />
     <bpmn:sequenceFlow id="Flow_1xzzxie" sourceRef="Gateway_0hlo0j7" targetRef="Activity_19d4msa">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "visa"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_01ons97" sourceRef="Gateway_0hlo0j7" targetRef="Activity_1expaky">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "job"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:sequenceFlow id="Flow_1gdqgao" sourceRef="Activity_1expaky" targetRef="Gateway_01du244" />
     <bpmn:sequenceFlow id="Flow_1infmk6" sourceRef="Event_1etq1wt" targetRef="Gateway_0hlo0j7" />
     <bpmn:sequenceFlow id="Flow_0vgsycd" sourceRef="Gateway_1ego3bj" targetRef="Event_1etq1wt" />
     <bpmn:sequenceFlow id="Flow_071qvgf" sourceRef="check-user-data" targetRef="Event_17mimyw" />
@@ -439,14 +437,6 @@
       <bpmn:outgoing>Flow_1xzzxie</bpmn:outgoing>
       <bpmn:outgoing>Flow_0o6qswc</bpmn:outgoing>
     </bpmn:exclusiveGateway>
-    <bpmn:exclusiveGateway id="Gateway_01du244">
-      <bpmn:incoming>Flow_0zor5gm</bpmn:incoming>
-      <bpmn:incoming>Flow_1m06ake</bpmn:incoming>
-      <bpmn:incoming>Flow_1gdqgao</bpmn:incoming>
-      <bpmn:incoming>Flow_09sqse9</bpmn:incoming>
-      <bpmn:outgoing>Flow_0qzyyqg</bpmn:outgoing>
-      <bpmn:outgoing>Flow_02u8wpv</bpmn:outgoing>
-    </bpmn:exclusiveGateway>
     <bpmn:exclusiveGateway id="Gateway_0sum4j9" name="did choose to get another support">
       <bpmn:incoming>Flow_13jqkz8</bpmn:incoming>
       <bpmn:incoming>Flow_03dbayd</bpmn:incoming>
@@ -459,8 +449,7 @@
       <bpmn:incoming>Flow_1vfn7de</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:intermediateCatchEvent id="Event_1gsv1so" name="received if desire to choose option">
-      <bpmn:incoming>Flow_0qzyyqg</bpmn:incoming>
-      <bpmn:incoming>Flow_02u8wpv</bpmn:incoming>
+      <bpmn:incoming>Flow_1ww9u5b</bpmn:incoming>
       <bpmn:outgoing>Flow_13jqkz8</bpmn:outgoing>
       <bpmn:outgoing>Flow_03dbayd</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_034v20u" messageRef="Message_0kpohne" />
@@ -471,11 +460,8 @@
         <camunda:in source="user_country" target="user_country" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xzzxie</bpmn:incoming>
-      <bpmn:outgoing>Flow_1m06ake</bpmn:outgoing>
-      <bpmn:outgoing>Flow_09sqse9</bpmn:outgoing>
+      <bpmn:outgoing>Flow_0ivok1d</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_1m06ake" sourceRef="Activity_19d4msa" targetRef="Gateway_01du244" />
-    <bpmn:sequenceFlow id="Flow_0qzyyqg" sourceRef="Gateway_01du244" targetRef="Event_1gsv1so" />
     <bpmn:sequenceFlow id="Flow_13jqkz8" sourceRef="Event_1gsv1so" targetRef="Gateway_0sum4j9" />
     <bpmn:sequenceFlow id="Flow_04o6595" name="no" sourceRef="Gateway_0sum4j9" targetRef="Event_0x9e33o">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!another_option}</bpmn:conditionExpression>
@@ -485,12 +471,22 @@
         <camunda:in source="picked_country" target="picked_country" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0o6qswc</bpmn:incoming>
-      <bpmn:outgoing>Flow_0zor5gm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_1isytm3</bpmn:outgoing>
     </bpmn:callActivity>
-    <bpmn:sequenceFlow id="Flow_02u8wpv" sourceRef="Gateway_01du244" targetRef="Event_1gsv1so" />
     <bpmn:sequenceFlow id="Flow_03dbayd" sourceRef="Event_1gsv1so" targetRef="Gateway_0sum4j9" />
-    <bpmn:sequenceFlow id="Flow_1vfn7de" sourceRef="Gateway_0sum4j9" targetRef="Event_0x9e33o" />
-    <bpmn:sequenceFlow id="Flow_09sqse9" sourceRef="Activity_19d4msa" targetRef="Gateway_01du244" />
+    <bpmn:sequenceFlow id="Flow_1vfn7de" sourceRef="Gateway_0sum4j9" targetRef="Event_0x9e33o">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!another_option}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0ivok1d" sourceRef="Activity_19d4msa" targetRef="Gateway_1xhjitg" />
+    <bpmn:exclusiveGateway id="Gateway_1xhjitg">
+      <bpmn:incoming>Flow_0ivok1d</bpmn:incoming>
+      <bpmn:incoming>Flow_14bqtoi</bpmn:incoming>
+      <bpmn:incoming>Flow_1isytm3</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ww9u5b</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_14bqtoi" sourceRef="Activity_1expaky" targetRef="Gateway_1xhjitg" />
+    <bpmn:sequenceFlow id="Flow_1isytm3" sourceRef="Activity_12oj8sh" targetRef="Gateway_1xhjitg" />
+    <bpmn:sequenceFlow id="Flow_1ww9u5b" sourceRef="Gateway_1xhjitg" targetRef="Event_1gsv1so" />
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -905,11 +901,6 @@
         <di:waypoint x="3148" y="960" />
         <di:waypoint x="3175" y="960" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1gdqgao_di" bpmnElement="Flow_1gdqgao">
-        <di:waypoint x="3420" y="860" />
-        <di:waypoint x="3520" y="860" />
-        <di:waypoint x="3520" y="935" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_01ons97_di" bpmnElement="Flow_01ons97">
         <di:waypoint x="3200" y="935" />
         <di:waypoint x="3200" y="860" />
@@ -918,11 +909,6 @@
       <bpmndi:BPMNEdge id="Flow_1xzzxie_di" bpmnElement="Flow_1xzzxie">
         <di:waypoint x="3225" y="960" />
         <di:waypoint x="3320" y="960" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0zor5gm_di" bpmnElement="Flow_0zor5gm">
-        <di:waypoint x="3420" y="1070" />
-        <di:waypoint x="3520" y="1070" />
-        <di:waypoint x="3520" y="985" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0o6qswc_di" bpmnElement="Flow_0o6qswc">
         <di:waypoint x="3200" y="985" />
@@ -1016,10 +1002,6 @@
           <dc:Bounds x="2515" y="988" width="30" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_02u8wpv_di" bpmnElement="Flow_02u8wpv">
-        <di:waypoint x="3545" y="960" />
-        <di:waypoint x="3582" y="960" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_03dbayd_di" bpmnElement="Flow_03dbayd">
         <di:waypoint x="3618" y="960" />
         <di:waypoint x="3655" y="960" />
@@ -1028,9 +1010,23 @@
         <di:waypoint x="3705" y="960" />
         <di:waypoint x="3752" y="960" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_09sqse9_di" bpmnElement="Flow_09sqse9">
+      <bpmndi:BPMNEdge id="Flow_0ivok1d_di" bpmnElement="Flow_0ivok1d">
         <di:waypoint x="3420" y="960" />
-        <di:waypoint x="3495" y="960" />
+        <di:waypoint x="3475" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_14bqtoi_di" bpmnElement="Flow_14bqtoi">
+        <di:waypoint x="3420" y="860" />
+        <di:waypoint x="3500" y="860" />
+        <di:waypoint x="3500" y="935" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1isytm3_di" bpmnElement="Flow_1isytm3">
+        <di:waypoint x="3420" y="1070" />
+        <di:waypoint x="3500" y="1070" />
+        <di:waypoint x="3500" y="985" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ww9u5b_di" bpmnElement="Flow_1ww9u5b">
+        <di:waypoint x="3525" y="960" />
+        <di:waypoint x="3582" y="960" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1tdhvt3_di" bpmnElement="check-user-data">
         <dc:Bounds x="350" y="920" width="100" height="80" />
@@ -1134,9 +1130,6 @@
       <bpmndi:BPMNShape id="Gateway_0hlo0j7_di" bpmnElement="Gateway_0hlo0j7" isMarkerVisible="true">
         <dc:Bounds x="3175" y="935" width="50" height="50" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_01du244_di" bpmnElement="Gateway_01du244" isMarkerVisible="true">
-        <dc:Bounds x="3495" y="935" width="50" height="50" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Gateway_0sum4j9_di" bpmnElement="Gateway_0sum4j9" isMarkerVisible="true">
         <dc:Bounds x="3655" y="935" width="50" height="50" />
         <bpmndi:BPMNLabel>
@@ -1167,6 +1160,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0qm5c4u_di" bpmnElement="Activity_12oj8sh">
         <dc:Bounds x="3320" y="1030" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Gateway_1xhjitg_di" bpmnElement="Gateway_1xhjitg" isMarkerVisible="true">
+        <dc:Bounds x="3475" y="935" width="50" height="50" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Association_0zdapjx_di" bpmnElement="Association_0zdapjx">
         <di:waypoint x="2340" y="920" />
