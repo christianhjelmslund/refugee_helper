@@ -27,7 +27,7 @@ public class GetCountries implements JavaDelegate {
 
         CountriesModel countries = countryService.getAllCountries();
 
-        Map<String, CountryModel> countriesObjectsMap = new HashMap<>();
+        /* Map<String, CountryModel> countriesObjectsMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
             countriesObjectsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
         }
@@ -35,7 +35,7 @@ public class GetCountries implements JavaDelegate {
                 objectValue(countriesObjectsMap)
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
-
+        */
         Map<String, String> countriesAsStringsMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
             countriesAsStringsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());

@@ -12,12 +12,13 @@ public class SendCountryPickOk implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
 
         HashMap map = new HashMap<String, Object>();
-        map.put("countries_objects", execution.getVariable("countries_objects"));
+        map.put("countries", execution.getVariable("countries"));
 
         System.out.println("Country pick ok");
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("country_pick_ok").
+                processInstanceId((String)execution.getVariable("process_id")).
                 setVariables(map).
                 correlateWithResult();
     }

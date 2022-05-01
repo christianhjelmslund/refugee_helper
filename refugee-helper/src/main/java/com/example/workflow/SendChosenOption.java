@@ -19,6 +19,7 @@ public class SendChosenOption implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("support_chosen").
+                processInstanceId((String)execution.getVariable("process_id")).
                 setVariables(map).
                 correlateWithResult();
     }
