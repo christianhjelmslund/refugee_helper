@@ -17,7 +17,7 @@ public class SendListOfCountries implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("list_of_countries_msg").
-                processInstanceId((String)execution.getVariable("process_id")).
+                processInstanceId((String)execution.getVariable("process_id_frontend")).
                 setVariables(map).
                 correlateWithResult();
     }

@@ -18,7 +18,7 @@ public class SendCountryPickOk implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("country_pick_ok").
-                processInstanceId((String)execution.getVariable("process_id")).
+                processInstanceId((String)execution.getVariable("process_id_frontend")).
                 setVariables(map).
                 correlateWithResult();
     }

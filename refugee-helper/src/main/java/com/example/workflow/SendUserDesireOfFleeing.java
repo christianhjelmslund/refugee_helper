@@ -19,7 +19,7 @@ public class SendUserDesireOfFleeing implements JavaDelegate {
                 getRuntimeService().
                 createMessageCorrelation("desire_to_escape_msg").
                 setVariables(map).
-                processInstanceId((String)execution.getVariable("process_id")).
+                processInstanceId((String)execution.getVariable("process_id_backend")).
                 correlateWithResult();
     }
 

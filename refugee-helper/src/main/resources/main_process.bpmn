@@ -206,7 +206,7 @@
       <bpmn:outgoing>Flow_00n8mpr</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_1pyalxb" messageRef="Message_1lw8ys9" />
     </bpmn:intermediateCatchEvent>
-    <bpmn:intermediateThrowEvent id="Event_004e76n" name="Send selected country">
+    <bpmn:intermediateThrowEvent id="Event_004e76n" name="Send selected country" camunda:asyncBefore="true">
       <bpmn:incoming>Flow_17vefso</bpmn:incoming>
       <bpmn:outgoing>Flow_14ykw14</bpmn:outgoing>
       <bpmn:messageEventDefinition id="MessageEventDefinition_01luv2b" camunda:class="com.example.workflow.PickedCountry" />

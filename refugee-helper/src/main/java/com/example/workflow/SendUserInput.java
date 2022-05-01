@@ -13,7 +13,7 @@ public class SendUserInput implements JavaDelegate {
         HashMap map = new HashMap<String, Object>();
         map.put("name", execution.getVariable("name"));
         map.put("user_country", execution.getVariable("user_country"));
-        map.put("process_id", execution.getProcessInstanceId());
+        map.put("process_id_frontend", execution.getProcessInstanceId());
 
         REFUGEE_APP.info("Sending message [user_input_data]'");
 
