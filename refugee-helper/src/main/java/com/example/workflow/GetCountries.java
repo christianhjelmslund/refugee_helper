@@ -27,16 +27,25 @@ public class GetCountries implements JavaDelegate {
 
         CountriesModel countries = countryService.getAllCountries();
 
-        Map<String, CountryModel> countriesMap = new HashMap<>();
+        Map<String, CountryModel> countriesObjectsMap = new HashMap<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
+            countriesObjectsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
         }
-        execution.setVariable("countries",
-                objectValue(countriesMap)
+        execution.setVariable("countries_objects",
+                objectValue(countriesObjectsMap)
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
 
-        REFUGEE_APP.info("Countries:" + execution.getVariable("countries"));
+        Map<String, String> countriesAsStringsMap = new HashMap<>();
+        for(int i = 0; i < countries.getCountries().size(); i++) {
+            countriesAsStringsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
+        }
+        execution.setVariable("list_of_countries",
+                objectValue(countriesAsStringsMap)
+                        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
+                        .create());
+
+        REFUGEE_APP.info("List of countries:" + execution.getVariable("list_of_countries"));
 
     }
 

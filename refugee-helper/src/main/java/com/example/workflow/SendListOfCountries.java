@@ -7,18 +7,16 @@ import java.util.HashMap;
 
 import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
 
-public class SendCountryPickOk implements JavaDelegate {
+public class SendListOfCountries implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
 
-        REFUGEE_APP.info("Countriesdd :" + execution.getVariable("countries"));
-
         HashMap map = new HashMap<String, Object>();
-        map.put("countries_objects", execution.getVariable("countries_objects"));
-
+        map.put("list_of_countries", execution.getVariable("list_of_countries"));
+        REFUGEE_APP.info("The list of countries as strings: " + execution.getVariable("countries_as_strings"));
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("country_pick_ok").
+                createMessageCorrelation("list_of_countries_msg").
                 setVariables(map).
                 correlateWithResult();
     }
