@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.0.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" id="Definitions_0fr9mxs" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.12.0">
   <bpmn:collaboration id="Collaboration_0mi56dw">
     <bpmn:participant id="Participant_10ws7yo" name="Frontend" processRef="refugee_mobile_app" />
     <bpmn:participant id="Participant_0v08ys5" name="Backend" processRef="System" />
@@ -226,7 +226,7 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "Transport"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_10umptf" sourceRef="Activity_0dj5gdd" targetRef="Gateway_10c0kqx" />
-    <bpmn:callActivity id="Activity_0dj5gdd" name="Provide travel support" calledElement="TransportationProcessFrontend">
+    <bpmn:callActivity id="Activity_0dj5gdd" name="Provide transportation support" calledElement="TransportationProcessFrontend">
       <bpmn:incoming>Flow_0lsg7hf</bpmn:incoming>
       <bpmn:outgoing>Flow_10umptf</bpmn:outgoing>
     </bpmn:callActivity>
