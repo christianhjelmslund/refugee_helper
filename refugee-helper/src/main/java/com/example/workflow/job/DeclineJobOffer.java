@@ -1,16 +1,19 @@
-package com.example.workflow;
+package com.example.workflow.job;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-public class SendCountryPickNotOk implements JavaDelegate {
+import static com.example.workflow.job.SendJobInterest.REFUGEE_APP_JOB;
+
+public class DeclineJobOffer implements JavaDelegate {
 
     public void execute(DelegateExecution execution) throws Exception {
 
-        System.out.println("Country pick not ok");
+        REFUGEE_APP_JOB.info("Decline job offer.");
+
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("country_pick_not_ok").
+                createMessageCorrelation("job_offer_declined").
                 correlateWithResult();
     }
 

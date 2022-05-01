@@ -5,7 +5,7 @@ import java.util.HashMap;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 
-import static com.example.workflow.job.PublishJobDescription.REFUGEE_APP_JOB;
+import static com.example.workflow.job.SendJobInterest.REFUGEE_APP_JOB;
 
 public class SendJobApplication implements JavaDelegate {
 
@@ -17,7 +17,7 @@ public class SendJobApplication implements JavaDelegate {
 
         execution.getProcessEngineServices().
                 getRuntimeService().
-                createMessageCorrelation("job_application_received").
+                createMessageCorrelation("job_application_sent").
                 setVariables(map).
                 correlateWithResult();
 
