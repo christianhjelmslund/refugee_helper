@@ -94,7 +94,6 @@
     <bpmn:exclusiveGateway id="Gateway_12bf9zp">
       <bpmn:incoming>Flow_0gll9be</bpmn:incoming>
       <bpmn:outgoing>Flow_181ws8k</bpmn:outgoing>
-      <bpmn:outgoing>Flow_152gi85</bpmn:outgoing>
       <bpmn:outgoing>Flow_16gnjjt</bpmn:outgoing>
     </bpmn:exclusiveGateway>
     <bpmn:task id="Activity_0vuqdal" name="Provide job support">
@@ -165,9 +164,6 @@
     <bpmn:sequenceFlow id="Flow_1kkppt9" sourceRef="Event_1obi9x6" targetRef="Gateway_1l48eee" />
     <bpmn:sequenceFlow id="Flow_0gf089x" sourceRef="Activity_01f1sfb" targetRef="Event_1i83aes" />
     <bpmn:sequenceFlow id="Flow_0gll9be" sourceRef="Event_1i83aes" targetRef="Gateway_12bf9zp" />
-    <bpmn:sequenceFlow id="Flow_152gi85" sourceRef="Gateway_12bf9zp">
-      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "transport"}</bpmn:conditionExpression>
-    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_16gnjjt" sourceRef="Gateway_12bf9zp" targetRef="Activity_0vuqdal">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "job"}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
