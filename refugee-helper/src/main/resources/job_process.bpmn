@@ -353,7 +353,7 @@
     <bpmn:sequenceFlow id="Flow_0p2t6ht" sourceRef="Event_1vr0fpy" targetRef="Event_1aw181v" />
   </bpmn:process>
   <bpmn:message id="Message_1c7b1rj" name="job_application_sent" />
-  <bpmn:message id="Message_05ng6eu" name="max_messages_received" />
+  <bpmn:message id="Message_05ng6eu" name="max_applications_received" />
   <bpmn:error id="Error_1pzcfcl" name="Error_0k5i0pu" errorCode="123" />
   <bpmn:error id="Error_06ie2i7" name="Error_MaxReceived" />
   <bpmn:message id="Message_0icfro9" name="job_application_closed" />
