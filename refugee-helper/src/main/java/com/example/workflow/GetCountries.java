@@ -10,6 +10,7 @@ import org.camunda.bpm.engine.variable.Variables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,18 +27,11 @@ public class GetCountries implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
 
         CountriesModel countries = countryService.getAllCountries();
-
-        /* Map<String, CountryModel> countriesObjectsMap = new HashMap<>();
-        for(int i = 0; i < countries.getCountries().size(); i++) {
-            countriesObjectsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i));
-        }
-        execution.setVariable("countries_objects",
-                objectValue(countriesObjectsMap)
-                        .serializationDataFormat(Variables.SerializationDataFormats.JSON)
-                        .create());
-        */
+        
         Map<String, String> countriesAsStringsMap = new HashMap<>();
+        ArrayList<String> countriesList = new ArrayList<>();
         for(int i = 0; i < countries.getCountries().size(); i++) {
+            countriesList.add(countries.getCountries().get(i).getName());
             countriesAsStringsMap.put(countries.getCountries().get(i).getName(),countries.getCountries().get(i).getName());
         }
         execution.setVariable("list_of_countries",
@@ -45,7 +39,9 @@ public class GetCountries implements JavaDelegate {
                         .serializationDataFormat(Variables.SerializationDataFormats.JSON)
                         .create());
 
-        REFUGEE_APP.info("List of countries:" + execution.getVariable("list_of_countries"));
+        execution.setVariable("list_of_countries_as_arraylist", countriesList);
+
+        REFUGEE_APP.info("List of countries:" + execution.getVariable("list_of_countries_as_arraylist"));
 
     }
 
