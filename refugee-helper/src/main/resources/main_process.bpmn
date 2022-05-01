@@ -462,7 +462,7 @@
     </bpmn:intermediateCatchEvent>
     <bpmn:callActivity id="Activity_19d4msa" name="Provide visa support" calledElement="SystemVisa">
       <bpmn:extensionElements>
-        <camunda:in source="list_of_countries" target="countries" />
+        <camunda:in source="list_of_countries_as_arraylist" target="countries" />
         <camunda:in source="user_country" target="user_country" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xzzxie</bpmn:incoming>

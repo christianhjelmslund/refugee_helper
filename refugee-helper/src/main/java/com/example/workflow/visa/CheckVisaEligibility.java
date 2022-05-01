@@ -1,6 +1,7 @@
 package com.example.workflow.visa;
 
 import com.example.workflow.models.CountriesModel;
+import com.example.workflow.models.CountryModel;
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.camunda.bpm.engine.variable.Variables;
@@ -21,6 +22,10 @@ public class    CheckVisaEligibility implements JavaDelegate {
         execution.setVariable("visa_eligibility", true);
         execution.setVariable("user_age", 10);
         execution.setVariable("country_found", false);
+
+        List<String> countries = (List<String>) execution.getVariable("countries");
+        REFUGEE_APP.info("Countriiiies " + countries);
+        REFUGEE_APP.info("Countriiiies " + countries.size());
 
         REFUGEE_APP.info("Countries:" + execution.getVariable("countries"));
 //        REFUGEE_APP.info("Picked country:" + execution.getVariable("picked_country"));
