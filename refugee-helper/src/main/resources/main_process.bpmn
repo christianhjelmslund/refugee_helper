@@ -29,6 +29,7 @@
         <camunda:formData>
           <camunda:formField id="name" label="name" type="string" defaultValue="Hola Christian" />
           <camunda:formField id="user_country" label="Country" type="string" defaultValue="Ukraine" />
+          <camunda:formField id="current_address" label="current_address" type="string" />
         </camunda:formData>
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1ors2ax</bpmn:incoming>
@@ -473,7 +474,8 @@
     </bpmn:sequenceFlow>
     <bpmn:callActivity id="Activity_12oj8sh" name="Provide transportation support" calledElement="TransportationProcessBackend">
       <bpmn:extensionElements>
-        <camunda:in source="picked_country" target="picked_country" />
+        <camunda:in source="picked_country" target="destination_country" />
+        <camunda:in source="address" target="CURRENT_ADDRESS" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0o6qswc</bpmn:incoming>
       <bpmn:outgoing>Flow_1isytm3</bpmn:outgoing>
