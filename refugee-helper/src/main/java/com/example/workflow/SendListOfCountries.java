@@ -13,7 +13,7 @@ public class SendListOfCountries implements JavaDelegate {
 
         HashMap map = new HashMap<String, Object>();
         map.put("list_of_countries", execution.getVariable("list_of_countries"));
-        REFUGEE_APP.info("The list of countries as strings: " + execution.getVariable("countries_as_strings"));
+        REFUGEE_APP.info("The list of countries as strings: " + execution.getVariable("list_of_countries"));
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("list_of_countries_msg").
