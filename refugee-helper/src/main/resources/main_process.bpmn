@@ -250,7 +250,9 @@
       <bpmn:incoming>Flow_02qx2vb</bpmn:incoming>
       <bpmn:outgoing>Flow_1eg8x8r</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_0lsg7hf" sourceRef="Gateway_12bf9zp" targetRef="Activity_0dj5gdd" />
+    <bpmn:sequenceFlow id="Flow_0lsg7hf" sourceRef="Gateway_12bf9zp" targetRef="Activity_0dj5gdd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${option == "transport"}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
     <bpmn:sequenceFlow id="Flow_10umptf" sourceRef="Activity_0dj5gdd" targetRef="Gateway_10c0kqx" />
     <bpmn:callActivity id="Activity_0dj5gdd" name="Provide transportation support" calledElement="TransportationProcessFrontend">
       <bpmn:incoming>Flow_0lsg7hf</bpmn:incoming>
@@ -441,6 +443,7 @@
       <bpmn:incoming>Flow_0zor5gm</bpmn:incoming>
       <bpmn:incoming>Flow_1m06ake</bpmn:incoming>
       <bpmn:incoming>Flow_1gdqgao</bpmn:incoming>
+      <bpmn:incoming>Flow_09sqse9</bpmn:incoming>
       <bpmn:outgoing>Flow_0qzyyqg</bpmn:outgoing>
       <bpmn:outgoing>Flow_02u8wpv</bpmn:outgoing>
     </bpmn:exclusiveGateway>
@@ -469,6 +472,7 @@
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1xzzxie</bpmn:incoming>
       <bpmn:outgoing>Flow_1m06ake</bpmn:outgoing>
+      <bpmn:outgoing>Flow_09sqse9</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:sequenceFlow id="Flow_1m06ake" sourceRef="Activity_19d4msa" targetRef="Gateway_01du244" />
     <bpmn:sequenceFlow id="Flow_0qzyyqg" sourceRef="Gateway_01du244" targetRef="Event_1gsv1so" />
@@ -477,12 +481,16 @@
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${!another_option}</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
     <bpmn:callActivity id="Activity_12oj8sh" name="Provide transportation support" calledElement="TransportationProcessBackend">
+      <bpmn:extensionElements>
+        <camunda:in source="picked_country" target="picked_country" />
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_0o6qswc</bpmn:incoming>
       <bpmn:outgoing>Flow_0zor5gm</bpmn:outgoing>
     </bpmn:callActivity>
     <bpmn:sequenceFlow id="Flow_02u8wpv" sourceRef="Gateway_01du244" targetRef="Event_1gsv1so" />
     <bpmn:sequenceFlow id="Flow_03dbayd" sourceRef="Event_1gsv1so" targetRef="Gateway_0sum4j9" />
     <bpmn:sequenceFlow id="Flow_1vfn7de" sourceRef="Gateway_0sum4j9" targetRef="Event_0x9e33o" />
+    <bpmn:sequenceFlow id="Flow_09sqse9" sourceRef="Activity_19d4msa" targetRef="Gateway_01du244" />
     <bpmn:textAnnotation id="TextAnnotation_1p6j2fc">
       <bpmn:text>Decision outcome defines if chosen country should be reconsidered based on current refugee limit of selected country</bpmn:text>
     </bpmn:textAnnotation>
@@ -1019,6 +1027,10 @@
       <bpmndi:BPMNEdge id="Flow_1vfn7de_di" bpmnElement="Flow_1vfn7de">
         <di:waypoint x="3705" y="960" />
         <di:waypoint x="3752" y="960" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09sqse9_di" bpmnElement="Flow_09sqse9">
+        <di:waypoint x="3420" y="960" />
+        <di:waypoint x="3495" y="960" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Activity_1tdhvt3_di" bpmnElement="check-user-data">
         <dc:Bounds x="350" y="920" width="100" height="80" />
