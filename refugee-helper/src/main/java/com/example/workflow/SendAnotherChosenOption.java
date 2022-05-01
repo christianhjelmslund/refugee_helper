@@ -21,6 +21,7 @@ public class SendAnotherChosenOption implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("another_option").
+                processInstanceId((String)execution.getVariable("process_id")).
                 setVariables(map).
                 correlateWithResult();
     }

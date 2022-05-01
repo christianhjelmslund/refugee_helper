@@ -11,6 +11,7 @@ public class SendCountryPickNotOk implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("country_pick_not_ok").
+                processInstanceId((String)execution.getVariable("process_id")).
                 correlateWithResult();
     }
 

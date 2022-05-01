@@ -2,17 +2,9 @@ package com.example.workflow.job;
 
 import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
-import org.camunda.bpm.engine.variable.Variables;
+import static com.example.workflow.job.SendJobInterest.COMPANY_JOB;
 
-import static com.example.workflow.CheckUserInfo.REFUGEE_APP;
-import static org.camunda.bpm.engine.variable.Variables.objectValue;
-
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
-
-import static com.example.workflow.job.SendJobInterest.COMPANY;
-import static com.example.workflow.job.SendJobInterest.REFUGEE_APP_JOB;
 
 public class FilterJobs implements JavaDelegate {
 
@@ -25,7 +17,7 @@ public class FilterJobs implements JavaDelegate {
         job_selection_map.put("job_selection_4", "BMW 4");
         job_selection_map.put("job_selection_5", "BMW 5");
 
-        COMPANY.info("Jobs based on destination country filtered");
+        COMPANY_JOB.info("Jobs based on destination country filtered");
 
         execution.getProcessEngineServices().
                 getRuntimeService().

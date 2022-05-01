@@ -9,6 +9,7 @@ public class SendEvaluateVisaExpiry implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("msg_evaluate_expiry_date").
+                setVariable("date_of_arrival", execution.getVariable("date_of_arrival")).
                 correlateWithResult();
 
     }

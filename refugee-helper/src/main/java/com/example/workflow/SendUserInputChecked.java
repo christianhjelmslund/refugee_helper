@@ -19,6 +19,7 @@ public class SendUserInputChecked implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("user_input_data_ok").
+                processInstanceId((String)execution.getVariable("process_id")).
                 setVariables(map).
                 correlateWithResult();
     }

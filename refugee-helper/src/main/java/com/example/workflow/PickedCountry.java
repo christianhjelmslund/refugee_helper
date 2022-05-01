@@ -19,6 +19,7 @@ public class PickedCountry implements JavaDelegate {
         execution.getProcessEngineServices().
                 getRuntimeService().
                 createMessageCorrelation("picked_country").
+                processInstanceId((String)execution.getVariable("process_id")).
                 setVariables(map).
                 correlateWithResult();
     }

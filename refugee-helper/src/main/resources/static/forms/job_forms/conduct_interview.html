@@ -1,10 +1,19 @@
 <form role="form" name="form">
     <div class="form-group">
-        <label for="conduct_interview">Please select 'Continue' when the interview has been conducted.</label>
+        <label for="conduct_interview">Please rate the interview on a scale (1-10) after the interview has been conducted.</label>
         <select id="conduct_interview"
-                cam-variable-name="CONDUCTED_SUCCESS"
+                cam-variable-name="INTERVIEW_RATING"
                 cam-variable-type="String">
-            <option value="true">Continue</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
         </select>
     </div>
 </form>
