@@ -12,7 +12,7 @@ import time
 import names
 import datetime
 
-SIDDHI_URL = 'http://localhost:8006'
+SIDDHI_URL = 'http://localhost:8004'
 siddhi_headers = { 'Content-Type': 'application/json'}
 
 print("Generating applicants started")

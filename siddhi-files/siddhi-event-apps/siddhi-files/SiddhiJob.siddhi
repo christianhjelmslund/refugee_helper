@@ -1,0 +1,37 @@
+@App:name("SiddhiJob")
+
+
+@App:description("Description of the plan")
+
+@sink(type='log', prefix='Input from job_applicants.py')
+@source(type = 'http', receiver.url = "http://0.0.0.0:8004/jobs", @map(type = 'json'))
+define stream JobApplicantStream (job_id int, first_name string, last_name string, birthday string);
+
+
+
+@sink(type='http-call',
+    publisher.url='http://host.docker.internal:8080/engine-rest/message',
+    method='POST', sink.id='max-applications-received',
+    @map(type='json', @payload("""{ "all": true, "messageName" : "max_applications_received", "processVariables": {"count_applications" : {"value" : "{{count}}", "type": "long"} } } """)))
+
+@sink(type='log', prefix='CountEventStream') 
+define stream CountEventStream(job_id int, count long);
+
+@source(type='http-call-response', sink.id='max-applications-received',
+    http.status.code='2\d+',
+    @map(type='json', @attributes(userId='userId',
+        title='title', id='id',
+        completed='completed')))
+@sink(type='log', prefix='LOGGESR')
+define stream MaxReceivedStream(userId int,
+           title string, id int,
+           completed bool);
+
+@info(name = 'application-count')
+from JobApplicantStream[job_id == 57490]#window.time(3 min)
+select job_id, count() as count
+having count > 20
+insert into CountEventStream;
+
+
+

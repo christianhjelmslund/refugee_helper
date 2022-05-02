@@ -6,7 +6,7 @@ from datetime import datetime
 import  time
 
 NEWS_API_KEY = 'bc4e90e0e45142ee91e0c2ad557129f9'
-SIDDHI_URL = 'http://localhost:8006'
+SIDDHI_URL = 'http://localhost:8005'
 
 news_headers = { 'Authorization': NEWS_API_KEY }
 siddhi_headers = { 'Content-Type': 'application/json'}
