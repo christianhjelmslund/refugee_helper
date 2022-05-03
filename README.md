@@ -33,6 +33,6 @@ If it's not working please contact the repository owner.
 
 ### Setup Camunda Project
 To start the Camunda Spring application go to folder refugee-helper and open the pom.xml in your preferred Editor and run the application.
-Now you only have to deploy the processes to Camunda from the resource folder of refugee-helper app (/src/main/resources) and open this [Link](http://localhost:8080/).
+Now you only have to deploy the processes to Camunda Modeler from the resource folder of refugee-helper app (/src/main/resources), add the forms (/src/main/resources/static/forms) into the deploy dialog  and open this [Link](http://localhost:8080/).
 Go to Camunda Tasklist and start the *main_process*.
 
